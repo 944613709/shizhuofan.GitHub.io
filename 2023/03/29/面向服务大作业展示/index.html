@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="面向服务大作业展示http:&#x2F;&#x2F;localhost:10010&#x2F;backend&#x2F;index.html 访问路径 理论上 http:&#x2F;&#x2F;公网ip:32210&#x2F;backend&#x2F;index.html就可以访问 同时多ip部署大作业项目发现数据库调用很慢（只使用了一个mysql） 成功连接sentinel http:&#x2F;&#x2F;47.92.244.182:31581&#x2F;#&#x2F;d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.org/2023/03/29/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="面向服务大作业展示http:&#x2F;&#x2F;localhost:10010&#x2F;backend&#x2F;index.html 访问路径 理论上 http:&#x2F;&#x2F;公网ip:32210&#x2F;backend&#x2F;index.html就可以访问 同时多ip部署大作业项目发现数据库调用很慢（只使用了一个mysql） 成功连接sentinel http:&#x2F;&#x2F;47.92.244.182:31581&#x2F;#&#x2F;d">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214193300402.png">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214193814894.png">
+<meta property="og:image" content="c:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20221213120043836.png">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214150728690.png">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214154017141.png">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214144959425.png">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214111013757.png">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214145849488.png">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214150130346.png">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214201550762.png">
+<meta property="og:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214205204586.png">
+<meta property="article:published_time" content="2023-03-29T08:47:39.816Z">
+<meta property="article:modified_time" content="2022-12-14T14:14:43.329Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.org/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214193300402.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.org"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-面向服务大作业展示" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/29/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA/" class="article-date">
+  <time class="dt-published" datetime="2023-03-29T08:47:39.816Z" itemprop="datePublished">2023-03-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="面向服务大作业展示"><a href="#面向服务大作业展示" class="headerlink" title="面向服务大作业展示"></a>面向服务大作业展示</h1><p><a target="_blank" rel="noopener" href="http://localhost:10010/backend/index.html">http://localhost:10010/backend/index.html</a></p>
+<p>访问路径</p>
+<p>理论上</p>
+<p>http:&#x2F;&#x2F;公网ip:32210&#x2F;backend&#x2F;index.html就可以访问</p>
+<h2 id="同时多ip部署大作业项目"><a href="#同时多ip部署大作业项目" class="headerlink" title="同时多ip部署大作业项目"></a>同时多ip部署大作业项目</h2><p>发现数据库调用很慢（只使用了一个mysql）</p>
+<p>成功连接sentinel</p>
+<p><a target="_blank" rel="noopener" href="http://47.92.244.182:31581/#/dashboard/metric/mailemployee">http://47.92.244.182:31581/#/dashboard/metric/mailemployee</a></p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214193300402.png" alt="image-20221214193300402"></p>
+<p>基于gateway与nacos集合，在目前项目中暂时不需要sentinel专门去限流</p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214193814894.png" alt="image-20221214193814894"></p>
+<p><a target="_blank" rel="noopener" href="http://47.92.244.182:30503/nacos/#/serviceManagement?dataId=&group=&appName=&namespace=">http://47.92.244.182:30503/nacos/#/serviceManagement?dataId=&amp;group=&amp;appName=&amp;namespace=</a></p>
+<p>成功连接nacos</p>
+<p><img src="C:\Users\86189\AppData\Roaming\Typora\typora-user-images\image-20221213120043836.png" alt="image-20221213120043836"></p>
+<p>成功放入docker运行并无问题</p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214150728690.png" alt="image-20221214150728690"></p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214154017141.png" alt="image-20221214154017141"></p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214144959425.png" alt="image-20221214144959425"></p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214111013757.png" alt="image-20221214111013757"></p>
+<p>12.14修正了原先管理端后端处理前端跨域问题的过时方法</p>
+<p>后端Feign处理前端跨域方法改为后端网关处理</p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214145849488.png" alt="image-20221214145849488"></p>
+<p>残余的可以删掉，但是保留下来是为了保留Feign接口，方便以后要用时候再次利用这些Feign接口</p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214150130346.png" alt="image-20221214150130346"></p>
+<p>12.14准备采用nginx部署</p>
+<p>原始80端口冲突所以一直显示不出来！！！</p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214201550762.png" alt="image-20221214201550762"></p>
+<h1 id="在新的k8s利用jenkins部署好之后，需要添加gateway白名单"><a href="#在新的k8s利用jenkins部署好之后，需要添加gateway白名单" class="headerlink" title="在新的k8s利用jenkins部署好之后，需要添加gateway白名单"></a>在新的k8s利用jenkins部署好之后，需要添加gateway白名单</h1><p>在这里需要nginx的公网请求ip和端口</p>
+<p>12.14代办</p>
+<p><img src="/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA.assets/image-20221214205204586.png" alt="image-20221214205204586"></p>
+<h1 id="互相合作很不错，自己部署一晚上nginx没有成功，交给苏泽楷一下子就成了"><a href="#互相合作很不错，自己部署一晚上nginx没有成功，交给苏泽楷一下子就成了" class="headerlink" title="互相合作很不错，自己部署一晚上nginx没有成功，交给苏泽楷一下子就成了"></a>互相合作很不错，自己部署一晚上nginx没有成功，交给苏泽楷一下子就成了</h1><h1 id="gateway的跨域允许"><a href="#gateway的跨域允许" class="headerlink" title="gateway的跨域允许"></a>gateway的跨域允许</h1><p>就算是本机ip是120.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.org/2023/03/29/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA/" data-id="clftg34j6000xdgwpbladg4j1" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/03/29/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/29/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%88%86%E4%BA%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/29/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E8%AE%A1%E7%BD%91%E8%80%83%E5%89%8D%E4%B8%80%E5%A4%A92.17/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

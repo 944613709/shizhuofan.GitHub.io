@@ -71,46 +71,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-RabbitMq" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/29/RabbitMq/" class="article-date">
-  <time class="dt-published" datetime="2023-03-29T08:47:41.982Z" itemprop="datePublished">2023-03-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="RabbitMq"><a href="#RabbitMq" class="headerlink" title="RabbitMq"></a>RabbitMq</h1><ol>
-<li></li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --hostname my-rabbit --name my-rabbit -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=250772730 -p 8080:8080 -p 15672:15672 -p 5672:5672 rabbitmq:3-management</span><br></pre></td></tr></table></figure>
-
-<p>docker里面的-p暴露端口是确确实实写了才会映射到主机</p>
-<ol start="2">
-<li></li>
-</ol>
-<p>15672才是RabbitMq的控制台</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">package com.macs.order.message;</span><br><span class="line"></span><br><span class="line">import lombok.extern.slf4j.Slf4j;</span><br><span class="line">import org.springframework.amqp.rabbit.annotation.Exchange;</span><br><span class="line">import org.springframework.amqp.rabbit.annotation.Queue;</span><br><span class="line">import org.springframework.amqp.rabbit.annotation.QueueBinding;</span><br><span class="line">import org.springframework.amqp.rabbit.annotation.RabbitListener;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 接收mq消息</span><br><span class="line"> * @author antma</span><br><span class="line"> */</span><br><span class="line">@Slf4j</span><br><span class="line">@Component</span><br><span class="line">public class MqReceiver &#123;</span><br><span class="line"></span><br><span class="line">    //1. 手动创建，需在RabbitMQ中手动创建myQueue1 队列，否则报错</span><br><span class="line">    @RabbitListener(queues = &quot;myQueue1&quot;)</span><br><span class="line">    public void process1(String message)&#123;</span><br><span class="line">        log.info(&quot;MqReceiver1: &#123;&#125;&quot;, message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //2. 自动创建队列</span><br><span class="line">    @RabbitListener(queuesToDeclare = @Queue(&quot;myQueue2&quot;))</span><br><span class="line">    public void process2(String message)&#123;</span><br><span class="line">        log.info(&quot;MqReceiver2: &#123;&#125;&quot;, message);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //3. 自动创建队列，Exchange 与 Queue绑定</span><br><span class="line">    @RabbitListener(bindings = @QueueBinding(</span><br><span class="line">            value = @Queue(&quot;myQueue3&quot;),</span><br><span class="line">            exchange = @Exchange(&quot;testExChange&quot;)</span><br><span class="line">    ))</span><br><span class="line">    public void process3(String message)&#123;</span><br><span class="line">        log.info(&quot;MqReceiver3: &#123;&#125;&quot;, message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//    @RabbitListener(bindings = @QueueBinding(</span><br><span class="line">//            exchange = @Exchange(&quot;myOrder&quot;),</span><br><span class="line">//            key = &quot;computer&quot;,</span><br><span class="line">//            value = @Queue(&quot;computerOrder&quot;)</span><br><span class="line">//    ))</span><br><span class="line">//    public void processComputer(String message)&#123;</span><br><span class="line">//        log.info(&quot;computer MqReceiver: &#123;&#125;&quot;, message);</span><br><span class="line">//</span><br><span class="line">//    &#125;</span><br><span class="line">//</span><br><span class="line">//    @RabbitListener(bindings = @QueueBinding(</span><br><span class="line">//            exchange = @Exchange(&quot;myOrder&quot;),</span><br><span class="line">//            key = &quot;fruit&quot;,</span><br><span class="line">//            value = @Queue(&quot;fruitOrder&quot;)</span><br><span class="line">//    ))</span><br><span class="line">//    public void processFruit(String message)&#123;</span><br><span class="line">//        log.info(&quot;fruit MqReceiver: &#123;&#125;&quot;, message);</span><br><span class="line">//</span><br><span class="line">//    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/RabbitMq/" data-id="clftg34im0005dgwp5tjaasdf" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-Online_Microservice_Orchestration_for_IoT_via_Multiobjective_Deep_Reinforcemen" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/03/29/Online_Microservice_Orchestration_for_IoT_via_Multiobjective_Deep_Reinforcemen/" class="article-date">
@@ -135,7 +95,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/Online_Microservice_Orchestration_for_IoT_via_Multiobjective_Deep_Reinforcemen/" data-id="clftg34in0006dgwp5buy35b8" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.org/2023/03/29/Online_Microservice_Orchestration_for_IoT_via_Multiobjective_Deep_Reinforcemen/" data-id="clftg6phf0005vswp3crp9ace" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -172,7 +132,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/nginx/" data-id="clftg34iu000bdgwpcebc0tpx" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.org/2023/03/29/nginx/" data-id="clftg6phk000bvswpbrsm3dek" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -203,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/Linux%E5%91%BD%E4%BB%A4/" data-id="clftg34il0004dgwp57xic58a" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.org/2023/03/29/Linux%E5%91%BD%E4%BB%A4/" data-id="clftg6phe0004vswp1aut05wr" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -483,7 +443,7 @@ private void insertionSort(int[] arr, int left, int right) &#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/LeetCode/" data-id="clftg34ik0002dgwp39ds4dld" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.org/2023/03/29/LeetCode/" data-id="clftg6phe0003vswp0n2o0e8p" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -517,7 +477,7 @@ private void insertionSort(int[] arr, int left, int right) &#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/k8s%E5%AE%89%E8%A3%85jenkins/" data-id="clftg34is000adgwpclce13hu" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.org/2023/03/29/k8s%E5%AE%89%E8%A3%85jenkins/" data-id="clftg6phj000avswpf62c7fl5" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -552,7 +512,7 @@ private void insertionSort(int[] arr, int left, int right) &#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/k8s%E5%AE%89%E8%A3%85helm/" data-id="clftg34iq0009dgwpeos9ch9l" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.org/2023/03/29/k8s%E5%AE%89%E8%A3%85helm/" data-id="clftg6phi0009vswp4u54gkdl" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -580,7 +540,7 @@ private void insertionSort(int[] arr, int left, int right) &#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/GO%E8%AF%AD%E8%A8%80/" data-id="clftg34ii0001dgwp4dyj1qe1" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.org/2023/03/29/GO%E8%AF%AD%E8%A8%80/" data-id="clftg6phd0002vswp5z76bd4g" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -610,7 +570,7 @@ private void insertionSort(int[] arr, int left, int right) &#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/Es%E5%AE%89%E8%A3%85/" data-id="clftg34il0003dgwp3tlhhhi4" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.org/2023/03/29/Es%E5%AE%89%E8%A3%85/" data-id="clftg6phb0001vswp0xfv1orx" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -643,7 +603,133 @@ private void insertionSort(int[] arr, int left, int right) &#123;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.org/2023/03/29/CCF%E2%80%94%E2%80%94CSP/" data-id="clftg34i60000dgwp4j8n2t75" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.org/2023/03/29/CCF%E2%80%94%E2%80%94CSP/" data-id="clftg6pgz0000vswpb2ug19h0" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-组会进度分享" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/29/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB/" class="article-date">
+  <time class="dt-published" datetime="2023-03-29T08:47:39.846Z" itemprop="datePublished">2023-03-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="组会汇报：2022-1-18"><a href="#组会汇报：2022-1-18" class="headerlink" title="组会汇报：2022.1.18"></a>组会汇报：2022.1.18</h1><h2 id="进度："><a href="#进度：" class="headerlink" title="进度："></a><strong>进度：</strong></h2><h3 id="尝试了saras-DQN-DDPG算法"><a href="#尝试了saras-DQN-DDPG算法" class="headerlink" title="尝试了saras,DQN,DDPG算法"></a>尝试了saras,DQN,DDPG算法</h3><p>1.使用pytorch运行小型gym原始env没有问题</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/QQ%E5%9B%BE%E7%89%8720230115182542.png" alt="QQ图片20230115182542"></p>
+<p>2.stable_baselines运行也没问题</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230117161320563.png" alt="image-20230117161320563"></p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230117161335786.png" alt="image-20230117161335786"></p>
+<h2 id="计划："><a href="#计划：" class="headerlink" title="计划："></a><strong>计划：</strong></h2><p>计划采用的DRL框架：pytorch，stable_baselines</p>
+<p>直接利用Online Deployment Algorithms for Microservice Systems with Complex Dependencies的背景和问题</p>
+<p>将已有的问题转为——&gt;DRL解决COP问题</p>
+<h4 id="1-未来一周：关注于自定义env的编写（重点）"><a href="#1-未来一周：关注于自定义env的编写（重点）" class="headerlink" title="1.未来一周：关注于自定义env的编写（重点）"></a>1.未来一周：关注于自定义env的编写（重点）</h4><p>​	1.1生成数据</p>
+<p>​	1.2定义action，reward等</p>
+<h4 id="2-env调试好之后采用框架，利用DRL执行"><a href="#2-env调试好之后采用框架，利用DRL执行" class="headerlink" title="2.env调试好之后采用框架，利用DRL执行"></a>2.env调试好之后采用框架，利用DRL执行</h4><h4 id="3-利用optuna库优化超参数"><a href="#3-利用optuna库优化超参数" class="headerlink" title="3.利用optuna库优化超参数"></a>3.利用optuna库优化超参数</h4><h2 id="DRL设计"><a href="#DRL设计" class="headerlink" title="DRL设计"></a>DRL设计</h2><p><strong>COP问题定义：</strong></p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230117125227627.png" alt="image-20230117125227627"></p>
+<h3 id="Action-design"><a href="#Action-design" class="headerlink" title="Action design"></a>Action design</h3><p>The agent action takes from {0, 1} where the action array has the same size as the number of experts.</p>
+<h3 id="Reward-design"><a href="#Reward-design" class="headerlink" title="Reward design"></a>Reward design</h3><p>reward &#x3D; -T(X)</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230117124629005.png" alt="image-20230117124629005"></p>
+<p>方案2：</p>
+<p>reward &#x3D; f ||used_time</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230118173514659.png" alt="image-20230118173514659"></p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230118210513813.png" alt="image-20230118210513813"></p>
+<h3 id="State-design"><a href="#State-design" class="headerlink" title="State design"></a>State design</h3><p>The state is the concat of job status and job distribution time</p>
+<h3 id="isDone-design"><a href="#isDone-design" class="headerlink" title="isDone design"></a>isDone design</h3><p>方案1：</p>
+<p>step1000次之后-》结束</p>
+<p>方案2：</p>
+<p>当处理用户请求的所有 fi,j 结束</p>
+<h2 id="测试环境设计"><a href="#测试环境设计" class="headerlink" title="测试环境设计"></a>测试环境设计</h2><p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230118211031619.png" alt="image-20230118211031619"></p>
+<p>用DRL方法与其他7种方法同时运行该测试环境</p>
+<p>拿到结果图</p>
+<h2 id="Optuna中"><a href="#Optuna中" class="headerlink" title="Optuna中"></a>Optuna中</h2><p>优化超参数时候利用mean_reward</p>
+<p>mean_reward &#x3D; evaluate_policy(model)</p>
+<h2 id="最终结果图格式"><a href="#最终结果图格式" class="headerlink" title="最终结果图格式"></a>最终结果图格式</h2><p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230118211607731.png" alt="image-20230118211607731"></p>
+<p>用DRL方法与其他7种方法同时运行该测试环境</p>
+<p>拿到结果图</p>
+<p>对比DRL是否有优势或优化</p>
+<h2 id="参数格式"><a href="#参数格式" class="headerlink" title="参数格式"></a>参数格式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">min_svc_count: Dict[int, int]</span><br><span class="line">deployment: Dict[int, Dict[int, int]]  # Dict[node, Dict[service, instance count]]</span><br><span class="line">svc_call_graph: SvcCallGraph</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="长时间规划"><a href="#长时间规划" class="headerlink" title="长时间规划"></a>长时间规划</h2><p>1.直接去找别人的DRL论文我去复现代码</p>
+<p>2.复现好代码之后！再直接用贺祥学长的场景。</p>
+<p>3.使用贺翔学长的场景使用DRL用失败了再找学长环问题（深度学习）</p>
+<h1 id="组会汇报2023-3-8"><a href="#组会汇报2023-3-8" class="headerlink" title="组会汇报2023.3.8"></a>组会汇报2023.3.8</h1><p>仍需要继续找论文</p>
+<p>1 是否要多优化目标 <a target="_blank" rel="noopener" href="https://github.com/Farama-Foundation/MO-Gymnasium">https://github.com/Farama-Foundation/MO-Gymnasium</a></p>
+<p>2 目前解决稀疏奖励的思路：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1658242">https://cloud.tencent.com/developer/article/1658242</a>  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/389199294">https://zhuanlan.zhihu.com/p/389199294</a></p>
+<p>3.训练步数过大时突然控制台卡住，不报错也不动</p>
+<p>4找到的论文，源代码仓库链接失效，可以直接联系作者问吗？</p>
+<p>**参考论文Heuristic and Reinforcement Learning Algorithms for Dynamic Service Placement on Mobile Edge Cloud.**<strong>说明了何种情况该有正负中间奖励，但没有代码，没有详细中间奖励值公式</strong></p>
+<p>5是否尽量避免使用原论文中的其他算法</p>
+<p>得选择一个方向</p>
+<p><strong>1.人工设置中间奖励</strong></p>
+<p><strong>2.事后经验池&#x2F;好奇心机制</strong></p>
+<p>方向1，<strong>人工设置中间奖励，参考论文</strong></p>
+<p><strong>Online Microservice Orchestration for IoT via Multi-Objective Deep Reinforcement Learning</strong></p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230310093150519.png" alt="image-20230310093150519"></p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230310093247078.png" alt="image-20230310093247078"></p>
+<p>本论文目标是：总成本，(提高服务请求的接受率，减少接受请求的服务时间)</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230308105357236.png" alt="image-20230308105357236"></p>
+<p><strong>出现问题：</strong></p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230310092647517.png" alt="image-20230310092647517"></p>
+<p>请求率–不知道怎么表示</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230310092718673.png" alt="image-20230310092718673"></p>
+<p>单个实例的线程数-	不知道怎么表示</p>
+<p><strong>由于本论文是多目标，或许在自己试验中可以只用利用r_q</strong></p>
+<p>方向2，<strong>利用数据改进 agent 的学习</strong> </p>
+<p>好奇心驱动（Curiosity Driven）、奖励重塑（Reward Shaping）、模仿学习（Imitation Learning）、课程学习（Curriculum Learning</p>
+<p>方向3，<strong>改进模型</strong></p>
+<p>分层强化学习（Hierarchical Reinforcement Learning），使用多层次的结构分别学习不同层次的策略来提高模型解决复杂问题的能力，以及元学习（Meta-Learning）的方法</p>
+<p>然而stablebaselines3似乎没有改进模型</p>
+<p><strong>3 如何验证当前RL训练后结果是否达到了预期条件</strong></p>
+<p>​	用自己电脑测试，运行一会，跑的步数会不会太少，然后因此达不到效果</p>
+<p><strong>参考论文Heuristic and Reinforcement Learning Algorithms for Dynamic Service Placement on Mobile Edge Cloud.</strong></p>
+<p><strong>说明了何种情况该有正负中间奖励，但没有代码，没有详细中间奖励值公式</strong></p>
+<p>如果 action_type、微服务和服务器的组合为当前环境状态形成有效的动作，则 RLSP 给出了一个小的正奖励，并更新服务器微服务矩阵。</p>
+<p>另一方面，RL 代理也可以采取无效动作。这些包括:试图保存或驱逐目前不存在的微服务在服务器上运行，或者试图在已经运行的服务器上部署微服务。在这种情况下，代理给予一个小的负奖励</p>
+<p>在这里，代理采取的动作，违反应用程序约束（数据局部性、服务或搭配）会受到惩罚。在收到惩罚后，预计 RLSP 将在未来学习和避免此类操作</p>
+<h1 id="组会当前研究内容介绍2023-3-24"><a href="#组会当前研究内容介绍2023-3-24" class="headerlink" title="组会当前研究内容介绍2023.3.24"></a>组会当前研究内容介绍2023.3.24</h1><p>以Online Deployment Algorithms for Microservice Systems with Complex Dependencies提出的问题作为背景</p>
+<p>微服务系统(SPPMS)中的服务部署问题-&gt;</p>
+<p>使用平均响应时间作为优化目标。</p>
+<p>微服务系统由一组服务组成，每个服务在服务器上部署了许多实例。每个服务都有许多作为 API 暴露的功能，并且由于服务之间的请求而存在依赖关系。所以用户的每个请求可以看作一条function链</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317143225581.png" alt="image-20230317143225581"></p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317143422168.png" alt="image-20230317143422168"></p>
+<p>将问题转为——&gt;DRL解决<strong>组合优化问题</strong> (Combinatorial Optimization Problem, COP)</p>
+<p><strong>COP问题定义：</strong>在约束条件的限制下，给出一个部署方案，尽可能使得目标值（部署方案带来的平均响应时间）最小</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230117125227627.png" alt="image-20230117125227627"></p>
+<h2 id="gt-研究内容："><a href="#gt-研究内容：" class="headerlink" title="-&gt;研究内容："></a><strong>-&gt;研究内容：</strong></h2><p>利用RL来优化微服务部署问题-&gt;如何设计出一个好的Gym环境模拟微服务部署-&gt;如何设计好reward(解决稀疏奖励)</p>
+<p><strong>重点就在如何设计好reward(解决稀疏奖励)</strong></p>
+<h2 id="gt-当前问题"><a href="#gt-当前问题" class="headerlink" title="-&gt;当前问题:"></a><strong>-&gt;当前问题:</strong></h2><p>1.目前reward存在稀疏问题-&gt;导致平均响应时间过大</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317100614005.png" alt="image-20230317100614005"><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317100745081.png" alt="image-20230317100745081"></p>
+<p>2.使用超参数优化optuna</p>
+<p>3.model在最初某个env_1下面学习过程中的平均响应时间已经为10，此后再拿这个model在其他env继续训练之后，再拿model去env_1中测试平均响应时间又变为50</p>
+<h2 id="gt-当前工作内容"><a href="#gt-当前工作内容" class="headerlink" title="-&gt;当前工作内容:"></a><strong>-&gt;当前工作内容:</strong></h2><p>稀疏问题解决-&gt;{</p>
+<p>人工设置中间奖励—&gt;索要源代码，等待回复中</p>
+<p>事后经验池&#x2F;好奇心机制</p>
+<p>}</p>
+<p>使用超参数优化optuna-{</p>
+<p><strong>推测原因</strong>：不同数据带来的不同env，env在for循环中依次加载model。</p>
+<p>evaluate_policy()方法应该是异步的，导致评测mean_reward还没有结束，原始model和env已经被覆盖，导致报错</p>
+<p><img src="/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317101551074.png" alt="image-20230317101551074"></p>
+<p>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.org/2023/03/29/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB/" data-id="clftg6php000kvswpg3def9fq" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -659,7 +745,7 @@ private void insertionSort(int[] arr, int left, int right) &#123;
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -691,10 +777,6 @@ private void insertionSort(int[] arr, int left, int right) &#123;
       <ul>
         
           <li>
-            <a href="/2023/03/29/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/">(no title)</a>
-          </li>
-        
-          <li>
             <a href="/2023/03/29/%E8%AE%A1%E7%BD%91%E8%80%83%E5%89%8D%E4%B8%80%E5%A4%A92.17/">(no title)</a>
           </li>
         
@@ -708,6 +790,10 @@ private void insertionSort(int[] arr, int left, int right) &#123;
         
           <li>
             <a href="/2023/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/">(no title)</a>
           </li>
         
       </ul>

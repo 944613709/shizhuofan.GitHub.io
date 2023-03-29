@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="[TOC] 组会及导师交流2022.2.18与导师交流RL实验目前问题：稀疏奖励目前只有一个final reward &#x3D;  -(整体X部署方案平均响应时间) 期间中间状态的reward &#x3D; 0设计等于0 解决方法 -&gt;ICM，好奇心机制 -&gt;设计中间状态reward -&gt;随机生成一个终止状态，并且reverse推导 计划保研：不再以课内学分为重点，而是参加项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[TOC] 组会及导师交流2022.2.18与导师交流RL实验目前问题：稀疏奖励目前只有一个final reward &#x3D;  -(整体X部署方案平均响应时间) 期间中间状态的reward &#x3D; 0设计等于0 解决方法 -&gt;ICM，好奇心机制 -&gt;设计中间状态reward -&gt;随机生成一个终止状态，并且reverse推导 计划保研：不再以课内学分为重点，而是参加项目">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230308105357236.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230310115638251.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311100723433.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311222006317.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311221941724.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311202511399.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311182622295.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311161128103.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220123122777.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220114814179.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220121614089-16768665862511.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230228193743793.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230228194302450.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230221085944534.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230221083153487.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222190856016.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220132436260.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220132255066.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230223083946204.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230308092128371.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230228190155006.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222192756656.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222195036703.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222192750105.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222192041882.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230223112934947.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230306135245363.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220132723183.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220132633453.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230307201337564.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230307202442056.png">
+<meta property="article:published_time" content="2023-03-29T09:16:16.688Z">
+<meta property="article:modified_time" content="2023-03-27T08:23:41.833Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230308105357236.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.org"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-实验室实验" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/" class="article-date">
+  <time class="dt-published" datetime="2023-03-29T09:16:16.688Z" itemprop="datePublished">2023-03-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="组会及导师交流"><a href="#组会及导师交流" class="headerlink" title="组会及导师交流"></a>组会及导师交流</h1><h2 id="2022-2-18与导师交流"><a href="#2022-2-18与导师交流" class="headerlink" title="2022.2.18与导师交流"></a>2022.2.18与导师交流</h2><h3 id="RL实验目前问题："><a href="#RL实验目前问题：" class="headerlink" title="RL实验目前问题："></a>RL实验目前问题：</h3><h4 id="稀疏奖励"><a href="#稀疏奖励" class="headerlink" title="稀疏奖励"></a>稀疏奖励</h4><p>目前只有一个final reward &#x3D;  -(整体X部署方案平均响应时间)</p>
+<p>期间中间状态的reward &#x3D; 0设计等于0</p>
+<p><strong>解决方法</strong></p>
+<p>-&gt;ICM，好奇心机制</p>
+<p>-&gt;设计中间状态reward</p>
+<p>-&gt;随机生成一个终止状态，并且reverse推导</p>
+<h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><h4 id="保研："><a href="#保研：" class="headerlink" title="保研："></a>保研：</h4><p>不再以课内学分为重点，而是参加项目参加科研</p>
+<p>准备夏令营准备推免</p>
+<h4 id="实验室："><a href="#实验室：" class="headerlink" title="实验室："></a><strong>实验室：</strong></h4><p>保留原任务?</p>
+<p>1.做点实验室开发项目</p>
+<p>2.帮忙师兄师姐科研-&gt;三四作</p>
+<h2 id="2022-3-23与导师交流"><a href="#2022-3-23与导师交流" class="headerlink" title="2022.3.23与导师交流"></a>2022.3.23与导师交流</h2><h1 id="每日–进度："><a href="#每日–进度：" class="headerlink" title="每日–进度："></a>每日–进度：</h1><h3 id="2023-3-7："><a href="#2023-3-7：" class="headerlink" title="2023.3.7："></a>2023.3.7：</h3><p>reward，以及不满足条件时候怎么处理</p>
+<h3 id="2023-3-8"><a href="#2023-3-8" class="headerlink" title="2023.3.8"></a>2023.3.8</h3><p>仍需要继续找论文</p>
+<p>1 是否要多优化目标 <a target="_blank" rel="noopener" href="https://github.com/Farama-Foundation/MO-Gymnasium">https://github.com/Farama-Foundation/MO-Gymnasium</a></p>
+<p>2 目前解决稀疏奖励的思路：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1658242">https://cloud.tencent.com/developer/article/1658242</a>  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/389199294">https://zhuanlan.zhihu.com/p/389199294</a></p>
+<p>3.训练时突然控制台卡住，不报错也不动</p>
+<p>得选择一个方向</p>
+<p>1.人工设置中间奖励</p>
+<p>2.事后经验池&#x2F;好奇心机制</p>
+<p>方向1，<strong>人工设置中间奖励，参考论文</strong></p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230308105357236.png" class title="image-20230308105357236">
+
+<p>方向2，<strong>利用数据改进 agent 的学习</strong> </p>
+<p>好奇心驱动（Curiosity Driven）、奖励重塑（Reward Shaping）、模仿学习（Imitation Learning）、课程学习（Curriculum Learning</p>
+<p>方向3，<strong>改进模型</strong></p>
+<p>分层强化学习（Hierarchical Reinforcement Learning），使用多层次的结构分别学习不同层次的策略来提高模型解决复杂问题的能力，以及元学习（Meta-Learning）的方法</p>
+<p>然而stablebaselines3似乎没有改进模型</p>
+<p><strong>3 如何验证当前RL训练后结果是否达到了预期条件</strong></p>
+<p>​	用自己电脑测试，运行一会，跑的步数会不会太少，然后因此达不到效果</p>
+<h3 id="2023-3-10"><a href="#2023-3-10" class="headerlink" title="2023.3.10"></a>2023.3.10</h3><p>索要代码</p>
+<h4 id="安装anaconda环境，或者自己买一台服务器去跑，或者直接用现成的"><a href="#安装anaconda环境，或者自己买一台服务器去跑，或者直接用现成的" class="headerlink" title="安装anaconda环境，或者自己买一台服务器去跑，或者直接用现成的"></a>安装anaconda环境，或者自己买一台服务器去跑，或者直接用现成的</h4><p>选择鞠驰云okk</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230310115638251.png" class title="image-20230310115638251">
+
+
+
+<h3 id="2023-3-11"><a href="#2023-3-11" class="headerlink" title="2023.3.11"></a>2023.3.11</h3><p><strong>新参考论文思路</strong>—-新的一条路子</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311100723433.png" class title="image-20230311100723433">
+
+
+
+<p>这里，|U|表示用户的总数，zui (t)表示深度神经网络在时间槽t的决策的多个用户的总延迟。我们使用 zui (t) 来表示服务在没有迁移的情况下停留在原始边缘服务器上的总延迟。</p>
+<p>问题：<strong>我需要去写optuna</strong></p>
+<p>待办</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311222006317.png" class title="image-20230311222006317">
+
+<p>大致思路</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def preRun_optuna_DRL(exp_name, data_dir_path, method):</span><br><span class="line">    study = optuna.create_study(direction=&#x27;maximize&#x27;)</span><br><span class="line">    for :</span><br><span class="line">        拿到env</span><br><span class="line">        def optimize_agent(trial):</span><br><span class="line">            使用env</span><br><span class="line">        study.optimize(optimize_agent, n_trials=10)</span><br><span class="line">    保存model</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311221941724.png" class title="image-20230311221941724">
+
+<p>问题：是否需要每个数据文件夹都给创建一个model</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311202511399.png" class title="image-20230311202511399">
+
+<p>DONE问题4：<strong>total_timesteps不是指episode回合数！</strong></p>
+<p><strong>我记得我们之前都习惯使用episode作为训练的轮数，所以需要注意一下不同。因此，此处设置的1e5可不代表我们要让模型玩1e5次登月游戏hhh，而是模型能拿到的采样数为1e5，这样设置对于定量设置采样池也更加有效。</strong></p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311182622295.png" class title="image-20230311182622295">
+
+<p>问题3：model &#x3D; PPO.load(f”.&#x2F;model&#x2F;{method}”)是错的！！！！！！！！！！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#第一个训练模型需要初始化</span><br><span class="line">if is_first ==True:</span><br><span class="line">    model = PPO(</span><br><span class="line">        &quot;MlpPolicy&quot;, env, verbose=1,</span><br><span class="line">        tensorboard_log=f&quot;./tensorboard/&#123;method&#125;/&quot;,</span><br><span class="line">    )</span><br><span class="line">    is_first =False</span><br><span class="line">else:# 如果不是第一次,需要load接着以前继续训练</span><br><span class="line">    #TODO!!!!env也得变，不能接着上一回的env继续</span><br><span class="line">    model = PPO.load(f&quot;./model/&#123;method&#125;&quot;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>DONE<strong>问题1：</strong></p>
+<p>发现了predict返回的reward会加工为narray</p>
+<p>解决方案：narray转回int</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num = action.item()</span><br><span class="line">print(type(num))  # &lt;class &#x27;int&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong><img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230311161128103.png" class title="image-20230311161128103"></strong></p>
+<h3 id="2023-3-12"><a href="#2023-3-12" class="headerlink" title="2023.3.12"></a>2023.3.12</h3><p>任务：联系作者要源代码，&#x2F;写optuna</p>
+<p>2023.3.17</p>
+<p><strong>目前问题</strong>：</p>
+<p>一个data数据为一个env是否存在问题</p>
+<p>现在env(svc_obj)其中的svc_obj都是固定的</p>
+<p>env()是否要随机</p>
+<h1 id="实验室实验"><a href="#实验室实验" class="headerlink" title="实验室实验"></a>实验室实验</h1><p>items.sort(key&#x3D;lambda x: int(x))：对 items 这个列表进行排序，按照每个名字中的数字部分（如果有的话）从小到大的顺序](<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/70373510/sort-os-listdir-with-numbers-in-string)[2](https://stackoverflow.com/questions/70373510/sort-os-listdir-with-numbers-in-string)%E3%80%82">https://stackoverflow.com/questions/70373510/sort-os-listdir-with-numbers-in-string)[2](https://stackoverflow.com/questions/70373510/sort-os-listdir-with-numbers-in-string)。</a></p>
+<p>lambda x: int(x) 是一个匿名函数，用于将每个名字转换成整数类型</p>
+<h2 id="专有名词解释"><a href="#专有名词解释" class="headerlink" title="专有名词解释"></a>专有名词解释</h2><img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220123122777.png" class title="image-20230220123122777">
+
+
+
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220114814179.png" class title="image-20230220114814179">
+
+<h2 id="算法2的解释"><a href="#算法2的解释" class="headerlink" title="算法2的解释"></a>算法2的解释</h2><img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220121614089-16768665862511.png" class title="image-20230220121614089">
+
+<h1 id="代码实验"><a href="#代码实验" class="headerlink" title="代码实验"></a>代码实验</h1><h2 id="问题理解"><a href="#问题理解" class="headerlink" title="问题理解"></a>问题理解</h2><img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230228193743793.png" class title="image-20230228193743793">
+
+<p>已知：用户们发出请求多个fi,j-&gt;对应了多条Fi,j函数调用链</p>
+<p>综合所有Fi,j构成一个DG，显示所有要调用的</p>
+<p>-&gt;需要去部署Svc到不同的node上面</p>
+<p>-&gt;要求用户们发出的多个请求fi,j，在我们在线部署方案之后，测出来的平均响应时间最小</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230228194302450.png" class title="image-20230228194302450">
+
+
+
+
+
+
+
+<h2 id="最终实验用来的算法"><a href="#最终实验用来的算法" class="headerlink" title="最终实验用来的算法"></a>最终实验用来的算法</h2><p>我们的算法有三种：</p>
+<p>基于BFS的算法B-QSRFP、</p>
+<p>基于DFS的算法D-QSRFP</p>
+<p>B-QSRFP和D-QSRFP的组合，表示为BD-QSRFP。BD-QSRFP 分别运行 B-QSRFP 和 D-QSRFP，并返回最佳结果</p>
+<p>平均响应时间·估计BD-QSRFP最好，毕竟是这样定义的</p>
+<p>算法执行时间，BD-QSRFP最坏</p>
+<h2 id="B-QSRFP算法"><a href="#B-QSRFP算法" class="headerlink" title="B-QSRFP算法"></a>B-QSRFP算法</h2><p> RAM运行内存，</p>
+<p>CPU是中央处理器</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230221085944534.png" class title="image-20230221085944534">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">best_value = self.svc_objs[svc][&#x27;ability&#x27;] / self.svc_objs[svc][&#x27;res&#x27;][&#x27;cpu&#x27;]</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230221083153487.png" class title="image-20230221083153487">
+
+
+
+<p>DeploySpread(si, d γs i +γu iμi e, X, N, DG)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.deploy_svc_with_best_node_considering_spread(best_svc, desired_count)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="solve函数、"><a href="#solve函数、" class="headerlink" title="solve函数、"></a>solve函数、</h2><h3 id="其中函数"><a href="#其中函数" class="headerlink" title="其中函数"></a>其中函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 检查节点剩余资源可以为服务svc部署多少个新实例</span><br><span class="line">def node_res_for_svc(self, node, svc) -&gt; int:</span><br><span class="line"></span><br><span class="line">    # 将svc的count个实例部署到node</span><br><span class="line">    def deploy_svc_on_node(self, svc, node, count):</span><br><span class="line"></span><br><span class="line">为给定的服务找到最佳节点来弱地创建实例，即不考虑后继实例 或者没有部署的前辈</span><br><span class="line">def find_best_node_weak(self, svc) -&gt; int or None:</span><br><span class="line"></span><br><span class="line">为给定的服务找到最佳节点来强地创建实例，即考虑后继实例 或者没有部署的前辈</span><br><span class="line">def find_best_node_strong(self, svc) -&gt; (int, float) or None:</span><br><span class="line"></span><br><span class="line">target_node, _ = self.find_best_node_strong(curr_svc)</span><br></pre></td></tr></table></figure>
+
+<h3 id="计算每个服务需要的最小服务实例数"><a href="#计算每个服务需要的最小服务实例数" class="headerlink" title="计算每个服务需要的最小服务实例数"></a>计算每个服务需要的最小服务实例数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.min_svc_count = scheme.cal_min_svc_count(self.svc_call_graph.graph_bak, self.svc_objs)</span><br></pre></td></tr></table></figure>
+
+<h3 id="X部署策略"><a href="#X部署策略" class="headerlink" title="X部署策略"></a>X部署策略</h3><img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222190856016.png" class title="image-20230222190856016">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">self.deployment[node][svc] += count</span><br><span class="line">代表着：执行node部署svc的实例count个</span><br><span class="line"></span><br><span class="line">附带着考虑资源消耗的是</span><br><span class="line">def deploy_svc_on_node(self, svc, node, count):</span><br></pre></td></tr></table></figure>
+
+<h3 id="返回当前平均响应时间的方法"><a href="#返回当前平均响应时间的方法" class="headerlink" title="返回当前平均响应时间的方法"></a>返回当前平均响应时间的方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#平均响应时间</span><br><span class="line">f = scheme.evaluate(self.deployment, self.node_objs, self.func_objs, self.users, self.chains,</span><br><span class="line">                    self.connections)</span><br></pre></td></tr></table></figure>
+
+<p>论文里选的选取平均响应时间(ms)和算法执行时间(ms)作为指标</p>
+<h3 id="used-time是算法实行时间"><a href="#used-time是算法实行时间" class="headerlink" title="used_time是算法实行时间"></a>used_time是算法实行时间</h3><img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220132436260.png" class title="image-20230220132436260">
+
+<h3 id="f是平均响应时间"><a href="#f是平均响应时间" class="headerlink" title=".f是平均响应时间"></a>.f是平均响应时间</h3><img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220132255066.png" class title="image-20230220132255066">
+
+
+
+<p>最终选择的优化目标为平均响应时间</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230223083946204.png" class title="image-20230223083946204">
+
+
+
+
+
+<h3 id="个人想法"><a href="#个人想法" class="headerlink" title="个人想法"></a>个人想法</h3><p>思路1：2023.2.28弃用</p>
+<p>DRL一般不再涉及其他算法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1: X ← 0</span><br><span class="line">2: while not DG.empty() do</span><br><span class="line">	action：return 根据PPO策略选择了某Si的新X</span><br><span class="line">	3: 利用AxAlgo中的基础算法2来部署Si : DeploySpread(si, d γs i +γu iμi e, X, N, DG)</span><br><span class="line">	4: DG.remove(si)</span><br><span class="line">5: end while</span><br><span class="line">6: return X</span><br></pre></td></tr></table></figure>
+
+
+
+<p>思路2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1: X ← 0</span><br><span class="line">2: while not DG.empty() do</span><br><span class="line">	action：return 根据PPO策略选择了某Si，某nodej</span><br><span class="line">	3: 部署单个Si实例于Nodej，</span><br><span class="line">	4: DG.remove(si)</span><br><span class="line">5: end while</span><br><span class="line">6: return X</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="思路3"><a href="#思路3" class="headerlink" title="思路3"></a>思路3</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1: X ← 0</span><br><span class="line">	for Each Si in Svc</span><br><span class="line">		for i in min_svc_count</span><br><span class="line">			action: </span><br><span class="line">			根据PPO策略选择某nodej</span><br><span class="line">			如果当前nodej的资源等不满足部署单个svc实例要求，</span><br><span class="line">				reward = 惩罚reward值</span><br><span class="line">			否则 </span><br><span class="line">				reward = 中间reward奖励值</span><br><span class="line">				部署Si单个实例于Nodej</span><br><span class="line">				如果部署完毕</span><br><span class="line">					done=true,reward = 最终部署完成奖励值reward</span><br><span class="line">				否则如果没部署完毕</span><br><span class="line">					继续部署下一个</span><br><span class="line">6: return X</span><br></pre></td></tr></table></figure>
+
+
+
+<p>obs &#x3D; deployment当前部署方案，以二维数组表示</p>
+<p>action &#x3D; {0,1,2,…..,len(self.node_objs)-1}，从node_objs选择一个nodej，让当前的Si去部署单个实例在nodej上面</p>
+<p>reward &#x3D; [原始环境reward，人工设置reward]？</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230308092128371.png" class title="image-20230308092128371">
+
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230228190155006.png" class title="image-20230228190155006">
+
+
+
+
+
+
+
+
+
+<p>状态空间：为多离散空间</p>
+<p>deployment</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222192756656.png" class title="image-20230222192756656">
+
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222195036703.png" class title="image-20230222195036703">
+
+
+
+
+
+<p>动作空间：为多离散空间</p>
+<p>执行两个动作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy_svc_on_node(svc1,node1,2)</span><br><span class="line">deploy_svc_on_node(svc2,node2,5)</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222192750105.png" class title="image-20230222192750105">
+
+
+
+<p>状态空间：为多离散空间</p>
+<p>动作空间：为多离散空间</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230222192041882.png" class title="image-20230222192041882">
+
+<h4 id="reward利用平均响应时间和算法实行时间"><a href="#reward利用平均响应时间和算法实行时间" class="headerlink" title="reward利用平均响应时间和算法实行时间"></a>reward利用平均响应时间和算法实行时间</h4><p>reward &#x3D;  -(new 整体X部署方案平均响应时间- old 整体X部署方案平均响应时间)</p>
+<h3 id="目前问题"><a href="#目前问题" class="headerlink" title="目前问题"></a>目前问题</h3><p>1.reward &#x3D; -平均响应时间之差，在部署过程中的平均响应时间难求</p>
+<p>reward &#x3D;  -(new 整体X部署方案平均响应时间- old 整体X部署方案平均响应时间)</p>
+<p>​	原有的scheme.evaluate（）函数不支持部署过程中执行</p>
+<p>​	</p>
+<p>2.要解决action会重复部署svc的问题 -&gt; 引入Boolean[] hasSelect	-&gt; 引入No-Op</p>
+<p>3.调用AxAlgo的算法2的deploy_svc_with_best_node_considering_spreadFile（）选出的targetNode为Null导致抛出Exception</p>
+<h2 id="参考A-Reinforcement-Learning-Environment-For-Job-Shop-Scheduling的思路"><a href="#参考A-Reinforcement-Learning-Environment-For-Job-Shop-Scheduling的思路" class="headerlink" title="参考A Reinforcement Learning Environment For Job-Shop Scheduling的思路"></a>参考A Reinforcement Learning Environment For Job-Shop Scheduling的思路</h2><ol>
+<li></li>
+</ol>
+<p>解决重复svc部署问题–布尔</p>
+<p>在某些情况下，我们不能在每一步分配一个作业，因为某些作业可能已经分配给机器，机器可以使用，或者我们已经完成了所有作业的操作。为了遵守这些约束，我们的环境还使用了一个布尔向量，指示哪些动作是合法的。每次代理分配作业时，它将分配的作业添加到</p>
+<p>2.采用PPO算法</p>
+<p>我们建议将 JSS 建模为单代理 RL 问题，其中代理是一个调度程序，需要在每一步选择要工作。特别是，我们使用actor-critic近端策略优化(PPO)算法</p>
+<p>3.加入NO-Op</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230223112934947.png" class title="image-20230223112934947">
+
+
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>HER</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230306135245363.png" class title="image-20230306135245363">
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="Experiment-1-User-Count"><a href="#Experiment-1-User-Count" class="headerlink" title="Experiment 1: User Count"></a>Experiment 1: User Count</h1><p>用的是rwt_users   rwt_users2<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220132723183.png" class title="image-20230220132723183"></p>
+<p>实验 1.1 有 5 个服务器和 23 个服务，</p>
+<p>实验 1.2 有 10 个服务器和 50 个服务。</p>
+<p>实验 1.1 和 1.2 中的用户计数在 500-1600 和 500-1500 之间。</p>
+<p>实验1.2中没有1600个用户计数，因为服务器的计算资源甚至不足以部署每个数量最少的服务</p>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230220132633453.png" class title="image-20230220132633453">
+
+
+
+
+
+
+
+
+
+<h1 id="stablebaselines3"><a href="#stablebaselines3" class="headerlink" title="stablebaselines3"></a>stablebaselines3</h1><h2 id="TensorBoard查看"><a href="#TensorBoard查看" class="headerlink" title="TensorBoard查看"></a>TensorBoard查看</h2><p>tensorboard –logdir .\tensorboard\PPO_SiLu3\</p>
+<p>tensorboard –logdir .\tensorboard\PPO_SiLu3\</p>
+<p>tensorboard –logdir .\tensorboard\LunarLander-v2\</p>
+<img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230307201337564.png" class title="image-20230307201337564">
+
+
+
+<h2 id="输出rollout"><a href="#输出rollout" class="headerlink" title="输出rollout"></a>输出rollout</h2><img src="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230307202442056.png" class title="image-20230307202442056">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.org/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/" data-id="clfthbfqh000gq4wpejlk06wk" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/03/29/%E4%BD%BF%E7%94%A8python%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/29/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/29/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85gitlab/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E5%90%91%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85%E8%A6%81%E4%BB%A3%E7%A0%81/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E4%BD%BF%E7%94%A8python%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="计算机组成原理   概论        CPI平均指令周期数 MIPS百万级指令每秒 CPU的CPI与时钟频率无关 数据定点数： 1.纯整数 2.纯小数 有符号数： 原码，不适合加法运算，发现[a+-b]原  ！&#x3D;[a]原+-[b]原 1,001   &#x3D;&gt; -(1) 反码 没有实际意义，只是过渡阶段 补码,补码适合加减法，发现[a+-b]补 &#x3D;[a]补+-[b]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="计算机组成原理   概论        CPI平均指令周期数 MIPS百万级指令每秒 CPU的CPI与时钟频率无关 数据定点数： 1.纯整数 2.纯小数 有符号数： 原码，不适合加法运算，发现[a+-b]原  ！&#x3D;[a]原+-[b]原 1,001   &#x3D;&gt; -(1) 反码 没有实际意义，只是过渡阶段 补码,补码适合加减法，发现[a+-b]补 &#x3D;[a]补+-[b]">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221118151242522.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221103101058752.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221110114745464.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112143013568.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112143024422.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112144126212.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112145719565.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112145925998.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112145820440.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112144946911.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112150650696.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112150857283.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112151626897.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112151956097.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112204331145.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112210601205.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112210829284.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221117205251763.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221119102458280.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113095200788.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113095339032.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113104839891.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113095817334.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113095822807.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113100100026.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113100455612.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113100515317.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113101921513.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113104141360.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113104439578.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113105415872.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113105747167.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113105845591.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113110021261.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113111005703.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113114819271.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113155658907.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221117210937166.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221118105218932.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221118105744561.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221118110058881.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221120172013370.png">
+<meta property="og:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221120195755215.png">
+<meta property="article:published_time" content="2023-03-29T09:16:16.626Z">
+<meta property="article:modified_time" content="2022-11-20T11:57:56.250Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221118151242522.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.org"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-计算机组成原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2023-03-29T09:16:16.626Z" itemprop="datePublished">2023-03-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h1><img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221118151242522.png" class title="image-20221118151242522">
+
+<p><img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/Users\86189\AppData\Roaming\Typora\typora-user-images\image-20221103101058752.png" alt="image-20221103101058752"></p>
+<h1 id="概论"><a href="#概论" class="headerlink" title="概论"></a>概论</h1><img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221110114745464.png" class title="image-20221110114745464">
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112143013568.png" class title="image-20221112143013568">
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112143024422.png" class title="image-20221112143024422">
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112144126212.png" class title="image-20221112144126212">
+
+<p>CPI平均指令周期数</p>
+<p>MIPS百万级指令每秒</p>
+<p>CPU的CPI与时钟频率无关</p>
+<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><p>定点数：</p>
+<p>1.纯整数</p>
+<p>2.纯小数</p>
+<p>有符号数：</p>
+<p>原码，不适合加法运算，发现[a+-b]原  ！&#x3D;[a]原+-[b]原</p>
+<p><strong>1,001   &#x3D;&gt; -(1)</strong></p>
+<p>反码</p>
+<p>没有实际意义，只是过渡阶段</p>
+<p>补码,补码适合加减法，发现[a+-b]补 &#x3D;[a]补+-[b]补<br>实际上补码减法也是通过换成加法来的</p>
+<p><strong>1,001 &#x3D;&gt; (-8 + 1) &#x3D; -7</strong></p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112145719565.png" class title="image-20221112145719565">
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112145925998.png" class title="image-20221112145925998">
+
+
+
+<p>.</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112145820440.png" class title="image-20221112145820440">
+
+
+
+
+
+
+
+
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112144946911.png" class title="image-20221112144946911">
+
+<p>因为有2^8&#x3D;256</p>
+<p><strong>原码有正负0，补码没有正负0</strong></p>
+<p>但是+0（0,000 0000）和-0（1,000 0000）多了</p>
+<p>所以256-1</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112150650696.png" class title="image-20221112150650696">
+
+<p><strong>移码</strong></p>
+<p>从补码一一对应过来的，用于方便比较数字大小</p>
+<p>补码+2^n &#x3D; 移码</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112150857283.png" class title="image-20221112150857283">
+
+
+
+
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112151626897.png" class title="image-20221112151626897">
+
+
+
+
+
+
+
+<h2 id="逻辑移位算术移位"><a href="#逻辑移位算术移位" class="headerlink" title="逻辑移位算术移位"></a>逻辑移位算术移位</h2><img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112151956097.png" class title="image-20221112151956097">
+
+<p>算数左移不应该改变符号位，符号位不动</p>
+<h2 id="加减法"><a href="#加减法" class="headerlink" title="加减法"></a>加减法</h2><p>现代计算机都是用补码加减法</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112204331145.png" class title="image-20221112204331145">
+
+<p>溢出的判断：</p>
+<p>双符号位的意义：</p>
+<p>10</p>
+<p>真正的符号是1，本来的符号位是0</p>
+<p>所以是负溢出</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112210601205.png" class title="image-20221112210601205">
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221112210829284.png" class title="image-20221112210829284">
+
+
+
+
+
+
+
+
+
+
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221117205251763.png" class title="image-20221117205251763">
+
+<h1 id="计算机讲座2"><a href="#计算机讲座2" class="headerlink" title="计算机讲座2"></a>计算机讲座2</h1><p>题目：</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221119102458280.png" class title="image-20221119102458280">
+
+
+
+
+
+
+
+
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113095200788.png" class title="image-20221113095200788">
+
+<p><strong>特权指令：</strong></p>
+<pre><code>  1）允许和禁止中断，控制中断禁止屏蔽位
+
+  2）在进程间切换处理
+
+  3）存取用于主存保护的寄存器
+
+  4）执行I/O操作
+
+  5）停止一个中央处理器的工作
+
+  6）清理内存
+
+  7）设置时钟
+
+  8）建立存储键
+
+  9）加载PSW
+</code></pre>
+<p><em><img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113095339032.png" class title="image-20221113095339032"></em>*</p>
+<h2 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h2><p>这里采用特殊寻址方式则指令格式</p>
+<p>操作码OP   寻址特征M   形式地址</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113104839891.png" class title="image-20221113104839891">
+
+<p>1.立即寻址</p>
+<p>2直接寻址   间接寻址。。。。</p>
+<p>间接寻址{</p>
+<p>一次间接<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113095817334.png" class title="image-20221113095817334"></p>
+<p>多次间接<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113095822807.png" class title="image-20221113095822807"></p>
+<p>多次间接就需要1个标志位</p>
+<p>}</p>
+<p>基址寻址，BX用户不可修改</p>
+<p>变址寻址，IX用户可修改</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113100100026.png" class title="image-20221113100100026">
+
+
+
+
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113100455612.png" class title="image-20221113100455612">
+
+<p>相对寻址，是以下一条指令的PC为基准</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113100515317.png" class title="image-20221113100515317">
+
+
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113101921513.png" class title="image-20221113101921513">
+
+
+
+
+
+<h2 id="指令格式设置"><a href="#指令格式设置" class="headerlink" title="指令格式设置"></a>指令格式设置</h2><p>想要端操作吗和长操作码同时存在于指令系统</p>
+<p>则需要让短操作码不能是长操作码的前缀</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113104141360.png" class title="image-20221113104141360">
+
+<p>0000~1110是4位操作码</p>
+<p>1111 0000 ~ 1111 1110是8位操作码</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113104439578.png" class title="image-20221113104439578">
+
+
+
+<p><strong>短操作码不断变成长操作码</strong></p>
+<p><strong>每次增长必须是多占用一个操作数长度</strong></p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113105415872.png" class title="image-20221113105415872">
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113105747167.png" class title="image-20221113105747167">
+
+<h2 id="指令周期"><a href="#指令周期" class="headerlink" title="指令周期"></a>指令周期</h2><p>唐书的和csapp不一样</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113105845591.png" class title="image-20221113105845591">
+
+<p>唐书说通过取指阶段从存储器取出指令</p>
+<p>执行阶段从存储器取出数据</p>
+<p>由于控制器的控制知道是啥阶段，所以控制器可以区分拿到指令还是数据</p>
+<p>唐叔认为，CPU想要响应中断一定是等到上一条指令结束执行周期</p>
+<p>且唐书认为PC++必须在取指阶段</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113110021261.png" class title="image-20221113110021261">
+
+<p><strong>指令周期</strong></p>
+<p><strong>机器周期：比如取指周期</strong></p>
+<p><strong>时钟周期；比如T0</strong></p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113111005703.png" class title="image-20221113111005703">
+
+<p>指令周期{</p>
+<p> 机器周期1-取指周期：{</p>
+<p>  时钟周期1-T0</p>
+<p>  时钟周期2-T1</p>
+<p>}</p>
+<p>机器周期2-间址周期：</p>
+<p>{</p>
+<p>}</p>
+<p>}</p>
+<h2 id="流水线"><a href="#流水线" class="headerlink" title="流水线"></a>流水线</h2><img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113114819271.png" class title="image-20221113114819271">
+
+<h3 id="结构相关"><a href="#结构相关" class="headerlink" title="结构相关"></a>结构相关</h3><p>有两个想要同时使用访存主存（但只能同一时间允许最高一个）</p>
+<p>暂停</p>
+<p>指令和数据分开储存</p>
+<h3 id="数据相关"><a href="#数据相关" class="headerlink" title="数据相关"></a>数据相关</h3><p>先写后读</p>
+<p>旁路技术</p>
+<h3 id="控制相关"><a href="#控制相关" class="headerlink" title="控制相关"></a>控制相关</h3><p>跳转所以会使得流水线不能按照原先预想的那样流水</p>
+<p>所以流水线（一直按照PC+1流水的顺序）会错</p>
+<p>暂停+分支预测</p>
+<h3 id="流水线性能指标"><a href="#流水线性能指标" class="headerlink" title="流水线性能指标"></a>流水线性能指标</h3><p>直接做题理解</p>
+<p>看天勤P222</p>
+<h2 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h2><img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221113155658907.png" class title="image-20221113155658907">
+
+<p>天勤206</p>
+<h1 id="理解流程"><a href="#理解流程" class="headerlink" title="理解流程"></a>理解流程</h1><img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221117210937166.png" class title="image-20221117210937166">
+
+<h1 id="速成"><a href="#速成" class="headerlink" title="速成"></a>速成</h1><p>P9</p>
+<p>1.DMA是每传送完一个数据块就中断一次作为后处理，中断过程不包括穿字节</p>
+<p>每一份数据块就有预处理数据传输后处理</p>
+<p>​    程序中断是每次通过一次中断来传送一字节，中断过程包括穿字节包括数据传输</p>
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221118105218932.png" class title="image-20221118105218932">
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221118105744561.png" class title="image-20221118105744561">
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221118110058881.png" class title="image-20221118110058881">
+
+<p>首选位扩展</p>
+<p>1KB&#x3D;1024B</p>
+<h1 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h1><img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221120172013370.png" class title="image-20221120172013370">
+
+<img src="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/image-20221120195755215.png" class title="image-20221120195755215">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.org/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" data-id="clfthbfqk000mq4wpg99dclhn" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/03/29/%E8%AE%A1%E7%BD%91%E8%80%83%E5%89%8D%E4%B8%80%E5%A4%A92.17/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/29/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85gitlab/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E5%90%91%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85%E8%A6%81%E4%BB%A3%E7%A0%81/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E4%BD%BF%E7%94%A8python%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

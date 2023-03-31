@@ -71,6 +71,39 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CCF——CSP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/shizhuofan.GitHub.io/2023/03/29/CCF%E2%80%94%E2%80%94CSP/" class="article-date">
+  <time class="dt-published" datetime="2023-03-29T09:16:16.534Z" itemprop="datePublished">2023-03-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="CCF——CSP"><a href="#CCF——CSP" class="headerlink" title="CCF——CSP"></a>CCF——CSP</h1><p>模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">class Main &#123;</span><br><span class="line">    int[] nums;</span><br><span class="line">    int max = Integer.MIN_VALUE;</span><br><span class="line">    int min = Integer.MAX_VALUE;</span><br><span class="line">    int sum_max =0;</span><br><span class="line">    int sum_min = 0;</span><br><span class="line">    void run()&#123;</span><br><span class="line">        Scanner sc = new Scanner(System.in);</span><br><span class="line">        int len = sc.nextInt();</span><br><span class="line">        nums = new int[len];</span><br><span class="line">        for(int i=0;i &lt; len; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            nums[i] =  sc.nextInt();</span><br><span class="line">            sum_max += nums[i];</span><br><span class="line">            if(nums[i] &gt; max) //</span><br><span class="line">            &#123;</span><br><span class="line">                sum_min += nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                sum_min += 0;</span><br><span class="line">            &#125;</span><br><span class="line">            max = Math.max(max,nums[i]);</span><br><span class="line">            min = Math.min(min,nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sum_max);</span><br><span class="line">        System.out.println(sum_min);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        new Main().run();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/shizhuofan.GitHub.io/2023/03/29/CCF%E2%80%94%E2%80%94CSP/image-20230315095728746.png" class title="image-20230315095728746">
+
+<img src="/shizhuofan.GitHub.io/2023/03/29/CCF%E2%80%94%E2%80%94CSP/image-20230315194658296.png" class title="image-20230315194658296">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2023/03/29/CCF%E2%80%94%E2%80%94CSP/" data-id="clfvy9o3x00005kwp681oh6kf" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/shizhuofan.GitHub.io/2023/03/29/test/" class="article-date">
@@ -198,6 +231,10 @@
       <ul>
         
           <li>
+            <a href="/shizhuofan.GitHub.io/2023/03/31/First-Post/">First_Post</a>
+          </li>
+        
+          <li>
             <a href="/shizhuofan.GitHub.io/2023/03/29/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85gitlab/">(no title)</a>
           </li>
         
@@ -211,10 +248,6 @@
         
           <li>
             <a href="/shizhuofan.GitHub.io/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/shizhuofan.GitHub.io/2023/03/29/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">(no title)</a>
           </li>
         
       </ul>

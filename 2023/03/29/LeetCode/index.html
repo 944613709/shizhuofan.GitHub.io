@@ -1,106 +1,294 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
   
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="LeetCode其他知识  访问修饰符public,private,protected      类的成员不写访问修饰时默认为default。默认对于同一个包中的其他类相当于公开（public），对于不是同一个包中的其他类相当于私有（private）。受保护（protected）对子类相当于公开，对不是同一包中的没有父子关系的类相当于私有。  总结如下表  版权声明：本文为CSDN博主「所谓简爱」">
+    <meta name="description" content="LeetCode其他知识  访问修饰符public,private,protected      类的成员不写访问修饰时默认为default。默认对于同一个包中的其他类相当于公开（public），对于不是同一个包中的其他类相当于私有（private）。受保护（protected）对子类相当于公开，对不是同一包中的没有父子关系的类相当于私有。  总结如下表  版权声明：本文为CSDN博主「所谓简爱」">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/2023/03/29/LeetCode/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="LeetCode其他知识  访问修饰符public,private,protected      类的成员不写访问修饰时默认为default。默认对于同一个包中的其他类相当于公开（public），对于不是同一个包中的其他类相当于私有（private）。受保护（protected）对子类相当于公开，对不是同一包中的没有父子关系的类相当于私有。  总结如下表  版权声明：本文为CSDN博主「所谓简爱」">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/03/29/LeetCode/Center.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/03/29/LeetCode/image-20230201112153877.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/03/29/LeetCode/image-20230201112208420.png">
 <meta property="article:published_time" content="2023-03-29T09:16:16.560Z">
 <meta property="article:modified_time" content="2023-02-01T03:22:09.357Z">
 <meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/03/29/LeetCode/Center.png">
   
-    <link rel="alternate" href="/shizhuofan.GitHub.io/atom.xml" title="Hexo" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/shizhuofan.GitHub.io/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>Hexo</title>
 
-  
-  
-<link rel="stylesheet" href="/shizhuofan.GitHub.io/css/style.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
   
-    
-<link rel="stylesheet" href="/shizhuofan.GitHub.io/fancybox/jquery.fancybox.min.css">
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/shizhuofan.GitHub.io/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/shizhuofan.GitHub.io/">Home</a>
-        
-          <a class="main-nav-link" href="/shizhuofan.GitHub.io/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/shizhuofan.GitHub.io/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
 
-      <div class="outer">
-        <section id="main"><article id="post-LeetCode" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/shizhuofan.GitHub.io/2023/03/29/LeetCode/" class="article-date">
-  <time class="dt-published" datetime="2023-03-29T09:16:16.560Z" itemprop="datePublished">2023-03-29</time>
-</a>
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-29 17:16" pubdate>
+          2023年3月29日 下午
+        </time>
+      </span>
     
   </div>
-  <div class="article-inner">
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 分钟
+        
+      </span>
+    
+
     
     
-    <div class="e-content article-entry" itemprop="articleBody">
+  </div>
+
+
+        
+      </div>
+
       
-        <h1 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h1><h2 id="其他知识"><a href="#其他知识" class="headerlink" title="其他知识"></a>其他知识</h2><pre><code>  访问修饰符public,private,protected
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h1><h2 id="其他知识"><a href="#其他知识" class="headerlink" title="其他知识"></a>其他知识</h2><pre><code class="hljs">  访问修饰符public,private,protected
 
     类的成员不写访问修饰时默认为default。默认对于同一个包中的其他类相当于公开（public），对于不是同一个包中的其他类相当于私有（private）。受保护（protected）对子类相当于公开，对不是同一包中的没有父子关系的类相当于私有。
 </code></pre>
 <p>总结如下表</p>
-<img src="/shizhuofan.GitHub.io/2023/03/29/LeetCode/Center.png" class title="img">
+<img src="/shizhuofan.GitHub.io/2023/03/29/LeetCode/Center.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="img">
 <p>版权声明：本文为CSDN博主「所谓简爱」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33342248/article/details/54090038">https://blog.csdn.net/qq_33342248/article/details/54090038</a></p>
 <h2 id="1-二分查找法"><a href="#1-二分查找法" class="headerlink" title="1.二分查找法"></a>1.二分查找法</h2><p>思路一：</p>
 <p><strong>while(left&lt;&#x3D;right)</strong></p>
 <p><strong>直接找出目标元素</strong></p>
 <p>public class Solution {</p>
-<pre><code>// 「力扣」第 704 题：二分查找
+<pre><code class="hljs">// 「力扣」第 704 题：二分查找
   
 public int search(int[] nums, int target) &#123;
     int len = nums.length;
@@ -131,7 +319,7 @@ public int search(int[] nums, int target) &#123;
 <p><strong>1.while(left&lt;right)</strong></p>
 <p><strong>2.如果有left&#x3D;mid,则向上取整mid &#x3D; (left+right+1) &#x2F;2</strong></p>
 <p>public class Solution {</p>
-<pre><code>// 「力扣」第 704 题：二分查找
+<pre><code class="hljs">// 「力扣」第 704 题：二分查找
 
 public int search(int[] nums, int target) &#123;
     int len = nums.length;
@@ -161,7 +349,7 @@ public int search(int[] nums, int target) &#123;
 <h2 id="2-HashMap"><a href="#2-HashMap" class="headerlink" title="2.HashMap"></a>2.HashMap</h2><p>时间复杂度o（1）</p>
 <p>因为是数组</p>
 <h2 id="3-排序·"><a href="#3-排序·" class="headerlink" title="3.排序·"></a>3.排序·</h2><h3 id="1-选择排序"><a href="#1-选择排序" class="headerlink" title="1.选择排序"></a>1.选择排序</h3><h3 id="2-插入排序"><a href="#2-插入排序" class="headerlink" title="2.插入排序"></a>2.插入排序</h3><p>public class Solution {</p>
-<pre><code>// 「力扣」第 912 题：排序数组
+<pre><code class="hljs">// 「力扣」第 912 题：排序数组
 
 public int[] sortArray(int[] nums) &#123;
     int len = nums.length;
@@ -189,7 +377,7 @@ private void swap(int[] nums, int index1, int index2) &#123;
 <h3 id="3-希尔排序"><a href="#3-希尔排序" class="headerlink" title="3.希尔排序"></a>3.希尔排序</h3><p>升级版的插入排序</p>
 <p>import java.util.Arrays;</p>
 <p>public class Solution {</p>
-<pre><code>// 「力扣」第 912 题：排序数组
+<pre><code class="hljs">// 「力扣」第 912 题：排序数组
 // 希尔排序，使用 Shell 建议的序列 N/2,N/4,...,2,1
 
 public int[] sortArray(int[] nums) &#123;
@@ -229,7 +417,7 @@ private void insertionForDelta(int[] nums, int gap, int end) &#123;
 <h3 id="4-归并"><a href="#4-归并" class="headerlink" title="4.归并"></a>4.归并</h3><p>编写递归函数，通常要遵守下面的编写模式：</p>
 <p><strong>先写递归终止条件；</strong><br><strong>再假定小规模的问题已经解决（是通过递归解决的）；</strong><br><strong>最后处理小规模问题已经解决的情况下，与当前问题之间的逻辑联系。</strong></p>
 <p>作者：liweiwei1419<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/55ghq7/">https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/55ghq7/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">public int[] sortArray(int[] nums) &#123;</span><br><span class="line">        int len = nums.length;</span><br><span class="line">        mergeSort(nums, 0, len - 1);</span><br><span class="line">        return nums;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void mergeSort(int[] nums, int left, int right) &#123;</span><br><span class="line">        if(left == right) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int mid = left + (right - left) / 2;</span><br><span class="line">        mergeSort(nums, left, mid);</span><br><span class="line">        mergeSort(nums, mid + 1, right);</span><br><span class="line">        mergeOfTwoSortedArray(nums, left, mid, right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void mergeOfTwoSortedArray(int[] nums, int left, int mid, int right) &#123;</span><br><span class="line">        // 合并后数组长度</span><br><span class="line">        int len = right - left + 1;</span><br><span class="line">        // 定义新的临时数组</span><br><span class="line">        int[] temp = new int[len];</span><br><span class="line"></span><br><span class="line">        int i = left;</span><br><span class="line">        int j = mid + 1;</span><br><span class="line">        int k = 0;</span><br><span class="line">        // 从左到右比较两数组的大小，将较小的值添加到temp中</span><br><span class="line">        while(i &lt;= mid &amp;&amp; j &lt;= right) &#123;</span><br><span class="line">            if(nums[i] &lt;= nums[j]) &#123;</span><br><span class="line">                temp[k++] = nums[i++];</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                temp[k++] = nums[j++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 剩下的数组元素，可以依次赋值</span><br><span class="line">        while(i &lt;= mid) &#123;</span><br><span class="line">            temp[k++] = nums[i++];</span><br><span class="line">        &#125;</span><br><span class="line">        while(j &lt;= right) &#123;</span><br><span class="line">            temp[k++] = nums[j++];</span><br><span class="line">        &#125;</span><br><span class="line">        // 将temp排好序的依次赋值给nums</span><br><span class="line">        int b = 0;</span><br><span class="line">        for(int a = left; a &lt;= right; a++) &#123;</span><br><span class="line">            nums[a] = temp[b++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">作者：豚豚</span><br><span class="line">链接：https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/55ghq7/?discussion=ngEXjW</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">public <span class="hljs-built_in">int</span><span class="hljs-literal">[]</span> sort<span class="hljs-constructor">Array(<span class="hljs-params">int</span>[] <span class="hljs-params">nums</span>)</span> &#123;<br>        <span class="hljs-built_in">int</span> len = nums.length;<br>        merge<span class="hljs-constructor">Sort(<span class="hljs-params">nums</span>, 0, <span class="hljs-params">len</span> - 1)</span>;<br>        return nums;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> void merge<span class="hljs-constructor">Sort(<span class="hljs-params">int</span>[] <span class="hljs-params">nums</span>, <span class="hljs-params">int</span> <span class="hljs-params">left</span>, <span class="hljs-params">int</span> <span class="hljs-params">right</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(left<span class="hljs-operator"> == </span>right) &#123;<br>            return;<br>        &#125;<br>        <span class="hljs-built_in">int</span> mid = left + (right - left)<span class="hljs-operator"> / </span><span class="hljs-number">2</span>;<br>        merge<span class="hljs-constructor">Sort(<span class="hljs-params">nums</span>, <span class="hljs-params">left</span>, <span class="hljs-params">mid</span>)</span>;<br>        merge<span class="hljs-constructor">Sort(<span class="hljs-params">nums</span>, <span class="hljs-params">mid</span> + 1, <span class="hljs-params">right</span>)</span>;<br>        merge<span class="hljs-constructor">OfTwoSortedArray(<span class="hljs-params">nums</span>, <span class="hljs-params">left</span>, <span class="hljs-params">mid</span>, <span class="hljs-params">right</span>)</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> void merge<span class="hljs-constructor">OfTwoSortedArray(<span class="hljs-params">int</span>[] <span class="hljs-params">nums</span>, <span class="hljs-params">int</span> <span class="hljs-params">left</span>, <span class="hljs-params">int</span> <span class="hljs-params">mid</span>, <span class="hljs-params">int</span> <span class="hljs-params">right</span>)</span> &#123;<br>        <span class="hljs-comment">// 合并后数组长度</span><br>        <span class="hljs-built_in">int</span> len = right - left + <span class="hljs-number">1</span>;<br>        <span class="hljs-comment">// 定义新的临时数组</span><br>        <span class="hljs-built_in">int</span><span class="hljs-literal">[]</span> temp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span><span class="hljs-literal">[<span class="hljs-identifier">len</span>]</span>;<br><br>        <span class="hljs-built_in">int</span> i = left;<br>        <span class="hljs-built_in">int</span> j = mid + <span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">int</span> k = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 从左到右比较两数组的大小，将较小的值添加到temp中</span><br>        <span class="hljs-keyword">while</span>(i &lt;= mid<span class="hljs-operator"> &amp;&amp; </span>j &lt;= right) &#123;<br>            <span class="hljs-keyword">if</span>(nums<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> &lt;= nums<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span>) &#123;<br>                temp<span class="hljs-literal">[<span class="hljs-identifier">k</span><span class="hljs-operator">++</span>]</span> = nums<span class="hljs-literal">[<span class="hljs-identifier">i</span><span class="hljs-operator">++</span>]</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                temp<span class="hljs-literal">[<span class="hljs-identifier">k</span><span class="hljs-operator">++</span>]</span> = nums<span class="hljs-literal">[<span class="hljs-identifier">j</span><span class="hljs-operator">++</span>]</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 剩下的数组元素，可以依次赋值</span><br>        <span class="hljs-keyword">while</span>(i &lt;= mid) &#123;<br>            temp<span class="hljs-literal">[<span class="hljs-identifier">k</span><span class="hljs-operator">++</span>]</span> = nums<span class="hljs-literal">[<span class="hljs-identifier">i</span><span class="hljs-operator">++</span>]</span>;<br>        &#125;<br>        <span class="hljs-keyword">while</span>(j &lt;= right) &#123;<br>            temp<span class="hljs-literal">[<span class="hljs-identifier">k</span><span class="hljs-operator">++</span>]</span> = nums<span class="hljs-literal">[<span class="hljs-identifier">j</span><span class="hljs-operator">++</span>]</span>;<br>        &#125;<br>        <span class="hljs-comment">// 将temp排好序的依次赋值给nums</span><br>        <span class="hljs-built_in">int</span> b = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> a = left; a &lt;= right; a++) &#123;<br>            nums<span class="hljs-literal">[<span class="hljs-identifier">a</span>]</span> = temp<span class="hljs-literal">[<span class="hljs-identifier">b</span><span class="hljs-operator">++</span>]</span>;<br>        &#125;<br>    &#125;<br><br>作者：豚豚<br>链接：https:<span class="hljs-comment">//leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/55ghq7/?discussion=ngEXjW</span><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br></code></pre></td></tr></table></figure>
 
 <p>优化 1：在小区间里使用插入排序<br>如果区间里只有 22 个元素，例如 [4, 3][4,3]，只要把它们直接交换一下位置就可以了。但是这种情况还太特殊，对于区间里有 33 个元素、44 个元素的情况就不奏效了，一个更直接且有效的做法是：在小区间里使用插入排序。</p>
 <p>事实上，在归并排序的子过程里，可以使用插入排序的原因是：</p>
@@ -240,7 +428,7 @@ private void insertionForDelta(int[] nums, int gap, int end) &#123;
 <p><strong>这个频繁创建数组和销毁数组的过程，有一定性能消耗；</strong><br>不管是复制数组，还是把归并的结果赋值回去，都得计算偏移量。而事实上，当我们全局使用一个临时数组用于归并的时候，可以省略偏移量的计算。<br>下面我们就从代码层面讲解如何优化归并排序。</p>
 <p>作者：liweiwei1419<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/55gb35/">https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/55gb35/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <h4 id="优化归并"><a href="#优化归并" class="headerlink" title="优化归并"></a>优化归并</h4><p>public class Solution {</p>
-<pre><code>/**
+<pre><code class="hljs">/**
  * 列表大小等于或小于该大小，将优先于 mergesort 使用插入排序
  */
 private static final int INSERTION_SORT_THRESHOLD = 47;
@@ -328,150 +516,360 @@ private void insertionSort(int[] arr, int left, int right) &#123;
 <p>1.从暴力解法优化，类似于剪枝法从O(n2)-&gt;O(n1)</p>
 <p>2.利用的是left固定住之后，right一直向右，只要遇上了重复字符，当前的res就再也不可能变大，于是可以left当前值的循环可以跳过，可以直接left+1</p>
 <p>3.滑动窗口问题如果一下子没有思路，先考虑暴力解法，然后再纸上写写画画，进而考虑优化的解法，通常考虑「剪枝」或者「空间换时间」。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int lengthOfLongestSubstring(String s) &#123;</span><br><span class="line">        int len  =s.length();</span><br><span class="line">        int res = 0;</span><br><span class="line">        if(len==0)</span><br><span class="line">            return 0;</span><br><span class="line">        //[left,right]</span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = 0;</span><br><span class="line">        HashMap&lt;Character,Integer&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">        for(right = 0;right&lt;len;right++)</span><br><span class="line">        &#123;</span><br><span class="line">            // right右移</span><br><span class="line">            map.put(s.charAt(right),map.getOrDefault(s.charAt(right),0)+1);</span><br><span class="line"></span><br><span class="line">            //如果需要，则收缩</span><br><span class="line">            while(left &lt; right &amp;&amp; map.get(s.charAt(right))&gt;=2)</span><br><span class="line">            &#123;</span><br><span class="line">                map.put(s.charAt(left),map.get(s.charAt(left))-1);</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            res= Math.max(res,right-left+1);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">class</span> Solution &#123;<br>    public <span class="hljs-built_in">int</span> length<span class="hljs-constructor">OfLongestSubstring(String <span class="hljs-params">s</span>)</span> &#123;<br>        <span class="hljs-built_in">int</span> len  =s.length<span class="hljs-literal">()</span>;<br>        <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(len==<span class="hljs-number">0</span>)<br>            return <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//[left,right]</span><br>        <span class="hljs-built_in">int</span> left = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">int</span> right = <span class="hljs-number">0</span>;<br>        HashMap&lt;Character,Integer&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;<span class="hljs-literal">()</span>;<br>        <span class="hljs-keyword">for</span>(right = <span class="hljs-number">0</span>;right&lt;len;right++)<br>        &#123;<br>            <span class="hljs-comment">// right右移</span><br>            map.put(s.<span class="hljs-built_in">char</span><span class="hljs-constructor">At(<span class="hljs-params">right</span>)</span>,map.get<span class="hljs-constructor">OrDefault(<span class="hljs-params">s</span>.<span class="hljs-params">charAt</span>(<span class="hljs-params">right</span>)</span>,<span class="hljs-number">0</span>)+<span class="hljs-number">1</span>);<br><br>            <span class="hljs-comment">//如果需要，则收缩</span><br>            <span class="hljs-keyword">while</span>(left &lt; right<span class="hljs-operator"> &amp;&amp; </span>map.get(s.<span class="hljs-built_in">char</span><span class="hljs-constructor">At(<span class="hljs-params">right</span>)</span>)&gt;=<span class="hljs-number">2</span>)<br>            &#123;<br>                map.put(s.<span class="hljs-built_in">char</span><span class="hljs-constructor">At(<span class="hljs-params">left</span>)</span>,map.get(s.<span class="hljs-built_in">char</span><span class="hljs-constructor">At(<span class="hljs-params">left</span>)</span>)-<span class="hljs-number">1</span>);<br>                left++;<br>            &#125;<br>            res= <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>max(res,right-left+<span class="hljs-number">1</span>);<br>        &#125;<br>        return res;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line"></span><br><span class="line">    public String minWindow(String s, String t) &#123;</span><br><span class="line">        // 同方向移动，起始的时候，都位于 0，表示我们定义搜索区间为 [left, right) ，此时区间为空区间</span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = 0;</span><br><span class="line"></span><br><span class="line">        while (right &lt; sLen) &#123;</span><br><span class="line"></span><br><span class="line">            if ( 在右移的过程中检测是否满足条件 ) &#123;</span><br><span class="line">                // 对状态做修改，好让程序在后面检测到满足条件</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 右边界右移 1 格</span><br><span class="line">            right++;</span><br><span class="line"></span><br><span class="line">            while ( 满足条件 ) &#123;</span><br><span class="line"></span><br><span class="line">                // ① 走到这里是满足条件的，左边界逐渐逐渐左移，可以取最小值</span><br><span class="line"></span><br><span class="line">                if ( 在左移的过程中检测是否不满足条件 ) &#123;</span><br><span class="line">                    // 对状态做修改，好让程序在后面检测到不满足条件</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 左边界左移 1 格</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            // ② 走到这里是不满足条件的，右边界逐渐右移，可以取最大值</span><br><span class="line">        &#125;</span><br><span class="line">        return 需要的结果变量;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：liweiwei1419</span><br><span class="line">链接：https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/x1vsvd/</span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs awk">public class Solution &#123;<br><br>    public String minWindow(String s, String t) &#123;<br>        <span class="hljs-regexp">//</span> 同方向移动，起始的时候，都位于 <span class="hljs-number">0</span>，表示我们定义搜索区间为 [left, right) ，此时区间为空区间<br>        int left = <span class="hljs-number">0</span>;<br>        int right = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">while</span> (right &lt; sLen) &#123;<br><br>            <span class="hljs-keyword">if</span> ( 在右移的过程中检测是否满足条件 ) &#123;<br>                <span class="hljs-regexp">//</span> 对状态做修改，好让程序在后面检测到满足条件<br>            &#125;<br><br>            <span class="hljs-regexp">//</span> 右边界右移 <span class="hljs-number">1</span> 格<br>            right++;<br><br>            <span class="hljs-keyword">while</span> ( 满足条件 ) &#123;<br><br>                <span class="hljs-regexp">//</span> ① 走到这里是满足条件的，左边界逐渐逐渐左移，可以取最小值<br><br>                <span class="hljs-keyword">if</span> ( 在左移的过程中检测是否不满足条件 ) &#123;<br>                    <span class="hljs-regexp">//</span> 对状态做修改，好让程序在后面检测到不满足条件<br>                &#125;<br><br>                <span class="hljs-regexp">//</span> 左边界左移 <span class="hljs-number">1</span> 格<br>                left++;<br>            &#125;<br>            <span class="hljs-regexp">//</span> ② 走到这里是不满足条件的，右边界逐渐右移，可以取最大值<br>        &#125;<br>        return 需要的结果变量;<br>    &#125;<br>&#125;<br><br>作者：liweiwei1419<br>链接：https:<span class="hljs-regexp">//</span>leetcode.cn<span class="hljs-regexp">/leetbook/</span>read<span class="hljs-regexp">/learning-algorithms-with-leetcode/</span>x1vsvd/<br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int numRescueBoats(int[] people, int limit) &#123;</span><br><span class="line">        Arrays.sort(people);</span><br><span class="line">        int len = people.length;</span><br><span class="line">        int left=0;</span><br><span class="line">        int right = len-1;</span><br><span class="line">        int res = 0;</span><br><span class="line">        while(left&lt;right)</span><br><span class="line">        &#123;</span><br><span class="line">            //最轻的可以带上最重的</span><br><span class="line">            if(people[left]+people[right] &lt;=limit)</span><br><span class="line">            &#123;</span><br><span class="line">                left++;</span><br><span class="line">                right--;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">            //最轻的带不上最重的</span><br><span class="line">            else//最重的只能自己走</span><br><span class="line">            &#123;</span><br><span class="line">                right--;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(left==right)</span><br><span class="line">        &#123;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs excel">class Solution &#123;<br>    public <span class="hljs-built_in">int</span> numRescueBoats(<span class="hljs-built_in">int</span>[] people, <span class="hljs-built_in">int</span> limit) &#123;<br>        Arrays.sort(people);<br>        <span class="hljs-built_in">int</span> <span class="hljs-built_in">len</span> = people.length;<br>        <span class="hljs-built_in">int</span> <span class="hljs-built_in">left</span>=<span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">int</span> <span class="hljs-built_in">right</span> = <span class="hljs-built_in">len</span>-<span class="hljs-number">1</span>;<br>        <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>        while(<span class="hljs-built_in">left</span>&lt;<span class="hljs-built_in">right</span>)<br>        &#123;<br>            //最轻的可以带上最重的<br>            <span class="hljs-built_in">if</span>(people[<span class="hljs-built_in">left</span>]+people[<span class="hljs-built_in">right</span>] &lt;=limit)<br>            &#123;<br>                <span class="hljs-built_in">left</span>++;<br>                <span class="hljs-built_in">right</span>--;<br>                res++;<br>            &#125;<br>            //最轻的带不上最重的<br>            else//最重的只能自己走<br>            &#123;<br>                <span class="hljs-built_in">right</span>--;<br>                res++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-built_in">if</span>(<span class="hljs-built_in">left</span>==<span class="hljs-built_in">right</span>)<br>        &#123;<br>            res++;<br>        &#125;<br>        return res;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h2><img src="/shizhuofan.GitHub.io/2023/03/29/LeetCode/image-20230201112153877.png" class title="image-20230201112153877">
+<h2 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h2><img src="/shizhuofan.GitHub.io/2023/03/29/LeetCode/image-20230201112153877.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230201112153877">
 
-<img src="/shizhuofan.GitHub.io/2023/03/29/LeetCode/image-20230201112208420.png" class title="image-20230201112208420">
+<img src="/shizhuofan.GitHub.io/2023/03/29/LeetCode/image-20230201112208420.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230201112208420">
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://yoursite.com/2023/03/29/LeetCode/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2023/03/29/LeetCode/" data-id="clfvyglf100050cwph16f9fv5" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
+    <div class="license-icon iconfont"></div>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/shizhuofan.GitHub.io/2023/03/29/Linux%E5%91%BD%E4%BB%A4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/03/29/Linux%E5%91%BD%E4%BB%A4/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/03/29/k8s%E5%AE%89%E8%A3%85jenkins/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/shizhuofan.GitHub.io/2023/03/29/k8s%E5%AE%89%E8%A3%85jenkins/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title"></div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/shizhuofan.GitHub.io/archives/2023/03/">March 2023</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/shizhuofan.GitHub.io/2023/03/31/First-Post/">First_Post</a>
-          </li>
-        
-          <li>
-            <a href="/shizhuofan.GitHub.io/2023/03/29/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85gitlab/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/shizhuofan.GitHub.io/2023/03/29/%E5%90%91%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85%E8%A6%81%E4%BB%A3%E7%A0%81/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/shizhuofan.GitHub.io/2023/03/29/%E4%BD%BF%E7%94%A8python%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/shizhuofan.GitHub.io/2023/03/29/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/">(no title)</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2023 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/shizhuofan.GitHub.io/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/shizhuofan.GitHub.io/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/shizhuofan.GitHub.io/js/jquery-3.4.1.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/shizhuofan.GitHub.io/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/shizhuofan.GitHub.io/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

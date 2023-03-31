@@ -4,19 +4,6 @@
   
   
   <entry>
-    <title>First_Post</title>
-    <link href="/shizhuofan.GitHub.io/2023/03/31/First-Post/"/>
-    <url>/shizhuofan.GitHub.io/2023/03/31/First-Post/</url>
-    
-    <content type="html"><![CDATA[<p>测试</p><img src="/shizhuofan.GitHub.io/2023/03/31/First-Post/image-20230331105650389.png" class title="image-20230331105650389">不少<p>我花费了不少时间总算建好了hexo</p><p>1.出现请求css的404问题</p><p>需要在config设置</p><img src="/shizhuofan.GitHub.io/2023/03/31/First-Post/image-20230331105742012.png" class title="image-20230331105742012"><p>2.出现md文件图片上传问题</p><p>看博客解决</p><p>3.并且在本地hexo d完成之后并不会实时看见更新网页内容，大概几分钟后才可以，也许是本地提交上去了，在github还得响应一会</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title></title>
     <link href="/shizhuofan.GitHub.io/2023/03/29/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85gitlab/"/>
     <url>/shizhuofan.GitHub.io/2023/03/29/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85gitlab/</url>

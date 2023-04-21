@@ -330,32 +330,6 @@
   
   <entry>
     <title></title>
-    <link href="/shizhuofan.GitHub.io/2023/03/29/k8s%E5%AE%89%E8%A3%85jenkins/"/>
-    <url>/shizhuofan.GitHub.io/2023/03/29/k8s%E5%AE%89%E8%A3%85jenkins/</url>
-    
-    <content type="html"><![CDATA[<p>k8s安装jenkins</p><p>1.在csdn找非官方教程吃了很多亏</p><p>2.我最后在官网教程一下子就搞好了yyds</p><p><a href="https://www.jenkins.io/doc/book/installing/kubernetes/">https://www.jenkins.io/doc/book/installing/kubernetes/</a></p><p>jenkins账号a944613709</p><p>密码250772730</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title></title>
-    <link href="/shizhuofan.GitHub.io/2023/03/29/k8s%E5%AE%89%E8%A3%85helm/"/>
-    <url>/shizhuofan.GitHub.io/2023/03/29/k8s%E5%AE%89%E8%A3%85helm/</url>
-    
-    <content type="html"><![CDATA[<p>k8s安装helm</p><p><a href="https://cloud.tencent.com/developer/article/1694640">https://cloud.tencent.com/developer/article/1694640</a></p><p>#根据操作系统去获取最新二进制安装包<a href="https://github.com/helm/helm/releases">https://github.com/helm/helm/releases</a>        </p><p>wget <a href="https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz">https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz</a>        </p><p>#由于helm包在国外,我通过ss拉到了腾讯云cos,国内可通过以下地址访问:<a href="https://download.osichina.net/tools/k8s/helm/helm-v3.3.1-linux-amd64.tar.gz">https://download.osichina.net/tools/k8s/helm/helm-v3.3.1-linux-amd64.tar.gz</a>        </p><p>tar -zxvf helm-v3.3.1-linux-amd64.tar.gz        </p><p>cp linux-amd64&#x2F;helm &#x2F;usr&#x2F;local&#x2F;bin&#x2F;</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title></title>
     <link href="/shizhuofan.GitHub.io/2023/03/29/GO%E8%AF%AD%E8%A8%80/"/>
     <url>/shizhuofan.GitHub.io/2023/03/29/GO%E8%AF%AD%E8%A8%80/</url>
     

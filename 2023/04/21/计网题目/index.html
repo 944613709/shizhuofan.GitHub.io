@@ -16,12 +16,12 @@
   <meta name="author" content="Fars">
   <meta name="keywords" content="">
   
-    <meta name="description" content="盖伦 1B&#x3D;8bit 1bps&#x3D;1bit&#x2F;s 网络层     1          讲座1（概述）          1MB &#x3D; 1024KB 因为是1B&#x3D;8b，所以从10^3变成2^10 1Mb &#x3D; 1000 000 b     带宽就是最大吞吐量(类似最大速度) 吞吐量就是当前实际的mb&#x2F;s（类似速度）">
+    <meta name="description" content="概论 1B&#x3D;8bit 1bps&#x3D;1bit&#x2F;s 网络层     1          讲座1（概述）          1MB &#x3D; 1024KB 因为是1B&#x3D;8b，所以从10^3变成2^10 1Mb &#x3D; 1000 000 b     带宽就是最大吞吐量(类似最大速度) 吞吐量就是当前实际的mb&#x2F;s（类似速度）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fars&#39;Blog">
+<meta property="og:title" content="计网题目笔记">
 <meta property="og:url" content="http://yoursite.com/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Fars&#39;Blog">
-<meta property="og:description" content="盖伦 1B&#x3D;8bit 1bps&#x3D;1bit&#x2F;s 网络层     1          讲座1（概述）          1MB &#x3D; 1024KB 因为是1B&#x3D;8b，所以从10^3变成2^10 1Mb &#x3D; 1000 000 b     带宽就是最大吞吐量(类似最大速度) 吞吐量就是当前实际的mb&#x2F;s（类似速度）">
+<meta property="og:description" content="概论 1B&#x3D;8bit 1bps&#x3D;1bit&#x2F;s 网络层     1          讲座1（概述）          1MB &#x3D; 1024KB 因为是1B&#x3D;8b，所以从10^3变成2^10 1Mb &#x3D; 1000 000 b     带宽就是最大吞吐量(类似最大速度) 吞吐量就是当前实际的mb&#x2F;s（类似速度）">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221017195102157.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221015194408396.png">
@@ -45,21 +45,96 @@
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221017155341312.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221017160503331.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221018190252034.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20221110110012645.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20221110110019772.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20221115160853860.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20221115162419970.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20230213121838857.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20230213122843922.png">
-<meta property="article:published_time" content="2023-04-21T03:31:26.812Z">
-<meta property="article:modified_time" content="2023-02-19T04:02:12.924Z">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109202051817.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109202847129.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109202931862.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109204013198.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109204108824.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109210426723.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109210628930.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109211159594.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109211323949.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109212200044.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109213915683.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221110110012645.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221110110019772.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221110161209999.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115160853860.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115162419970.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115161829329.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115162018350.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115170536527.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115192721241.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115191945696.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115192115551.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115193832654.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115193847376.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115194108601.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115194358700.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115203153490.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230208143418790.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210102804066.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210103721830.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210163834280.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210163829625.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210170251613.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210172807019.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210205930681.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210210711241.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210212831848.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210213610641.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210213812671.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230211095643352.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212155051206.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212161643526.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212193753452.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212194406109.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212194749945.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213112304043.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213113620569.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213113647649.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213115556720.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213115830202.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213121838857.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213122843922.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213123439789.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213124559345.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213130629056.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213222411059.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213223719178.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213224051940.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213224631691.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213225254748.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213231523154.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213234107330.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230214104304513.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230214115317532.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230214121513262.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215103056975.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215103544998.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215103627668.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215104753879.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215105137106.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215114731972.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215135658710.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230217110151618.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219111752934.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219111813322.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219113000565.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0pBY2tfY2hlbjAzMDk=,size_16,color_FFFFFF,t_70.jpeg">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219114155993.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/SouthEast.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219115010612.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219120210097.png">
+<meta property="article:published_time" content="2023-04-21T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-04-21T03:45:07.509Z">
 <meta property="article:author" content="Fars">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221017195102157.png">
   
   
   
-  <title>Fars&#39;Blog</title>
+  <title>计网题目笔记 - Fars&#39;Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +300,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="计网题目笔记"></span>
           
         </div>
 
@@ -236,7 +311,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-21 11:31" pubdate>
+        <time datetime="2023-04-21 11:42" pubdate>
           2023年4月21日 中午
         </time>
       </span>
@@ -297,12 +372,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">计网题目笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="盖伦"><a href="#盖伦" class="headerlink" title="盖伦"></a>盖伦</h1><p><img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221017195102157.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221017195102157"></p>
+                <h1 id="概论"><a href="#概论" class="headerlink" title="概论"></a>概论</h1><p><img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221017195102157.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221017195102157"></p>
 <p>1B&#x3D;8bit</p>
 <p>1bps&#x3D;1bit&#x2F;s</p>
 <h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><p><img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users\86189\AppData\Roaming\Typora\typora-user-images\image-20221015194408396.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221015194408396"></p>
@@ -320,40 +395,40 @@
 <p><img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221017155341312.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221017155341312"></p>
 <p><img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221017160503331.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221017160503331"></p>
 <p><img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20221018190252034.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221018190252034"></p>
-<h1 id="讲座1（概述）"><a href="#讲座1（概述）" class="headerlink" title="讲座1（概述）"></a>讲座1（概述）</h1>
+<h1 id="讲座1（概述）"><a href="#讲座1（概述）" class="headerlink" title="讲座1（概述）"></a>讲座1（概述）</h1><img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109202051817.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109202051817">
 
 
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109202847129.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109202847129">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109202931862.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109202931862">
 
-
-
-
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109204013198.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109204013198">
 
 <p>1MB &#x3D; 1024KB</p>
 <p>因为是1B&#x3D;8b，所以从10^3变成2^10</p>
 <p>1Mb &#x3D; 1000 000 b</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109204108824.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109204108824">
 
-
-
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109210426723.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109210426723">
 
 <p>带宽就是最大吞吐量(类似最大速度)</p>
 <p>吞吐量就是当前实际的mb&#x2F;s（类似速度）  </p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109210628930.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109210628930">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109211159594.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109211159594">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109211323949.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109211323949">
 
-
-
-
-
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109212200044.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109212200044">
 
 <p>讲座1（应用层）</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221109213915683.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221109213915683">
 
+<p><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221110110012645.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221110110012645"><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221110110019772.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221110110019772"></p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221110161209999.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221110161209999">
 
-<p><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20221110110012645.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221110110012645"><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20221110110019772.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221110110019772"></p>
-
-
-<h1 id="讲座2（网络层）"><a href="#讲座2（网络层）" class="headerlink" title="讲座2（网络层）"></a>讲座2（网络层）</h1><h2 id="可靠传输（一般的方式）"><a href="#可靠传输（一般的方式）" class="headerlink" title="可靠传输（一般的方式）"></a>可靠传输（一般的方式）</h2><h3 id="信道利用率"><a href="#信道利用率" class="headerlink" title="信道利用率"></a>信道利用率</h3><p><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20221115160853860.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221115160853860"><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20221115162419970.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221115162419970"></p>
+<h1 id="讲座2（网络层）"><a href="#讲座2（网络层）" class="headerlink" title="讲座2（网络层）"></a>讲座2（网络层）</h1><h2 id="可靠传输（一般的方式）"><a href="#可靠传输（一般的方式）" class="headerlink" title="可靠传输（一般的方式）"></a>可靠传输（一般的方式）</h2><h3 id="信道利用率"><a href="#信道利用率" class="headerlink" title="信道利用率"></a>信道利用率</h3><p><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115160853860.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221115160853860"><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115162419970.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20221115162419970"></p>
 <p>对于GBN的信道利用率</p>
 <p>N越大信道利用率越大</p>
 <h3 id="GBN"><a href="#GBN" class="headerlink" title="GBN"></a>GBN</h3><p><strong>发送方对于：</strong></p>
@@ -366,14 +441,14 @@
 <h3 id="SR"><a href="#SR" class="headerlink" title="SR"></a>SR</h3><p><strong>发送方：</strong></p>
 <p>每个分组必须拥有其自己的逻辑定时器，因为超时发生后只能发送一个分组</p>
 <p>GBN和SR窗口</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115161829329.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115161829329">
 
-
-
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115162018350.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115162018350">
 
 <h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>包括了TCP如何实现可靠传输</p>
 <p>TCP拥塞控制</p>
 <h3 id="TCp可靠传输的方式"><a href="#TCp可靠传输的方式" class="headerlink" title="TCp可靠传输的方式"></a>TCp可靠传输的方式</h3><p>TCP序号是以字节为单位</p>
-
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115170536527.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115170536527">
 
 <p>SR和gBN和停等协议都是确认号&#x3D;序号，且都是以报文段分组为单位</p>
 <p>TCP协议是确认号&#x3D;序号+1，且是以字节Byte为单位</p>
@@ -381,20 +456,20 @@
 <p>且接收方每次发回ACK都会告诉发送方自己的接收窗口实时还可以接收多少，会让发送方自己的发送窗口在每次收到ack之后都会调整自己的发送窗口（发送窗口上限值 &#x3D; MIn（发送方得知的接收窗口rwnd，拥塞窗口cwnd）</p>
 <p>且发送方收到3次重复ACK之后也会重传，这时候的是rwnd减半（快重传）</p>
 <p>TCP发送方在收到ACK确认之后才会将拥塞窗口增大！！！！</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115192721241.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115192721241">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115191945696.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115191945696">
 
-
-
-
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115192115551.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115192115551">
 
 <p>TCP的拥塞控制</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115193832654.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115193832654">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115193847376.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115193847376">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115194108601.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115194108601">
 
-
-
-
-
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115194358700.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115194358700">
 
 
 
@@ -402,6 +477,7 @@
 
 <h2 id="TCP连接"><a href="#TCP连接" class="headerlink" title="TCP连接"></a>TCP连接</h2><p>连接建立三次握手</p>
 <p>连接关闭四次握手 </p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20221115203153490.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20221115203153490">
 
 
 
@@ -409,114 +485,113 @@
 
 
 
+<h1 id="考研408真题"><a href="#考研408真题" class="headerlink" title="考研408真题"></a>考研408真题</h1><img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230208143418790.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230208143418790">1
 
-<h1 id="考研408真题"><a href="#考研408真题" class="headerlink" title="考研408真题"></a>考研408真题</h1>1
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210102804066.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210102804066">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210103721830.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210103721830">  
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210163834280.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210163834280">
 
-  
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210163829625.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210163829625">1
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210170251613.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210170251613">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210172807019.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class width="1">11
 
-1
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210205930681.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210205930681">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210210711241.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210210711241">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210212831848.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210212831848">
 
-11
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210213610641.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210213610641">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230210213812671.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230210213812671">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230211095643352.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230211095643352">还有多少分配地址，这里也不要忘了-2，全0和全1
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212155051206.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230212155051206">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212161643526.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230212161643526">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212193753452.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230212193753452">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212194406109.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230212194406109">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230212194749945.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230212194749945">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213112304043.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213112304043">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213113620569.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213113620569">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213113647649.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213113647649">
 
-还有多少分配地址，这里也不要忘了-2，全0和全1
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213115556720.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="，">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213115830202.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213115830202">9
 
 
 
+<p><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213121838857.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230213121838857"><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213122843922.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230213122843922"></p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213123439789.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213123439789">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213124559345.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213124559345">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213130629056.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213130629056">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213222411059.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213222411059">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213223719178.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213223719178">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213224051940.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213224051940">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213224631691.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213224631691">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213225254748.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213225254748">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213231523154.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213231523154">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230213234107330.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230213234107330">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230214104304513.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230214104304513">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230214115317532.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230214115317532">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230214121513262.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230214121513262">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215103056975.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230215103056975">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215103544998.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230215103544998">
 
-9
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215103627668.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230215103627668">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215104753879.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230215104753879">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215105137106.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230215105137106">
 
-<p><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20230213121838857.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230213121838857"><img src="/shizhuofan.GitHub.io/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE.assets/image-20230213122843922.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230213122843922"></p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215114731972.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230215114731972">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230215135658710.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230215135658710">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230217110151618.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230217110151618">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219111752934.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230219111752934">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219111813322.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230219111813322">
 
 <p>D</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219113000565.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230219113000565">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0pBY2tfY2hlbjAzMDk=,size_16,color_FFFFFF,t_70.jpeg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="在这里插入图片描述">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219114155993.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230219114155993">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/SouthEast.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="img">
 
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219115010612.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230219115010612">
 
-
-
-
-
-
-
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/image-20230219120210097.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230219120210097">
                 
               </div>
             
@@ -533,7 +608,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>计网题目笔记</div>
       <div>http://yoursite.com/2023/04/21/计网题目/</div>
     </div>
     <div class="license-meta">
@@ -578,9 +653,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/" title="">
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/" title="论文笔记">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">论文笔记</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -588,8 +663,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E8%80%83%E5%89%8D%E4%B8%80%E5%A4%A92.17/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1/" title="面向服务的软件系统-期末复习笔记">
+                        <span class="hidden-mobile">面向服务的软件系统-期末复习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

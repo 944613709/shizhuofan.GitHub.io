@@ -1,0 +1,789 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fars">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="组会汇报：2022.1.18进度：尝试了saras,DQN,DDPG算法1.使用pytorch运行小型gym原始env没有问题   2.stable_baselines运行也没问题     计划：计划采用的DRL框架：pytorch，stable_baselines 直接利用Online Deployment Algorithms for Microservice Systems with Com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fars&#39;Blog">
+<meta property="og:url" content="http://yoursite.com/2023/04/21/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB/index.html">
+<meta property="og:site_name" content="Fars&#39;Blog">
+<meta property="og:description" content="组会汇报：2022.1.18进度：尝试了saras,DQN,DDPG算法1.使用pytorch运行小型gym原始env没有问题   2.stable_baselines运行也没问题     计划：计划采用的DRL框架：pytorch，stable_baselines 直接利用Online Deployment Algorithms for Microservice Systems with Com">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317100614005.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317100745081.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB/image-20230407143310025.png">
+<meta property="article:published_time" content="2023-04-21T03:26:05.634Z">
+<meta property="article:modified_time" content="2023-04-21T01:42:33.275Z">
+<meta property="article:author" content="Fars">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yoursite.com/shizhuofan.GitHub.io/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317100614005.png">
+  
+  
+  
+  <title>Fars&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-21 11:26" pubdate>
+          2023年4月21日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="组会汇报：2022-1-18"><a href="#组会汇报：2022-1-18" class="headerlink" title="组会汇报：2022.1.18"></a>组会汇报：2022.1.18</h1><h2 id="进度："><a href="#进度：" class="headerlink" title="进度："></a><strong>进度：</strong></h2><h3 id="尝试了saras-DQN-DDPG算法"><a href="#尝试了saras-DQN-DDPG算法" class="headerlink" title="尝试了saras,DQN,DDPG算法"></a>尝试了saras,DQN,DDPG算法</h3><p>1.使用pytorch运行小型gym原始env没有问题</p>
+
+
+<p>2.stable_baselines运行也没问题</p>
+
+
+
+
+<h2 id="计划："><a href="#计划：" class="headerlink" title="计划："></a><strong>计划：</strong></h2><p>计划采用的DRL框架：pytorch，stable_baselines</p>
+<p>直接利用Online Deployment Algorithms for Microservice Systems with Complex Dependencies的背景和问题</p>
+<p>将已有的问题转为——&gt;DRL解决COP问题</p>
+<h4 id="1-未来一周：关注于自定义env的编写（重点）"><a href="#1-未来一周：关注于自定义env的编写（重点）" class="headerlink" title="1.未来一周：关注于自定义env的编写（重点）"></a>1.未来一周：关注于自定义env的编写（重点）</h4><p>​	1.1生成数据</p>
+<p>​	1.2定义action，reward等</p>
+<h4 id="2-env调试好之后采用框架，利用DRL执行"><a href="#2-env调试好之后采用框架，利用DRL执行" class="headerlink" title="2.env调试好之后采用框架，利用DRL执行"></a>2.env调试好之后采用框架，利用DRL执行</h4><h4 id="3-利用optuna库优化超参数"><a href="#3-利用optuna库优化超参数" class="headerlink" title="3.利用optuna库优化超参数"></a>3.利用optuna库优化超参数</h4><h2 id="DRL设计"><a href="#DRL设计" class="headerlink" title="DRL设计"></a>DRL设计</h2><p><strong>COP问题定义：</strong></p>
+
+
+<h3 id="Action-design"><a href="#Action-design" class="headerlink" title="Action design"></a>Action design</h3><p>The agent action takes from {0, 1} where the action array has the same size as the number of experts.</p>
+<h3 id="Reward-design"><a href="#Reward-design" class="headerlink" title="Reward design"></a>Reward design</h3><p>reward &#x3D; -T(X)</p>
+
+
+<p>方案2：</p>
+<p>reward &#x3D; f ||used_time</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3 id="State-design"><a href="#State-design" class="headerlink" title="State design"></a>State design</h3><p>The state is the concat of job status and job distribution time</p>
+<h3 id="isDone-design"><a href="#isDone-design" class="headerlink" title="isDone design"></a>isDone design</h3><p>方案1：</p>
+<p>step1000次之后-》结束</p>
+<p>方案2：</p>
+<p>当处理用户请求的所有 fi,j 结束</p>
+<h2 id="测试环境设计"><a href="#测试环境设计" class="headerlink" title="测试环境设计"></a>测试环境设计</h2>
+
+<p>用DRL方法与其他7种方法同时运行该测试环境</p>
+<p>拿到结果图</p>
+<h2 id="Optuna中"><a href="#Optuna中" class="headerlink" title="Optuna中"></a>Optuna中</h2><p>优化超参数时候利用mean_reward</p>
+<p>mean_reward &#x3D; evaluate_policy(model)</p>
+<h2 id="最终结果图格式"><a href="#最终结果图格式" class="headerlink" title="最终结果图格式"></a>最终结果图格式</h2>
+
+<p>用DRL方法与其他7种方法同时运行该测试环境</p>
+<p>拿到结果图</p>
+<p>对比DRL是否有优势或优化</p>
+<h2 id="参数格式"><a href="#参数格式" class="headerlink" title="参数格式"></a>参数格式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">min_svc_count: <span class="hljs-type">Dict</span>[<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>]<br>deployment: <span class="hljs-type">Dict</span>[<span class="hljs-built_in">int</span>, <span class="hljs-type">Dict</span>[<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>]]  <span class="hljs-comment"># Dict[node, Dict[service, instance count]]</span><br>svc_call_graph: SvcCallGraph<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="长时间规划"><a href="#长时间规划" class="headerlink" title="长时间规划"></a>长时间规划</h2><p>1.直接去找别人的DRL论文我去复现代码</p>
+<p>2.复现好代码之后！再直接用贺祥学长的场景。</p>
+<p>3.使用贺翔学长的场景使用DRL用失败了再找学长环问题（深度学习）</p>
+<h1 id="组会汇报2023-3-8"><a href="#组会汇报2023-3-8" class="headerlink" title="组会汇报2023.3.8"></a>组会汇报2023.3.8</h1><p>仍需要继续找论文</p>
+<p>1 是否要多优化目标 <a target="_blank" rel="noopener" href="https://github.com/Farama-Foundation/MO-Gymnasium">https://github.com/Farama-Foundation/MO-Gymnasium</a></p>
+<p>2 目前解决稀疏奖励的思路：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1658242">https://cloud.tencent.com/developer/article/1658242</a>  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/389199294">https://zhuanlan.zhihu.com/p/389199294</a></p>
+<p>3.训练步数过大时突然控制台卡住，不报错也不动</p>
+<p>4找到的论文，源代码仓库链接失效，可以直接联系作者问吗？</p>
+<p>**参考论文Heuristic and Reinforcement Learning Algorithms for Dynamic Service Placement on Mobile Edge Cloud.**<strong>说明了何种情况该有正负中间奖励，但没有代码，没有详细中间奖励值公式</strong></p>
+<p>5是否尽量避免使用原论文中的其他算法</p>
+<p>得选择一个方向</p>
+<p><strong>1.人工设置中间奖励</strong></p>
+<p><strong>2.事后经验池&#x2F;好奇心机制</strong></p>
+<p>方向1，<strong>人工设置中间奖励，参考论文</strong></p>
+<p><strong>Online Microservice Orchestration for IoT via Multi-Objective Deep Reinforcement Learning</strong></p>
+
+
+
+
+<p>本论文目标是：总成本，(提高服务请求的接受率，减少接受请求的服务时间)</p>
+
+
+<p><strong>出现问题：</strong></p>
+
+
+<p>请求率–不知道怎么表示</p>
+
+
+<p>单个实例的线程数-	不知道怎么表示</p>
+<p><strong>由于本论文是多目标，或许在自己试验中可以只用利用r_q</strong></p>
+<p>方向2，<strong>利用数据改进 agent 的学习</strong> </p>
+<p>好奇心驱动（Curiosity Driven）、奖励重塑（Reward Shaping）、模仿学习（Imitation Learning）、课程学习（Curriculum Learning</p>
+<p>方向3，<strong>改进模型</strong></p>
+<p>分层强化学习（Hierarchical Reinforcement Learning），使用多层次的结构分别学习不同层次的策略来提高模型解决复杂问题的能力，以及元学习（Meta-Learning）的方法</p>
+<p>然而stablebaselines3似乎没有改进模型</p>
+<p><strong>3 如何验证当前RL训练后结果是否达到了预期条件</strong></p>
+<p>​	用自己电脑测试，运行一会，跑的步数会不会太少，然后因此达不到效果</p>
+<p><strong>参考论文Heuristic and Reinforcement Learning Algorithms for Dynamic Service Placement on Mobile Edge Cloud.</strong></p>
+<p><strong>说明了何种情况该有正负中间奖励，但没有代码，没有详细中间奖励值公式</strong></p>
+<p>如果 action_type、微服务和服务器的组合为当前环境状态形成有效的动作，则 RLSP 给出了一个小的正奖励，并更新服务器微服务矩阵。</p>
+<p>另一方面，RL 代理也可以采取无效动作。这些包括:试图保存或驱逐目前不存在的微服务在服务器上运行，或者试图在已经运行的服务器上部署微服务。在这种情况下，代理给予一个小的负奖励</p>
+<p>在这里，代理采取的动作，违反应用程序约束（数据局部性、服务或搭配）会受到惩罚。在收到惩罚后，预计 RLSP 将在未来学习和避免此类操作</p>
+<h1 id="组会当前研究内容介绍2023-3-24"><a href="#组会当前研究内容介绍2023-3-24" class="headerlink" title="组会当前研究内容介绍2023.3.24"></a>组会当前研究内容介绍2023.3.24</h1><p>以Online Deployment Algorithms for Microservice Systems with Complex Dependencies提出的问题作为背景</p>
+<p>微服务系统(SPPMS)中的服务部署问题-&gt;</p>
+<p>使用平均响应时间作为优化目标。</p>
+<p>微服务系统由一组服务组成，每个服务在服务器上部署了许多实例。每个服务都有许多作为 API 暴露的功能，并且由于服务之间的请求而存在依赖关系。所以用户的每个请求可以看作一条function链</p>
+
+
+
+
+
+
+
+
+<p>将问题转为——&gt;DRL解决<strong>组合优化问题</strong> (Combinatorial Optimization Problem, COP)</p>
+<p><strong>COP问题定义：</strong>在约束条件的限制下，给出一个部署方案，尽可能使得目标值（部署方案带来的平均响应时间）最小</p>
+
+
+<h2 id="gt-研究内容："><a href="#gt-研究内容：" class="headerlink" title="-&gt;研究内容："></a><strong>-&gt;研究内容：</strong></h2><p>利用RL来优化微服务部署问题-&gt;如何设计出一个好的Gym环境模拟微服务部署-&gt;如何设计好reward(解决稀疏奖励)</p>
+<p><strong>重点就在如何设计好reward(解决稀疏奖励)</strong></p>
+<h2 id="gt-当前问题"><a href="#gt-当前问题" class="headerlink" title="-&gt;当前问题:"></a><strong>-&gt;当前问题:</strong></h2><p>1.目前reward存在稀疏问题-&gt;导致平均响应时间过大</p>
+<p><img src="/shizhuofan.GitHub.io/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317100614005.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230317100614005"><img src="/shizhuofan.GitHub.io/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB.assets/image-20230317100745081.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230317100745081"></p>
+<p>2.使用超参数优化optuna</p>
+<p>3.model在最初某个env_1下面学习过程中的平均响应时间已经为10，此后再拿这个model在其他env继续训练之后，再拿model去env_1中测试平均响应时间又变为50</p>
+<h2 id="gt-当前工作内容"><a href="#gt-当前工作内容" class="headerlink" title="-&gt;当前工作内容:"></a><strong>-&gt;当前工作内容:</strong></h2><p>稀疏问题解决-&gt;{</p>
+<p>人工设置中间奖励—&gt;索要源代码，等待回复中</p>
+<p>事后经验池&#x2F;好奇心机制</p>
+<p>}</p>
+<p>使用超参数优化optuna-{</p>
+<p><strong>推测原因</strong>：不同数据带来的不同env，env在for循环中依次加载model。</p>
+<p>evaluate_policy()方法应该是异步的，导致评测mean_reward还没有结束，原始model和env已经被覆盖，导致报错</p>
+
+
+<p>}</p>
+<h1 id="2023-4-7"><a href="#2023-4-7" class="headerlink" title="2023.4.7"></a>2023.4.7</h1><p>使用MaskablePPO，训练时响应时间降低速度提高</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E7%BB%84%E4%BC%9A%E8%BF%9B%E5%BA%A6%E5%88%86%E4%BA%AB/image-20230407143310025.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230407143310025">
+
+<p>[2023-04-07 05:41:39,933] [ DRL_main.py : 104 ] [ INFO ]	 : ———&gt;num_timesteps&#x3D;4710000<br>[2023-04-07 05:41:40,164] [ MyEnv_3_ActionMask.py : 183 ] [ INFO ]	 : ！！！！本次episode:21700部署结束，本次部署共花费step_count&#x3D;216,这次的平均响应时间是7.992770282441973<br>[2023-04-07 05:41:56,418] [ DRL_main.py : 104 ] [ INFO ]	 : ———&gt;num_timesteps&#x3D;4720000<br>[2023-04-07 05:41:58,866] [ MyEnv_3_ActionMask.py : 183 ] [ INFO ]	 : ！！！！本次episode:21750部署结束，本次部署共花费step_count&#x3D;216,这次的平均响应时间是7.698202669223029<br>[2023-04-07 05:42:12,773] [ DRL_main.py : 104 ] [ INFO ]	 : ———&gt;num_timesteps&#x3D;4730000<br>[2023-04-07 05:42:16,012] [ MyEnv_3_ActionMask.py : 183 ] [ INFO ]	 : ！！！！本次episode:21800部署结束，本次部署共花费step_count&#x3D;216,这次的平均响应时间是7.7979617455968135<br>[2023-04-07 05:42:29,369] [ DRL_main.py : 104 ] [ INFO ]	 : ———&gt;num_timesteps&#x3D;4740000</p>
+<p>不知道是巧合还是训练到470000~474000时候效果最好</p>
+<p>训练到500000的model远没有训练到470000的model效果好，前者16ms,后者8.4ms</p>
+<p>计划：</p>
+<p>​	尝试了A2C，QRDQN，DQN都没有PPO效果好，陷入死循环</p>
+<ul>
+<li><p><input disabled type="checkbox"> 
+​	再次加入动作掩码之后，再试试A2C，QRDQN，DQN</p>
+</li>
+<li><p><input disabled type="checkbox"> 
+优化目标尝试超越–加入动作掩码，<strong>加入事后经验池</strong></p>
+</li>
+<li><p><input disabled type="checkbox"> 
+训练+执行时间 超越—–很奇怪按理说DRL应该比启发式算法执行时间更短结果，仅针对500 user规模的数据，DRL执行时间在0.10ms左右，BFS与DFS执行时间在0.01ms左右</p>
+</li>
+<li><p><input disabled type="checkbox"> 
+在不同用户请求分布的情况下，同一套模型的效果—目前训练出来的PPO,针对500 user规模的数据，换一个数据600 user可以跑8.23ms左右，但是在700 user时候就陷入死循环。——-打算采取maskablePPO尝试</p>
+</li>
+<li><p><input disabled type="checkbox"> 
+目前情况不清楚：</p>
+<p>Or 用同一条data去反复训练model，再拿这个model去测试用于训练的这条data</p>
+<p>Or 用随机生成的data去训练model，再拿model测试随机生成的data</p>
+<p><strong>问题场景转化为比较固定的 IoT 场景，更换一下目标、约束等？该如何做</strong></p>
+</li>
+<li><p><input disabled type="checkbox"> 
+想法：</p>
+</li>
+<li><p><input disabled type="checkbox"> 
+1.那着600数据集测试，我的响应时间变化不大，但是DFS长的大！！！可以试试1600数据集<br>2.是不是user变大，我可以比BFS执行时间更小</p>
+</li>
+<li><p><input disabled type="checkbox"> 
+可以测试一个user巨大的数据试试</p>
+</li>
+</ul>
+<h1 id="2023-4-20"><a href="#2023-4-20" class="headerlink" title="2023.4.20"></a>2023.4.20</h1><p>继续尝试之前的数据集</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://yoursite.com/2023/04/21/组会进度分享/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fars</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E6%9C%89%E4%B8%AA%E4%BA%BA%E9%9A%90%E7%A7%81%E7%9A%84md/%E5%AF%86%E7%A0%81%E5%90%88%E9%9B%86/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

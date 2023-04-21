@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fars">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="个人改动完成了nginx动静分离，但是没有做FarsMall的域名.我的流程:localhost:8888-&gt;nginx-&gt;nginx设置Header为FarsMall-&gt;nginx转给GateWay localhost:88 -&gt;GateWay只对Head为FarsMall的进行路由静态资源 谷粒商城个人笔记pom      用在父级工程或聚合工程中。用来做jar包的版本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fars&#39;Blog">
+<meta property="og:url" content="http://yoursite.com/2023/04/21/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Fars&#39;Blog">
+<meta property="og:description" content="个人改动完成了nginx动静分离，但是没有做FarsMall的域名.我的流程:localhost:8888-&gt;nginx-&gt;nginx设置Header为FarsMall-&gt;nginx转给GateWay localhost:88 -&gt;GateWay只对Head为FarsMall的进行路由静态资源 谷粒商城个人笔记pom      用在父级工程或聚合工程中。用来做jar包的版本">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-21T03:26:05.579Z">
+<meta property="article:modified_time" content="2023-03-01T11:08:35.352Z">
+<meta property="article:author" content="Fars">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Fars&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-21 11:26" pubdate>
+          2023年4月21日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="个人改动"><a href="#个人改动" class="headerlink" title="个人改动"></a>个人改动</h1><p>完成了nginx动静分离，但是没有做FarsMall的域名.<br>我的流程:localhost:8888-&gt;nginx-&gt;nginx设置Header为FarsMall-&gt;nginx转给GateWay localhost:88 -&gt;GateWay只对Head为FarsMall的进行路由静态资源</p>
+<h1 id="谷粒商城个人笔记"><a href="#谷粒商城个人笔记" class="headerlink" title="谷粒商城个人笔记"></a>谷粒商城个人笔记</h1><p><packaging>pom</packaging>      用在父级工程或聚合工程中。用来做jar包的版本控制。</p>
+<p><packaging>jar</packaging>      将会打包成jar用作jar包使用，packaging默认类型。</p>
+<p><packaging>war</packaging>      将会打包成war，发布在服务器上的工程。如网站或服务。</p>
+<p>maven的父类</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.xuecheng<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>xuecheng-plus-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">relativePath</span>&gt;</span>../xuecheng-plus-parent<span class="hljs-tag">&lt;/<span class="hljs-name">relativePath</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span><br><br><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>xuecheng-plus-base<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p>跨域问题，服务器对浏览器发起的OPTION询问返回的响应标头，如果有两个filter就会加两遍Access-Control标头内容，也会出错</p>
+
+
+
+
+
+
+
+
+<h2 id="docker容器内部使用vim"><a href="#docker容器内部使用vim" class="headerlink" title="docker容器内部使用vim"></a>docker容器内部使用vim</h2><p>1.[linux文件创建命令是什么-linux运维-PHP中文网](<a target="_blank" rel="noopener" href="https://www.php.cn/linux-490062.html#:~:text=%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA%E5%91%BD%E4%BB%A4%E6%98%AF%EF%BC%9A1%E3%80%81%E2%80%9Cvi">https://www.php.cn/linux-490062.html#:~:text=文件创建命令是：1、“vi</a> 文件名”命令，该命令输入保存之后文件才被创建；2、“touch 文件名”命令，该命令用于更改文件或目录的时间，若文件不存在会自动创建；3、“echo,文件内容 &gt; 文件名”命令，该命令会将指定内容写入文件中。)</p>
+<p>用echo命令新建&#x2F;etc&#x2F;apt&#x2F;sources.list，并赋值</p>
+<p>(非必须，一般sources.list都默认有源仓库地址)</p>
+<p>2.apt update</p>
+<p>3.apt install vim</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs vim">rm /etc/apt/sources.<span class="hljs-keyword">list</span><br><span class="hljs-keyword">cat</span> sources.<span class="hljs-keyword">list</span><br><span class="hljs-keyword">echo</span> <span class="hljs-comment">&quot;</span><br><span class="hljs-keyword">deb</span> http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal main restricted universe multiverse<br><span class="hljs-keyword">deb</span> http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal-security main restricted universe multiverse<br><span class="hljs-keyword">deb</span> http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal-updates main restricted universe multiverse<br><span class="hljs-keyword">deb</span> http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal-backports main restricted universe multiverse<br>##測試版源<br><span class="hljs-keyword">deb</span> http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal-proposed main restricted universe multiverse<br># 源碼<br><span class="hljs-keyword">deb</span>-src http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal main restricted universe multiverse<br><span class="hljs-keyword">deb</span>-src http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal-security main restricted universe multiverse<br><span class="hljs-keyword">deb</span>-src http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal-updates main restricted universe multiverse<br><span class="hljs-keyword">deb</span>-src http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal-backports main restricted universe multiverse<br>##測試版源<br><span class="hljs-keyword">deb</span>-src http://<span class="hljs-keyword">cn</span>.archive.ubuntu.<span class="hljs-keyword">com</span>/ubuntu/ focal-proposed main restricted universe multiverse<br><span class="hljs-comment">&quot; &gt; sources.list</span><br>apt install <span class="hljs-keyword">vim</span><br>apt <span class="hljs-keyword">update</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="wsl打开wsl硬盘"><a href="#wsl打开wsl硬盘" class="headerlink" title="wsl打开wsl硬盘"></a>wsl打开wsl硬盘</h2><p>法1.资源管理器中输入\\wsl$</p>
+<p>法2.</p>
+
+
+
+
+
+
+<h2 id="打开jvisualvm"><a href="#打开jvisualvm" class="headerlink" title="打开jvisualvm"></a>打开jvisualvm</h2><p>cmd输入jvisualvm</p>
+<h2 id="WSL和win互通"><a href="#WSL和win互通" class="headerlink" title="WSL和win互通"></a>WSL和win互通</h2><p>1、在WSL子系统中，使用下面的命令。获取WSL的ip</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ip addr | grep eth0<br></code></pre></td></tr></table></figure>
+
+<p>wsl 172.29.64.13</p>
+<p>在win查看自己win的ip可以供win和wsl访问</p>
+<p>ipconfig</p>
+<p>172.20.175.49</p>
+
+
+
+
+<p>主要是防火墙</p>
+<h2 id="powshell和cmd不一样"><a href="#powshell和cmd不一样" class="headerlink" title="powshell和cmd不一样"></a>powshell和cmd不一样</h2><h2 id="sql索引会加快速度"><a href="#sql索引会加快速度" class="headerlink" title="sql索引会加快速度"></a>sql索引会加快速度</h2><h2 id="nginx的配置"><a href="#nginx的配置" class="headerlink" title="nginx的配置"></a>nginx的配置</h2><p><strong>用的是wsl的虚拟机，就是每次都是动态ip需要自己去修改才能启动</strong></p>
+<p>启动命令是</p>
+<p>前面是ubuntu，后面是nginx容器</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk">docker run -p <span class="hljs-number">80</span>:<span class="hljs-number">80</span> --name nginx <br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/conf/</span>nginx.conf:<span class="hljs-regexp">/etc/</span>nginx/nginx.conf <br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/conf/</span>conf.d:<span class="hljs-regexp">/etc/</span>nginx/conf.d <br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/log:/</span>var<span class="hljs-regexp">/log/</span>nginx <br>-v <span class="hljs-regexp">/home/</span>nginx<span class="hljs-regexp">/html:/u</span>sr<span class="hljs-regexp">/share/</span>nginx/html <br>-d nginx:latest<br></code></pre></td></tr></table></figure>
+
+<p>在容器中是&#x2F;etc&#x2F;nginx</p>
+<p>在宿主Ubuntu中是</p>
+<p>&#x2F;home&#x2F;nginx&#x2F;</p>
+<p>&#x2F;home&#x2F;nginx&#x2F;html&#x2F;</p>
+<h2 id="HOST域名配置问题"><a href="#HOST域名配置问题" class="headerlink" title="HOST域名配置问题"></a>HOST域名配置问题</h2><p>本机.HOSTS中 FarsMall和farsmall同属于一个</p>
+<p>同时输入网站<a target="_blank" rel="noopener" href="http://www.baidu.com和www.baidu.com都同属于一个,转为www.baidu.com/">www.BAIDU.com和www.baidu.com都同属于一个，转为www.baidu.com</a></p>
+<p>gateway验证时候的HOST的FarsMall和farsmall又不同属于一个,应该写farsmall</p>
+<p>1.不要重复配置farsmall.com和FarsMall.com冲突</p>
+<p>2.chrome:&#x2F;&#x2F;net-internals&#x2F;?#dns   更新HOST之后要清理以前的DNS缓存</p>
+<h2 id="githug远程仓库add之后出现嵌套仓库"><a href="#githug远程仓库add之后出现嵌套仓库" class="headerlink" title="githug远程仓库add之后出现嵌套仓库"></a>githug远程仓库add之后出现嵌套仓库</h2><p>.git是隐藏文件，只有在资源管理器才可以见到</p>
+<p>idea看不见.git文件夹</p>
+
+
+<p>如果你添加了一个已经是git仓库的文件夹，那么git会认为它是一个submodule，并且只会记录它的路径和版本号，而不会跟踪它的内容 。这样做的目的是为了保持子模块和父项目之间的独立性和灵活性。所以这个警告只是提醒你如果你想添加一个子模块，应该使用<code>git submodule add</code>命令，并且如果你想删除一个子模块，应该使用<code>git rm --cached</code>命令 。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/30d2ff4ebc6a">一种是删除本地新建module中的.git文件夹，这样git就不会把它当作一个独立的仓库了</a><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/30d2ff4ebc6a">2</a>。然后再重新执行add、commit和push命令。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://yoursite.com/2023/04/21/谷粒商城个人笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fars</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

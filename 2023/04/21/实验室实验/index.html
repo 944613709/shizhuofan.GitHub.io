@@ -1,0 +1,998 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fars">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="[TOC] 组会及导师交流2022.2.18与导师交流RL实验目前问题：稀疏奖励目前只有一个final reward &#x3D;  -(整体X部署方案平均响应时间) 期间中间状态的reward &#x3D; 0设计等于0 解决方法 -&gt;ICM，好奇心机制 -&gt;设计中间状态reward -&gt;随机生成一个终止状态，并且reverse推导 计划保研：不再以课内学分为重点，而是参加项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fars&#39;Blog">
+<meta property="og:url" content="http://yoursite.com/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Fars&#39;Blog">
+<meta property="og:description" content="[TOC] 组会及导师交流2022.2.18与导师交流RL实验目前问题：稀疏奖励目前只有一个final reward &#x3D;  -(整体X部署方案平均响应时间) 期间中间状态的reward &#x3D; 0设计等于0 解决方法 -&gt;ICM，好奇心机制 -&gt;设计中间状态reward -&gt;随机生成一个终止状态，并且reverse推导 计划保研：不再以课内学分为重点，而是参加项目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405142716015.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405144818728.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405155950671.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405154441536.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405152657192.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405173925943.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230407100436809.png">
+<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230407104039933.png">
+<meta property="article:published_time" content="2023-04-21T03:26:05.624Z">
+<meta property="article:modified_time" content="2023-04-07T04:28:27.432Z">
+<meta property="article:author" content="Fars">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405142716015.png">
+  
+  
+  
+  <title>Fars&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-21 11:26" pubdate>
+          2023年4月21日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          84 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>[TOC]</p>
+<h1 id="组会及导师交流"><a href="#组会及导师交流" class="headerlink" title="组会及导师交流"></a>组会及导师交流</h1><h2 id="2022-2-18与导师交流"><a href="#2022-2-18与导师交流" class="headerlink" title="2022.2.18与导师交流"></a>2022.2.18与导师交流</h2><h3 id="RL实验目前问题："><a href="#RL实验目前问题：" class="headerlink" title="RL实验目前问题："></a>RL实验目前问题：</h3><h4 id="稀疏奖励"><a href="#稀疏奖励" class="headerlink" title="稀疏奖励"></a>稀疏奖励</h4><p>目前只有一个final reward &#x3D;  -(整体X部署方案平均响应时间)</p>
+<p>期间中间状态的reward &#x3D; 0设计等于0</p>
+<p><strong>解决方法</strong></p>
+<p>-&gt;ICM，好奇心机制</p>
+<p>-&gt;设计中间状态reward</p>
+<p>-&gt;随机生成一个终止状态，并且reverse推导</p>
+<h3 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h3><h4 id="保研："><a href="#保研：" class="headerlink" title="保研："></a>保研：</h4><p>不再以课内学分为重点，而是参加项目参加科研</p>
+<p>准备夏令营准备推免</p>
+<h4 id="实验室："><a href="#实验室：" class="headerlink" title="实验室："></a><strong>实验室：</strong></h4><p>保留原任务?</p>
+<p>1.做点实验室开发项目</p>
+<p>2.帮忙师兄师姐科研-&gt;三四作</p>
+<h2 id="2022"><a href="#2022" class="headerlink" title="2022."></a>2022.</h2><h1 id="每日–进度："><a href="#每日–进度：" class="headerlink" title="每日–进度："></a>每日–进度：</h1><h3 id="2023-3-7："><a href="#2023-3-7：" class="headerlink" title="2023.3.7："></a>2023.3.7：</h3><p>reward，以及不满足条件时候怎么处理</p>
+<h3 id="2023-3-8"><a href="#2023-3-8" class="headerlink" title="2023.3.8"></a>2023.3.8</h3><p>仍需要继续找论文</p>
+<p>1 是否要多优化目标 <a target="_blank" rel="noopener" href="https://github.com/Farama-Foundation/MO-Gymnasium">https://github.com/Farama-Foundation/MO-Gymnasium</a></p>
+<p>2 目前解决稀疏奖励的思路：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1658242">https://cloud.tencent.com/developer/article/1658242</a>  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/389199294">https://zhuanlan.zhihu.com/p/389199294</a></p>
+<p>3.训练时突然控制台卡住，不报错也不动</p>
+<p>得选择一个方向</p>
+<p>1.人工设置中间奖励</p>
+<p>2.事后经验池&#x2F;好奇心机制</p>
+<p>方向1，<strong>人工设置中间奖励，参考论文</strong></p>
+
+
+<p>方向2，<strong>利用数据改进 agent 的学习</strong> </p>
+<p>好奇心驱动（Curiosity Driven）、奖励重塑（Reward Shaping）、模仿学习（Imitation Learning）、课程学习（Curriculum Learning</p>
+<p>方向3，<strong>改进模型</strong></p>
+<p>分层强化学习（Hierarchical Reinforcement Learning），使用多层次的结构分别学习不同层次的策略来提高模型解决复杂问题的能力，以及元学习（Meta-Learning）的方法</p>
+<p>然而stablebaselines3似乎没有改进模型</p>
+<p><strong>3 如何验证当前RL训练后结果是否达到了预期条件</strong></p>
+<p>​	用自己电脑测试，运行一会，跑的步数会不会太少，然后因此达不到效果</p>
+<h3 id="2023-3-10"><a href="#2023-3-10" class="headerlink" title="2023.3.10"></a>2023.3.10</h3><p>索要代码</p>
+<h4 id="安装anaconda环境，或者自己买一台服务器去跑，或者直接用现成的"><a href="#安装anaconda环境，或者自己买一台服务器去跑，或者直接用现成的" class="headerlink" title="安装anaconda环境，或者自己买一台服务器去跑，或者直接用现成的"></a>安装anaconda环境，或者自己买一台服务器去跑，或者直接用现成的</h4><p>选择鞠驰云okk</p>
+
+
+
+
+<h3 id="2023-3-11"><a href="#2023-3-11" class="headerlink" title="2023.3.11"></a>2023.3.11</h3><p><strong>新参考论文思路</strong>—-新的一条路子</p>
+
+
+
+
+<p>这里，|U|表示用户的总数，zui (t)表示深度神经网络在时间槽t的决策的多个用户的总延迟。我们使用 zui (t) 来表示服务在没有迁移的情况下停留在原始边缘服务器上的总延迟。</p>
+<p>问题：<strong>我需要去写optuna</strong></p>
+<p>待办</p>
+
+
+<p>大致思路</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">def preRun_optuna_DRL(exp_name, data_dir_path, <span class="hljs-keyword">method</span>):<br>    study = optuna.create_study(direction=<span class="hljs-string">&#x27;maximize&#x27;</span>)<br>    <span class="hljs-keyword">for</span> :<br>        拿到env<br>        def optimize_agent(trial):<br>            使用env<br>        study.optimize(optimize_agent, n_trials=<span class="hljs-number">10</span>)<br>    保存model<br></code></pre></td></tr></table></figure>
+
+
+
+<p>问题：是否需要每个数据文件夹都给创建一个model</p>
+
+
+<p>DONE问题4：<strong>total_timesteps不是指episode回合数！</strong></p>
+<p><strong>我记得我们之前都习惯使用episode作为训练的轮数，所以需要注意一下不同。因此，此处设置的1e5可不代表我们要让模型玩1e5次登月游戏hhh，而是模型能拿到的采样数为1e5，这样设置对于定量设置采样池也更加有效。</strong></p>
+
+
+<p>问题3：model &#x3D; PPO.load(f”.&#x2F;model&#x2F;{method}”)是错的！！！！！！！！！！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#第一个训练模型需要初始化</span><br><span class="hljs-keyword">if</span> is_first ==<span class="hljs-literal">True</span>:<br>    model = PPO(<br>        <span class="hljs-string">&quot;MlpPolicy&quot;</span>, env, verbose=<span class="hljs-number">1</span>,<br>        tensorboard_log=<span class="hljs-string">f&quot;./tensorboard/<span class="hljs-subst">&#123;method&#125;</span>/&quot;</span>,<br>    )<br>    is_first =<span class="hljs-literal">False</span><br><span class="hljs-keyword">else</span>:<span class="hljs-comment"># 如果不是第一次,需要load接着以前继续训练</span><br>    <span class="hljs-comment">#TODO!!!!env也得变，不能接着上一回的env继续</span><br>    model = PPO.load(<span class="hljs-string">f&quot;./model/<span class="hljs-subst">&#123;method&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p>DONE<strong>问题1：</strong></p>
+<p>发现了predict返回的reward会加工为narray</p>
+<p>解决方案：narray转回int</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-built_in">num</span> = action.item()<br><span class="hljs-built_in">print</span>(type(<span class="hljs-built_in">num</span>))  # &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> &#x27;<span class="hljs-title">int</span>&#x27;&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong></strong></p>
+<h3 id="2023-3-12"><a href="#2023-3-12" class="headerlink" title="2023.3.12"></a>2023.3.12</h3><p>任务：联系作者要源代码，&#x2F;写optuna</p>
+<h3 id="2023-3-17"><a href="#2023-3-17" class="headerlink" title="2023.3.17"></a>2023.3.17</h3><p><strong>目前问题</strong>：</p>
+<p>一个data数据为一个env是否存在问题</p>
+<p>现在env(svc_obj)其中的svc_obj都是固定的</p>
+<p>env()是否要随机</p>
+<h3 id="2023-4-5"><a href="#2023-4-5" class="headerlink" title="2023.4.5"></a>2023.4.5</h3><p>证明了num_timesteps&#x3D;1000000就够了1e6</p>
+<ul>
+<li><input checked disabled type="checkbox"> 1.解决plt绘图超过20占内存</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-regexp">/mnt/</span>AlgoDeployment-master<span class="hljs-regexp">/commom/</span>SvcCallGraph.py:<span class="hljs-number">331</span>: RuntimeWarning: More than <span class="hljs-number">20</span> figures have been opened. Figures created through the pyplot <span class="hljs-keyword">interface</span> (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control <span class="hljs-keyword">this</span> warning, see the rcParam `figure.max_open_warning`)<br></code></pre></td></tr></table></figure>
+
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405142716015.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230405142716015">
+
+<p>解决方法直接加入直接pass</p>
+<p><strong>这还大量加速了代码运行！！！！</strong></p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405144818728.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230405144818728">
+
+
+
+
+
+<ul>
+<li><input checked disabled type="checkbox"> 2.尝试解决之前死循环，action一直同一个—（似乎再也没遇见了）</li>
+</ul>
+<p>让无法在该node部署安置后，让action剔除该node</p>
+<p><strong>方法1</strong>：（不行）</p>
+<p>self.action_node_values为当前可以选用的node</p>
+<p>如果action代表node不在这里，那么就重新从这列表self.action_node_values随机选取一个</p>
+<p><strong>方法2：</strong>目前不行</p>
+<p>（似乎对于model.PPO(env)就定死了self.action_space）</p>
+<p>该次尝试已写入 MyEnv_3-尝试动态更新action_space.py</p>
+<p>在自定义环境中step（）写了重新定义了self.action_space</p>
+<p>比如</p>
+<p>init()：</p>
+<p>​	action_space_arr 本来是[0,1,2,3]</p>
+<p>step（）:</p>
+<p>​	如果遇上该svc无法在node部署</p>
+<p>​		则在action_space去掉该node</p>
+<p><strong>方法2遇上报错</strong></p>
+<p>归根到底原因就是，我在step（self,action）中修改了self.action_space()但是作用到了self.action_space.sample()，却没有作用到下一个进入step（self,action）的action</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405155950671.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230405155950671">
+
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405154441536.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230405154441536">
+
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405152657192.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230405152657192">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python">Traceback (most recent call last):<br>  File <span class="hljs-string">&quot;D:\jetbrain\apps\PyCharm-P\ch-0\231.8109.197\plugins\python\helpers\pydev\pydevd.py&quot;</span>, line <span class="hljs-number">1496</span>, <span class="hljs-keyword">in</span> _<span class="hljs-built_in">exec</span><br>    pydev_imports.execfile(file, <span class="hljs-built_in">globals</span>, <span class="hljs-built_in">locals</span>)  <span class="hljs-comment"># execute the script</span><br>  File <span class="hljs-string">&quot;D:\jetbrain\apps\PyCharm-P\ch-0\231.8109.197\plugins\python\helpers\pydev\_pydev_imps\_pydev_execfile.py&quot;</span>, line <span class="hljs-number">18</span>, <span class="hljs-keyword">in</span> execfile<br>    <span class="hljs-built_in">exec</span>(<span class="hljs-built_in">compile</span>(contents+<span class="hljs-string">&quot;\n&quot;</span>, file, <span class="hljs-string">&#x27;exec&#x27;</span>), glob, loc)<br>  File <span class="hljs-string">&quot;D:\360MoveData\Users\86189\Desktop\ʵ���ұ�Ե����\AlgoDeployment-master\DRL_main.py&quot;</span>, line <span class="hljs-number">369</span>, <span class="hljs-keyword">in</span> &lt;module&gt;<br>    train_DRL_single(<span class="hljs-string">&#x27;experiment3&#x27;</span>, data_path_1_small, <span class="hljs-string">&#x27;PPO_SiLu3&#x27;</span>)<br>  File <span class="hljs-string">&quot;D:\360MoveData\Users\86189\Desktop\ʵ���ұ�Ե����\AlgoDeployment-master\DRL_main.py&quot;</span>, line <span class="hljs-number">143</span>, <span class="hljs-keyword">in</span> train_DRL_single<br>    model.learn(total_timesteps=<span class="hljs-built_in">int</span>(<span class="hljs-number">1e7</span>), reset_num_timesteps=<span class="hljs-literal">False</span>, log_interval=<span class="hljs-number">500</span>, callback=[callback, checkpoint_callback])<br>  File <span class="hljs-string">&quot;D:\Anacoda3\lib\site-packages\stable_baselines3\ppo\ppo.py&quot;</span>, line <span class="hljs-number">307</span>, <span class="hljs-keyword">in</span> learn<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>().learn(<br>  File <span class="hljs-string">&quot;D:\Anacoda3\lib\site-packages\stable_baselines3\common\on_policy_algorithm.py&quot;</span>, line <span class="hljs-number">248</span>, <span class="hljs-keyword">in</span> learn<br>    continue_training = self.collect_rollouts(self.env, callback, self.rollout_buffer, n_rollout_steps=self.n_steps)<br>  File <span class="hljs-string">&quot;D:\Anacoda3\lib\site-packages\stable_baselines3\common\on_policy_algorithm.py&quot;</span>, line <span class="hljs-number">175</span>, <span class="hljs-keyword">in</span> collect_rollouts<br>    new_obs, rewards, dones, infos = env.step(clipped_actions)<br>  File <span class="hljs-string">&quot;D:\Anacoda3\lib\site-packages\stable_baselines3\common\vec_env\base_vec_env.py&quot;</span>, line <span class="hljs-number">163</span>, <span class="hljs-keyword">in</span> step<br>    <span class="hljs-keyword">return</span> self.step_wait()<br>  File <span class="hljs-string">&quot;D:\Anacoda3\lib\site-packages\stable_baselines3\common\vec_env\dummy_vec_env.py&quot;</span>, line <span class="hljs-number">54</span>, <span class="hljs-keyword">in</span> step_wait<br>    obs, self.buf_rews[env_idx], self.buf_dones[env_idx], self.buf_infos[env_idx] = self.envs[env_idx].step(<br>  File <span class="hljs-string">&quot;D:\Anacoda3\lib\site-packages\stable_baselines3\common\monitor.py&quot;</span>, line <span class="hljs-number">94</span>, <span class="hljs-keyword">in</span> step<br>    observation, reward, done, info = self.env.step(action)<br>  File <span class="hljs-string">&quot;D:\360MoveData\Users\86189\Desktop\ʵ���ұ�Ե����\AlgoDeployment-master\DRL_Fars\MyEnv_3.py&quot;</span>, line <span class="hljs-number">156</span>, <span class="hljs-keyword">in</span> step<br>    remain_svc_instance_count = self.node_res_for_svc(cur_svc_deploy_node,self.cur_svc_index)<br>  File <span class="hljs-string">&quot;D:\360MoveData\Users\86189\Desktop\ʵ���ұ�Ե����\AlgoDeployment-master\DRL_Fars\MyEnv_3.py&quot;</span>, line <span class="hljs-number">373</span>, <span class="hljs-keyword">in</span> node_res_for_svc<br>    count_cpu = math.floor(self.remain_res[node][<span class="hljs-string">&#x27;cpu&#x27;</span>] / self.svc_objs[svc][<span class="hljs-string">&#x27;res&#x27;</span>][<span class="hljs-string">&#x27;cpu&#x27;</span>])<br>KeyError: <span class="hljs-literal">None</span><br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p><input disabled type="checkbox"> 
+stablebaseline3采用HER模型（不行！似乎我的环境不支持-HER要求连续空间）</p>
+<p>HER经验池可以配合其他算法比如DQN一起使用</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230405173925943.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230405173925943"></li>
+</ul>
+<p>PPO_SiLu3</p>
+<p>DQN</p>
+<p>DQN_HER</p>
+<p>QR_DQN</p>
+<p>A2C</p>
+<p>MaskablePPO</p>
+<ul>
+<li><input disabled type="checkbox"> ​		让所有的数据都跑一遍</li>
+</ul>
+<h3 id="2023-4-6"><a href="#2023-4-6" class="headerlink" title="2023.4.6"></a>2023.4.6</h3><p>调研各个DRL框架</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/openai/spinningup">SpinningUp</a>———–算法太少了</p>
+<p>DL-engine———有ICM-GNU-DIAYN都适合稀疏问题的解决！，但是还要移动env</p>
+<p>padl–<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/1434970">好奇心驱动的强化学习 - 飞桨AI Studio (baidu.com)</a></p>
+<p>acme–<a target="_blank" rel="noopener" href="https://dm-acme.readthedocs.io/en/latest/user/agents.html">代理 — 极致文档 (dm-acme.readthedocs.io)</a></p>
+<p>kaggle有现成模板</p>
+<p>DL</p>
+<ul>
+<li><p><input checked disabled type="checkbox"> 
+model文件夹权限问题load不了</p>
+<p>把它model文件夹里的model放到其他文件夹即可</p>
+<p>上一次后台运行是因为卡在test停下来，所以我认为是在权限哪里load不了，所以停了</p>
+<p>此后可以先不用test后台运行</p>
+</li>
+<li><p><input checked disabled type="checkbox"> 
+测试执行时间</p>
+<p>挺好就是比不过师兄</p>
+</li>
+<li><p><input checked disabled type="checkbox"> 
+用同一个模型训练其他data</p>
+<p>效果差死了</p>
+</li>
+</ul>
+<h3 id="2023-4-7"><a href="#2023-4-7" class="headerlink" title="2023.4.7"></a>2023.4.7</h3><ul>
+<li><input checked disabled type="checkbox"> 利用动作屏蔽让动态action_space:–打算maskPPO–可解决之前的死循环问题<ul>
+<li><input checked disabled type="checkbox"> 问题是mask_fn到底返回的是boolean数组还是01数组！！！</li>
+</ul>
+</li>
+</ul>
+<p><strong>！！！原来可以动态action_space,就像原来有现成框架直接DRL一样，下次再遇上这种，直接去问师兄有没有！！！！！</strong></p>
+<p><strong>gym似乎有action_mask0没找到</strong></p>
+<p><strong>stablebaselines有actionmask</strong></p>
+<ul>
+<li></li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">from</span> sb3_contrib.common.maskable.policies <span class="hljs-keyword">import</span> MaskableActorCriticPolicy<br><span class="hljs-keyword">from</span> sb3_contrib.common.wrappers <span class="hljs-keyword">import</span> ActionMasker<br><span class="hljs-keyword">from</span> sb3_contrib.ppo_mask <span class="hljs-keyword">import</span> MaskablePPO<br></code></pre></td></tr></table></figure>
+
+<p>还有一个policies.MLPMaskPolicy</p>
+<p><strong>MaskableActorCriticPolicy和MLPMaskPolicy 要在不同算法选择不同的才可以运行</strong></p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230407100436809.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230407100436809">
+
+
+
+
+
+<p><code>policies.MLPMaskPolicy</code> 是 Stable Baselines 3 中的一个带有动作掩码支持的多层感知机（MLP）策略类</p>
+<p>动作屏蔽（Action Masking）是一种防止智能体在某些状态下采取指定动作的技术。在强化学习中，如果某个动作在特定的状态下是无效的或不合法的，那么我们可以使用动作屏蔽来强制让智能体不采取该动作，从而提高智能体的性能。</p>
+<p>动作屏蔽通常在 OpenAI Gym 这样的强化学习库中实现。在使用这种技术时，我们可以为每个状态指定一个动作掩码（Action Mask），这个掩码用来表示在该状态下哪些动作是合法的，哪些是不合法的。对于那些被标记为不合法的动作，智能体将不会进行尝试，直到它遇到一个合法的动作为止。</p>
+<p>动作屏蔽在许多场景中都是必需的，例如当动作空间非常大、环境复杂或存在诸如物理约束等实际限制时</p>
+<h4 id="—方法写def-valid-action-mask-self-gt-np-ndarray"><a href="#—方法写def-valid-action-mask-self-gt-np-ndarray" class="headerlink" title="—方法写def valid_action_mask(self) -&gt; np.ndarray:"></a>—方法写def valid_action_mask(self) -&gt; np.ndarray:</h4><p>然后env写好之后</p>
+<p>train可以自动应用mask</p>
+<p>但是test中有需要手动写上action_mask</p>
+<img src="/shizhuofan.GitHub.io/2023/04/21/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%AE%9E%E9%AA%8C/image-20230407104039933.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230407104039933">
+
+<ul>
+<li><input disabled type="checkbox"> ​	可以去stackoverflow.com问</li>
+</ul>
+<h1 id="实验室实验"><a href="#实验室实验" class="headerlink" title="实验室实验"></a>实验室实验</h1><p>items.sort(key&#x3D;lambda x: int(x))：对 items 这个列表进行排序，按照每个名字中的数字部分（如果有的话）从小到大的顺序](<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/70373510/sort-os-listdir-with-numbers-in-string)[2](https://stackoverflow.com/questions/70373510/sort-os-listdir-with-numbers-in-string)%E3%80%82">https://stackoverflow.com/questions/70373510/sort-os-listdir-with-numbers-in-string)[2](https://stackoverflow.com/questions/70373510/sort-os-listdir-with-numbers-in-string)。</a></p>
+<p>lambda x: int(x) 是一个匿名函数，用于将每个名字转换成整数类型</p>
+<h2 id="专有名词解释"><a href="#专有名词解释" class="headerlink" title="专有名词解释"></a>专有名词解释</h2>
+
+
+
+
+
+<h2 id="算法2的解释"><a href="#算法2的解释" class="headerlink" title="算法2的解释"></a>算法2的解释</h2>
+
+<h1 id="代码实验"><a href="#代码实验" class="headerlink" title="代码实验"></a>代码实验</h1><h2 id="问题理解"><a href="#问题理解" class="headerlink" title="问题理解"></a>问题理解</h2>
+
+<p>已知：用户们发出请求多个fi,j-&gt;对应了多条Fi,j函数调用链</p>
+<p>综合所有Fi,j构成一个DG，显示所有要调用的</p>
+<p>-&gt;需要去部署Svc到不同的node上面</p>
+<p>-&gt;要求用户们发出的多个请求fi,j，在我们在线部署方案之后，测出来的平均响应时间最小</p>
+
+
+
+
+
+
+
+
+<h2 id="最终实验用来的算法"><a href="#最终实验用来的算法" class="headerlink" title="最终实验用来的算法"></a>最终实验用来的算法</h2><p>我们的算法有三种：</p>
+<p>基于BFS的算法B-QSRFP、</p>
+<p>基于DFS的算法D-QSRFP</p>
+<p>B-QSRFP和D-QSRFP的组合，表示为BD-QSRFP。BD-QSRFP 分别运行 B-QSRFP 和 D-QSRFP，并返回最佳结果</p>
+<p>平均响应时间·估计BD-QSRFP最好，毕竟是这样定义的</p>
+<p>算法执行时间，BD-QSRFP最坏</p>
+<h2 id="B-QSRFP算法"><a href="#B-QSRFP算法" class="headerlink" title="B-QSRFP算法"></a>B-QSRFP算法</h2><p> RAM运行内存，</p>
+<p>CPU是中央处理器</p>
+
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">best_value = self<span class="hljs-selector-class">.svc_objs</span><span class="hljs-selector-attr">[svc]</span><span class="hljs-selector-attr">[<span class="hljs-string">&#x27;ability&#x27;</span>]</span> / self<span class="hljs-selector-class">.svc_objs</span><span class="hljs-selector-attr">[svc]</span><span class="hljs-selector-attr">[<span class="hljs-string">&#x27;res&#x27;</span>]</span><span class="hljs-selector-attr">[<span class="hljs-string">&#x27;cpu&#x27;</span>]</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p>DeploySpread(si, d γs i +γu iμi e, X, N, DG)</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">self.deploy<span class="hljs-constructor">_svc_with_best_node_considering_spread(<span class="hljs-params">best_svc</span>, <span class="hljs-params">desired_count</span>)</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="solve函数、"><a href="#solve函数、" class="headerlink" title="solve函数、"></a>solve函数、</h2><h3 id="其中函数"><a href="#其中函数" class="headerlink" title="其中函数"></a>其中函数</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"># 检查节点剩余资源可以为服务svc部署多少个新实例<br>def node<span class="hljs-constructor">_res_for_svc(<span class="hljs-params">self</span>, <span class="hljs-params">node</span>, <span class="hljs-params">svc</span>)</span> -&gt; <span class="hljs-built_in">int</span>:<br><br>    # 将svc的count个实例部署到node<br>    def deploy<span class="hljs-constructor">_svc_on_node(<span class="hljs-params">self</span>, <span class="hljs-params">svc</span>, <span class="hljs-params">node</span>, <span class="hljs-params">count</span>)</span>:<br><br>为给定的服务找到最佳节点来弱地创建实例，即不考虑后继实例 或者没有部署的前辈<br>def find<span class="hljs-constructor">_best_node_weak(<span class="hljs-params">self</span>, <span class="hljs-params">svc</span>)</span> -&gt; <span class="hljs-built_in">int</span> <span class="hljs-keyword">or</span> None:<br><br>为给定的服务找到最佳节点来强地创建实例，即考虑后继实例 或者没有部署的前辈<br>def find<span class="hljs-constructor">_best_node_strong(<span class="hljs-params">self</span>, <span class="hljs-params">svc</span>)</span> -&gt; (<span class="hljs-built_in">int</span>, <span class="hljs-built_in">float</span>) <span class="hljs-keyword">or</span> None:<br><br>target_node, _ = self.find<span class="hljs-constructor">_best_node_strong(<span class="hljs-params">curr_svc</span>)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="计算每个服务需要的最小服务实例数"><a href="#计算每个服务需要的最小服务实例数" class="headerlink" title="计算每个服务需要的最小服务实例数"></a>计算每个服务需要的最小服务实例数</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">self.min_svc_count = scheme.cal<span class="hljs-constructor">_min_svc_count(<span class="hljs-params">self</span>.<span class="hljs-params">svc_call_graph</span>.<span class="hljs-params">graph_bak</span>, <span class="hljs-params">self</span>.<span class="hljs-params">svc_objs</span>)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="X部署策略"><a href="#X部署策略" class="headerlink" title="X部署策略"></a>X部署策略</h3>
+
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">self.deployment[<span class="hljs-keyword">node</span><span class="hljs-title">][svc</span>] += count<br>代表着：执行<span class="hljs-keyword">node</span><span class="hljs-title">部署svc</span>的实例count个<br><br>附带着考虑资源消耗的是<br>def deploy_svc_on_node(self, svc, <span class="hljs-keyword">node</span><span class="hljs-title">, count</span>):<br></code></pre></td></tr></table></figure>
+
+<h3 id="返回当前平均响应时间的方法"><a href="#返回当前平均响应时间的方法" class="headerlink" title="返回当前平均响应时间的方法"></a>返回当前平均响应时间的方法</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-comment">#平均响应时间</span><br>f = scheme.evaluate(<span class="hljs-keyword">self</span>.deployment, <span class="hljs-keyword">self</span>.node_objs, <span class="hljs-keyword">self</span>.func_objs, <span class="hljs-keyword">self</span>.users, <span class="hljs-keyword">self</span>.chains,<br>                    <span class="hljs-keyword">self</span>.connections)<br></code></pre></td></tr></table></figure>
+
+<p>论文里选的选取平均响应时间(ms)和算法执行时间(ms)作为指标</p>
+<h3 id="used-time是算法实行时间"><a href="#used-time是算法实行时间" class="headerlink" title="used_time是算法实行时间"></a>used_time是算法实行时间</h3>
+
+<h3 id="f是平均响应时间"><a href="#f是平均响应时间" class="headerlink" title=".f是平均响应时间"></a>.f是平均响应时间</h3>
+
+
+
+<p>最终选择的优化目标为平均响应时间</p>
+
+
+
+
+
+
+<h3 id="个人想法"><a href="#个人想法" class="headerlink" title="个人想法"></a>个人想法</h3><p>思路1：2023.2.28弃用</p>
+<p>DRL一般不再涉及其他算法</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-number">1</span>: X ← <span class="hljs-number">0</span><br><span class="hljs-number">2</span>: <span class="hljs-keyword">while</span> not <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">DG</span>.</span></span>empty<span class="hljs-literal">()</span> <span class="hljs-keyword">do</span><br>	action：return 根据PPO策略选择了某Si的新X<br>	<span class="hljs-number">3</span>: 利用AxAlgo中的基础算法<span class="hljs-number">2</span>来部署Si : <span class="hljs-constructor">DeploySpread(<span class="hljs-params">si</span>, <span class="hljs-params">d</span> γ<span class="hljs-params">s</span> <span class="hljs-params">i</span> +γ<span class="hljs-params">u</span> <span class="hljs-params">i</span>μ<span class="hljs-params">i</span> <span class="hljs-params">e</span>, X, N, DG)</span><br>	<span class="hljs-number">4</span>: <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">DG</span>.</span></span>remove(si)<br><span class="hljs-number">5</span>: <span class="hljs-keyword">end</span> <span class="hljs-keyword">while</span><br><span class="hljs-number">6</span>: return X<br></code></pre></td></tr></table></figure>
+
+
+
+<p>思路2</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-number">1</span>: X ← <span class="hljs-number">0</span><br><span class="hljs-number">2</span>: <span class="hljs-keyword">while</span> not DG.empty() <span class="hljs-keyword">do</span><br>	action：<span class="hljs-keyword">return</span> 根据PPO策略选择了某<span class="hljs-built_in">Si</span>，某nodej<br>	<span class="hljs-number">3</span>: 部署单个<span class="hljs-built_in">Si</span>实例于Nodej，<br>	<span class="hljs-number">4</span>: DG.remove(<span class="hljs-built_in">si</span>)<br><span class="hljs-number">5</span>: <span class="hljs-keyword">end</span> <span class="hljs-keyword">while</span><br><span class="hljs-number">6</span>: <span class="hljs-keyword">return</span> X<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="思路3"><a href="#思路3" class="headerlink" title="思路3"></a>思路3</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-number">1</span>: X ← <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> <span class="hljs-title class_">Each</span> Si <span class="hljs-keyword">in</span> Svc<br>		<span class="hljs-keyword">for</span> <span class="hljs-variable">i</span> <span class="hljs-keyword">in</span> min_svc_count<br>			action: <br>			根据PPO策略选择某nodej<br>			如果当前nodej的资源等不满足部署单个svc实例要求，<br>				reward = 惩罚reward值<br>			否则 <br>				reward = 中间reward奖励值<br>				部署Si单个实例于Nodej<br>				如果部署完毕<br>					done=<span class="hljs-literal">true</span>,reward = 最终部署完成奖励值reward<br>				否则如果没部署完毕<br>					继续部署下一个<br><span class="hljs-number">6</span>: <span class="hljs-keyword">return</span> X<br></code></pre></td></tr></table></figure>
+
+
+
+<p>obs &#x3D; deployment当前部署方案，以二维数组表示</p>
+<p>action &#x3D; {0,1,2,…..,len(self.node_objs)-1}，从node_objs选择一个nodej，让当前的Si去部署单个实例在nodej上面</p>
+<p>reward &#x3D; [原始环境reward，人工设置reward]？</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p>状态空间：为多离散空间</p>
+<p>deployment</p>
+
+
+
+
+
+
+
+
+<p>动作空间：为多离散空间</p>
+<p>执行两个动作</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">deploy<span class="hljs-constructor">_svc_on_node(<span class="hljs-params">svc1</span>,<span class="hljs-params">node1</span>,2)</span><br>deploy<span class="hljs-constructor">_svc_on_node(<span class="hljs-params">svc2</span>,<span class="hljs-params">node2</span>,5)</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p>状态空间：为多离散空间</p>
+<p>动作空间：为多离散空间</p>
+
+
+<h4 id="reward利用平均响应时间和算法实行时间"><a href="#reward利用平均响应时间和算法实行时间" class="headerlink" title="reward利用平均响应时间和算法实行时间"></a>reward利用平均响应时间和算法实行时间</h4><p>reward &#x3D;  -(new 整体X部署方案平均响应时间- old 整体X部署方案平均响应时间)</p>
+<h3 id="目前问题"><a href="#目前问题" class="headerlink" title="目前问题"></a>目前问题</h3><p>1.reward &#x3D; -平均响应时间之差，在部署过程中的平均响应时间难求</p>
+<p>reward &#x3D;  -(new 整体X部署方案平均响应时间- old 整体X部署方案平均响应时间)</p>
+<p>​	原有的scheme.evaluate（）函数不支持部署过程中执行</p>
+<p>​	</p>
+<p>2.要解决action会重复部署svc的问题 -&gt; 引入Boolean[] hasSelect	-&gt; 引入No-Op</p>
+<p>3.调用AxAlgo的算法2的deploy_svc_with_best_node_considering_spreadFile（）选出的targetNode为Null导致抛出Exception</p>
+<h2 id="参考A-Reinforcement-Learning-Environment-For-Job-Shop-Scheduling的思路"><a href="#参考A-Reinforcement-Learning-Environment-For-Job-Shop-Scheduling的思路" class="headerlink" title="参考A Reinforcement Learning Environment For Job-Shop Scheduling的思路"></a>参考A Reinforcement Learning Environment For Job-Shop Scheduling的思路</h2><ol>
+<li></li>
+</ol>
+<p>解决重复svc部署问题–布尔</p>
+<p>在某些情况下，我们不能在每一步分配一个作业，因为某些作业可能已经分配给机器，机器可以使用，或者我们已经完成了所有作业的操作。为了遵守这些约束，我们的环境还使用了一个布尔向量，指示哪些动作是合法的。每次代理分配作业时，它将分配的作业添加到</p>
+<p>2.采用PPO算法</p>
+<p>我们建议将 JSS 建模为单代理 RL 问题，其中代理是一个调度程序，需要在每一步选择要工作。特别是，我们使用actor-critic近端策略优化(PPO)算法</p>
+<p>3.加入NO-Op</p>
+
+
+
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>HER</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="Experiment-1-User-Count"><a href="#Experiment-1-User-Count" class="headerlink" title="Experiment 1: User Count"></a>Experiment 1: User Count</h1><p>用的是rwt_users   rwt_users2</p>
+<p>实验 1.1 有 5 个服务器和 23 个服务，</p>
+<p>实验 1.2 有 10 个服务器和 50 个服务。</p>
+<p>实验 1.1 和 1.2 中的用户计数在 500-1600 和 500-1500 之间。</p>
+<p>实验1.2中没有1600个用户计数，因为服务器的计算资源甚至不足以部署每个数量最少的服务</p>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3>
+
+
+
+
+
+
+
+
+
+<h1 id="stablebaselines3"><a href="#stablebaselines3" class="headerlink" title="stablebaselines3"></a>stablebaselines3</h1><h2 id="TensorBoard查看"><a href="#TensorBoard查看" class="headerlink" title="TensorBoard查看"></a>TensorBoard查看</h2><p>tensorboard –logdir .\tensorboard\PPO_SiLu3\</p>
+<p>tensorboard –logdir .\tensorboard\PPO_SiLu3\</p>
+<p>tensorboard –logdir .\tensorboard\LunarLander-v2\</p>
+<p>tensorboard –logdir  .\tensorboard\</p>
+
+
+
+
+<h2 id="输出rollout"><a href="#输出rollout" class="headerlink" title="输出rollout"></a>输出rollout</h2>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://yoursite.com/2023/04/21/实验室实验/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fars</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E5%90%91%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85%E8%A6%81%E4%BB%A3%E7%A0%81/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

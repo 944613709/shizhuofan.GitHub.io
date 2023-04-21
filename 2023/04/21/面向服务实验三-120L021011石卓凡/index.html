@@ -1,0 +1,1055 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fars">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《面向服务的软件系统》实验报告 ——实验三：微服务与容器技术 姓名： 石卓凡 学号： 120L021011 目录 1、 容器虚拟化和传统虚拟化的区别是什么？ 2 概念介绍 2 区别： 3 2、 如何实现 Kubernetes 自动化部署？ 5 1. 通过devops实现k8s自动部署 5 2. 通过Jenkins实现对k8s的自动化构建和自动化部署 6 3. 本次实验通过传统方式实现k8s自动部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《面向服务的软件系统》实验三：微服务与容器技术">
+<meta property="og:url" content="http://yoursite.com/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%AE%9E%E9%AA%8C%E4%B8%89-120L021011%E7%9F%B3%E5%8D%93%E5%87%A1/index.html">
+<meta property="og:site_name" content="Fars&#39;Blog">
+<meta property="og:description" content="《面向服务的软件系统》实验报告 ——实验三：微服务与容器技术 姓名： 石卓凡 学号： 120L021011 目录 1、 容器虚拟化和传统虚拟化的区别是什么？ 2 概念介绍 2 区别： 3 2、 如何实现 Kubernetes 自动化部署？ 5 1. 通过devops实现k8s自动部署 5 2. 通过Jenkins实现对k8s的自动化构建和自动化部署 6 3. 本次实验通过传统方式实现k8s自动部署">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-21T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-04-21T04:27:00.986Z">
+<meta property="article:author" content="Fars">
+<meta property="article:tag" content="面向服务的软件系统">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>《面向服务的软件系统》实验三：微服务与容器技术 - Fars&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="《面向服务的软件系统》实验三：微服务与容器技术"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-21 11:42" pubdate>
+          2023年4月21日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          62 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">《面向服务的软件系统》实验三：微服务与容器技术</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《面向服务的软件系统》实验报告</p>
+<p>——实验三：微服务与容器技术</p>
+<p>姓名： 石卓凡 学号： 120L021011</p>
+<p>目录</p>
+<p><a href="#%E5%AE%B9%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E5%92%8C%E4%BC%A0%E7%BB%9F%E8%99%9A%E6%8B%9F%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88">1、 容器虚拟化和传统虚拟化的区别是什么？ 2</a></p>
+<p><a href="#%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D">概念介绍 2</a></p>
+<p><a href="#%E5%8C%BA%E5%88%AB">区别： 3</a></p>
+<p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-kubernetes-%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2">2、 如何实现 Kubernetes 自动化部署？ 5</a></p>
+<p><a href="#%E9%80%9A%E8%BF%87devops%E5%AE%9E%E7%8E%B0k8s%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2">1. 通过devops实现k8s自动部署 5</a></p>
+<p><a href="#%E9%80%9A%E8%BF%87jenkins%E5%AE%9E%E7%8E%B0%E5%AF%B9k8s%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2">2. 通过Jenkins实现对k8s的自动化构建和自动化部署 6</a></p>
+<p><a href="#%E6%9C%AC%E6%AC%A1%E5%AE%9E%E9%AA%8C%E9%80%9A%E8%BF%87%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0k8s%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8">3. 本次实验通过传统方式实现k8s自动部署应用 7</a></p>
+<p><a href="#kubernetes%E6%9C%89%E5%93%AA%E4%BA%9B%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E5%85%B6%E5%8A%9F%E8%83%BD%E6%98%AF%E4%BB%80%E4%B9%88">3、 Kubernetes有哪些核心组件，其功能是什么？ 12</a></p>
+<p><a href="#%E5%AE%98%E6%96%B9%E5%AE%9A%E4%B9%89%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6">（一） 官方定义的核心组件： 12</a></p>
+<p><a href="#%E4%B8%AA%E4%BA%BA%E8%AE%A4%E4%B8%BA%E5%9C%A8%E4%BD%BF%E7%94%A8%E4%B8%AD%E7%9A%84%E6%8E%A5%E8%A7%A6%E5%88%B0%E7%9A%84%E5%85%B3%E9%94%AE%E7%BB%84%E4%BB%B6">（二） 个人认为在使用中的接触到的关键组件： 14</a></p>
+<p><a href="#kubernetes%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95">4、 Kubernetes搭建过程中遇到的问题，与解决办法。 18</a></p>
+<h1 id="容器虚拟化和传统虚拟化的区别是什么？"><a href="#容器虚拟化和传统虚拟化的区别是什么？" class="headerlink" title="容器虚拟化和传统虚拟化的区别是什么？"></a>容器虚拟化和传统虚拟化的区别是什么？</h1>
+
+<p>图1.传统虚拟化和容器虚拟化</p>
+<h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><p>容器虚拟化和传统虚拟化同属于虚拟化技术</p>
+<p><strong>传统虚拟化</strong>：</p>
+<p>虚拟出多个操作系统共同使用硬件资源即虚拟机，虚拟机需要安装操作系统才能执行应用程序，需要Hypevisor和Guest OS</p>
+<p>简单说来就是通过在住操作系统上安装虚拟机管理系统（比如VMware）然后创建虚拟机，虚拟各种硬件，在虚拟机安装从操作系统，在从操作系统中安装部署应用</p>
+<p><strong>容器虚拟化</strong>：</p>
+<p>一般通过docker实现，在单个操作系统上虚拟出多个资源组共同使用硬件资源，透过共享Host OS的作法，取代一个一个Guest OS的功用。</p>
+<p>简单来说，通过docker容器，通过将应用程序及其所需要的依赖，函数库，环境配置打包成为一个镜像，然后形成进程作为容器。也就是软件运行所需要的所有的资源打包放到一个隔离的容器，不需要捆绑一个操作系统</p>
+<h2 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h2><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>Docker</strong></th>
+<th><strong>虚拟机</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>性能</strong></td>
+<td>接近原生</td>
+<td>性能较差</td>
+</tr>
+<tr>
+<td><strong>硬盘占用</strong></td>
+<td>一般为MB，占用体积小</td>
+<td>一般为GB，占用体积大</td>
+</tr>
+<tr>
+<td><strong>启动</strong></td>
+<td>秒级，启动快</td>
+<td>分钟级，启动慢</td>
+</tr>
+<tr>
+<td><strong>操作系统覆盖</strong></td>
+<td>仅是内核支持的os</td>
+<td>支持linux，window，mac等</td>
+</tr>
+<tr>
+<td><strong>技术成熟度</strong></td>
+<td>更加成熟，技术更新，更受欢迎</td>
+<td>较落后</td>
+</tr>
+<tr>
+<td><strong>方案</strong></td>
+<td>容器内没有自己的内核且也没有进行硬件虚拟，容器内的应用进程直接运行于宿主的内核</td>
+<td>虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程</td>
+</tr>
+<tr>
+<td><strong>资源利用率</strong></td>
+<td>Docker 对系统资源的利用率很高，一台主机上可以同  时运行数千个 Docker 容器。 容器除了运行其中的应用外，基本不消耗额外的系统资  源，使得应用的性能很高，同时系统的开销尽量小</td>
+<td>虚拟机对于系统资源的利用率较低，一台主机同时打开多台虚拟机所需要的要求远远大于docker的需求</td>
+</tr>
+<tr>
+<td><strong>管理难度</strong></td>
+<td>管理简单，使用 Docker，只需要小小的修改，就可以替代以往大  量的更新工作</td>
+<td>管理复杂，需要进入虚拟机去操作</td>
+</tr>
+<tr>
+<td><strong>资源隔离</strong></td>
+<td>能力较差，Docker是利用cgroup实现资源限制的，只能限制资源消耗的最大值，而不能隔绝其他程序占用自己的资源</td>
+<td>资源隔离能力较强，因为不同虚拟机直接拥有不同硬件</td>
+</tr>
+<tr>
+<td><strong>安全性</strong></td>
+<td>Docker目前并不能分辨具体执行指令的用 户，只要一个用户拥有执行Docker的权限，那么他就可以对Docker的容器进行所有操作，不管该容器是否是由 该用户创建，存在一定的安全风险。</td>
+<td>安全性相对于docker较强，需要提供虚拟机用户密码验证</td>
+</tr>
+</tbody></table>
+<p><strong>区别总结：</strong></p>
+<p>Docker是一个系统进程，虚拟机是在操作系统中的操作系统。</p>
+<p>简单来说运行一个程序需要环境，而传统虚拟化技术是通过虚拟出一整个操作系统来提供所需要的环境，而容器虚拟化技术是通过docker的镜像中来包含所需要的特定依赖，函数库，环境配置资源。</p>
+<p>Docker体积小，启动速度快，性能好。虚拟机体积大，启动速度慢，性能一般</p>
+<h1 id="如何实现-Kubernetes-自动化部署？"><a href="#如何实现-Kubernetes-自动化部署？" class="headerlink" title="如何实现 Kubernetes 自动化部署？"></a>如何实现 Kubernetes 自动化部署？</h1>
+
+<p>图2.1.1自动化部署概念图</p>
+<h2 id="通过devops实现k8s自动部署"><a href="#通过devops实现k8s自动部署" class="headerlink" title="通过devops实现k8s自动部署"></a>通过devops实现k8s自动部署</h2><p>自动化部署指的是，通过自动化工具将应用介质部署到指定环境中去。 自动化部署只是持续交付和持续部署流程中的一个功能单元</p>
+<p>DevOps 自动化，运用技术，在减少人工辅助的情况下执行各项任务，以此来简化运维与开发团队之间的反馈循环工作，从而将迭代更新更快地部署到生产应用中。因此经常使用devops来实现k8s的自动部署</p>
+<p><strong>通过Devops实现自动部署k8s的过程：</strong></p>
+<ol>
+<li>创建容器镜像仓库</li>
+<li>在DevOps创建流水线</li>
+<li>创建容器</li>
+<li>自动化升级</li>
+</ol>
+<h2 id="通过Jenkins实现对k8s的自动化构建和自动化部署"><a href="#通过Jenkins实现对k8s的自动化构建和自动化部署" class="headerlink" title="通过Jenkins实现对k8s的自动化构建和自动化部署"></a>通过Jenkins实现对k8s的自动化构建和自动化部署</h2>
+
+<p>图2.1.2利用jenkins自动化部署概念图</p>
+<p><strong>一般过程</strong></p>
+<ol>
+<li>提交项目代码并打上git tag，上传代码及tag至gitlab或者github</li>
+<li>Github或者gitlab通过webhook自动触发jenkins执行任务</li>
+<li>jenkins获取代码，执行代码编译、构建docker镜像、上传docker镜像至harbor镜像仓库、执行kubectl命令部署至k8s。</li>
+</ol>
+<p><strong>具体过程</strong></p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#2_jenkins"><strong>部署jenkins</strong></a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#21">环境准备</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#22_jenkins">部署jenkins</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#221_jenkins_Pod">部署有状态的jenkins Pod</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#222_jenkins_ingress">创建jenkins ingress</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#223_jenkins">jenkins认证授权</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#23jenkins">配置jenkins</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#24_JenkinsK8S">Jenkins在K8S中动态创建代理</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#25_Jenkins_Slave">构建Jenkins Slave镜像</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#251_Dockerfile">Dockerfile配置文件</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#252_jenkins-slave">jenkins-slave启动脚步</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#253_mavensettingsxml">maven源配置文件settings.xml</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#254">构建镜像, 并推送至私有镜像仓库</a><ol>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#3_pipeline"><strong>pipeline的使用</strong></a></li>
+</ol>
+</li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#31_Jenkins_Pipeline">Jenkins Pipeline构建流水线发布</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#32_git">生成git流水线语法</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#33_pipeline">pipeline语法</a><ol>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#4_jenkinsk8s"><strong>通过jenkins部署代码到k8s</strong></a></li>
+</ol>
+</li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#41_PipelineCI">编写Pipeline脚本完成CI阶段</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#411_pipeline">创建pipeline流水线中各个凭证</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#412_parameters">parameters参数化生成</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#413_pipeline">拉取代码片段pipeline生成</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#414_jenkins_pipeineCI">完整的基于jenkins pipeine脚本CI阶段构建</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#42_PipelineCD">编写Pipeline脚本完成CD阶段</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#421_pipeline">持续部署pipeline片段生成</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#422_pipeline">持续部署pipeline代码</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#423_cd">构建完成cd阶段</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#424_pipeline">添加回滚操作pipeline</a></li>
+<li><a target="_blank" rel="noopener" href="https://devopstack.cn/devops/1476.html#43_pipeline">添加构建状态告警pipeline</a></li>
+</ol>
+<h2 id="本次实验通过传统方式实现k8s自动部署应用"><a href="#本次实验通过传统方式实现k8s自动部署应用" class="headerlink" title="本次实验通过传统方式实现k8s自动部署应用"></a>本次实验通过传统方式实现k8s自动部署应用</h2><p>以本实验过程来举例说明一般部署过程</p>
+<ol>
+<li><strong>编写程序代码</strong></li>
+</ol>
+<p>本实验中是编写server.js</p>
+<p>而一般可以通过对springboot模块进行maven的package获取target文件对其进行打包</p>
+<p>比如通过对大作业springcloud的某个微服务进行打包成为app.jar</p>
+
+
+<p>图2.1.3打包app.jar图</p>
+<ol>
+<li><strong>Docker镜像的打包和上传：</strong></li>
+</ol>
+<p>本实验对server.js进行打包，新建Dockerfile文件，写入</p>
+<p><strong>Dockerfile：</strong></p>
+<p>FROM node:6.14.2 使用node:6.14.2基础镜像</p>
+<p>EXPOSE 8080暴露端口8080</p>
+<p>COPY server.js .</p>
+<p>CMD node server.js基于dockerfile深层的image运行container的默认运行程序指定为这个</p>
+<p>docker build -t hello_world:v2 .通过docker对程序进行构建，并命名为hello_wolrd版本v2</p>
+<p>docker tag hello_world:v2 944613709&#x2F;hello-world:v2 对刚才的hello_wolrd:v2进行打标签（换名字）改为944613709&#x2F;hello-world以便于之后上传dockerhub</p>
+<p>docker push 944613709&#x2F;hello_world:v2上传dockerhub</p>
+
+
+<p>图2.1.4 dockerhub</p>
+<ol>
+<li><strong>部署到 Kubernetes 中</strong></li>
+</ol>
+<p><strong>本实验用的是yaml方式，yaml方式相对于原始的纯cmd命令要效率高一些</strong></p>
+<p>新建hello_world.yaml文件</p>
+<p>命令kubectl create -f .&#x2F;hello_world.yaml 执行yaml文件来部署</p>
+
+
+<p>图2.1.5 yaml文件内容</p>
+<p>其中部署Service，命名为hello-world</p>
+<p>模式为Nodeport，pod暴露8080映射为该服务的80端口</p>
+<p>集群内其他节点可以通过80来访问pod的8080端口</p>
+<p>并且nodePort&#x3D;31611，让集群外节点可以通过31611来访问pod的8080端口</p>
+
+
+<p>图2.1.6 yaml文件内容</p>
+<p>其中部署一个Deployment命名为hello-world</p>
+<p>其中给定副本数量为3，每一个容器镜像为944613709&#x2F;hello_world，容器端口为8080</p>
+
+
+<p>图2.1.7 yaml文件内容</p>
+<h1 id="Kubernetes有哪些核心组件，其功能是什么？"><a href="#Kubernetes有哪些核心组件，其功能是什么？" class="headerlink" title="Kubernetes有哪些核心组件，其功能是什么？"></a>Kubernetes有哪些核心组件，其功能是什么？</h1><h2 id="官方定义的核心组件："><a href="#官方定义的核心组件：" class="headerlink" title="官方定义的核心组件："></a>官方定义的核心组件：</h2><p>参考官方文档：</p>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/overview/components/">https://kubernetes.io/zh-cn/docs/concepts/overview/components/</a></p>
+
+
+<p>图3.1 k8s所需的组件</p>
+
+
+<p>图3.2 k8s所需的组件关系图</p>
+<table>
+<thead>
+<tr>
+<th><strong>组件分类</strong></th>
+<th><strong>组件名</strong></th>
+<th><strong>功能介绍</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>控制平面组件</td>
+<td>控制平面组件</td>
+<td>控制平面组件会为集群做出全局决策，比如资源的调度</td>
+</tr>
+<tr>
+<td></td>
+<td>kube-apiserve</td>
+<td>API 服务器是 Kubernetes <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/reference/glossary/?all=true#term-control-plane">控制平面</a>的组件， 该组件负责公开了 Kubernetes API，负责处理接受请求的工作。 API 服务器是 Kubernetes 控制平面的前端。</td>
+</tr>
+<tr>
+<td></td>
+<td>etcd</td>
+<td>一致且高度可用的键值存储，用作 Kubernetes 的所有集群数据的后台数据库</td>
+</tr>
+<tr>
+<td></td>
+<td>kube-scheduler</td>
+<td>kube-scheduler 是控制平面的组件， 负责监视新创建的、未指定运行节点（node）的 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/workloads/pods/">Pods</a>， 并选择节点来让 Pod 在上面运行。</td>
+</tr>
+<tr>
+<td></td>
+<td>kube-controller-manager</td>
+<td><a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/reference/command-line-tools-reference/kube-controller-manager/">kube-controller-manager</a> 是控制平面的组件， 负责运行控制器进程。</td>
+</tr>
+<tr>
+<td></td>
+<td>cloud-controller-manager</td>
+<td>云控制器管理器（Cloud Controller Manager）允许你将你的集群连接到云提供商的 API 之上， 并将与该云平台交互的组件同与你的集群交互的组件分离开来。</td>
+</tr>
+<tr>
+<td>Node 组件</td>
+<td>Node 组件</td>
+<td>节点组件会在每个节点上运行，负责维护运行的 Pod 并提供 Kubernetes 运行环境</td>
+</tr>
+<tr>
+<td></td>
+<td>kubelet</td>
+<td>kubelet 会在集群中每个节点（node）上运行。 它保证<a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/overview/what-is-kubernetes/#why-containers">容器（containers）</a>都运行在 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/workloads/pods/">Pod</a> 中</td>
+</tr>
+<tr>
+<td></td>
+<td>kube-proxy</td>
+<td><a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/reference/command-line-tools-reference/kube-proxy/">kube-proxy</a> 是集群中每个节点（node）上所运行的网络代理， 实现 Kubernetes <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/">服务（Service）</a></td>
+</tr>
+<tr>
+<td></td>
+<td>容器运行时</td>
+<td>容器运行环境是负责运行容器的软件</td>
+</tr>
+<tr>
+<td>插件</td>
+<td>插件</td>
+<td>插件使用 Kubernetes 资源（DaemonSet、 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/deployment/">Deployment</a> 等）实现集群功能</td>
+</tr>
+<tr>
+<td></td>
+<td>DNS</td>
+<td>为 Kubernetes 服务提供 DNS 记录</td>
+</tr>
+<tr>
+<td></td>
+<td>Web 界面</td>
+<td><a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/tasks/debug/debug-cluster/resource-usage-monitoring/">容器资源监控</a> 将关于容器的一些常见的时间序列度量值保存到一个集中的数据库中， 并提供浏览这些数据的界面</td>
+</tr>
+<tr>
+<td></td>
+<td>集群层面日志</td>
+<td><a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/cluster-administration/logging/">集群层面日志</a>机制负责将容器的日志数据保存到一个集中的日志存储中， 这种集中日志存储提供搜索和浏览接口</td>
+</tr>
+</tbody></table>
+<h2 id="个人认为在使用中的接触到的关键组件："><a href="#个人认为在使用中的接触到的关键组件：" class="headerlink" title="个人认为在使用中的接触到的关键组件："></a>个人认为在使用中的接触到的关键组件：</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>组件名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>Node</td>
+</tr>
+<tr>
+<td></td>
+<td>NameSpace</td>
+</tr>
+<tr>
+<td></td>
+<td>Pod</td>
+</tr>
+<tr>
+<td></td>
+<td>Deployment</td>
+</tr>
+<tr>
+<td></td>
+<td>Service</td>
+</tr>
+<tr>
+<td></td>
+<td>Ingress</td>
+</tr>
+<tr>
+<td></td>
+<td>Volume</td>
+</tr>
+<tr>
+<td></td>
+<td>Label</td>
+</tr>
+<tr>
+<td></td>
+<td>Master</td>
+</tr>
+</tbody></table>
+
+
+<p>图3.3 k8s组件关系图</p>
+<p><strong>Master：</strong>集群控制节点，每个集群需要至少一个master节点负责集群的管控</p>
+<p><strong>Node：</strong>工作负载节点，由master分配容器到这些node工作节点上，然后node节点上的docker负责容器的运行</p>
+<p><strong>Namespace：</strong>命名空间</p>
+<p>实现多套环境的资源隔离或者多租户的资源隔离。</p>
+<p>用于隔离资源使得不同空间的pods不会互相干扰</p>
+<p><strong>Pod：</strong>运行中的一组容器，pod是k8s中应用的最小单位</p>
+<p>程序要运行必须部署在容器中，而容器必须存在于Pod中。一个Pod容器中运行着多个container容器</p>
+
+
+<p>图3.4 pod关系图</p>
+<p><strong>Deployment：</strong></p>
+<p>Pod是最小的控制单元，但是k8s很少直接控制Pod</p>
+<p>一般利用Deployment控制Pod，使Pod拥有多副本，自愈，扩缩容等能力</p>
+
+
+<p>图3.4 deployment关系图</p>
+<p><strong>Service：</strong></p>
+<p>service可以看作是一组同类Pod对外的访问接口。借助Service，应用可以方便地实现服务发现和负载均衡</p>
+<p><strong>Service典型类型：</strong></p>
+<p>ClusterIP：它是Kubernetes系统自动分配的虚拟IP，只能在集群内部访问NodePort：类型的Service允许NodeIp:NodePort来访问service</p>
+
+
+<p>图3.4 service关系图</p>
+<p><strong>Ingress：</strong></p>
+<p>Ingress只需要一个NodePort或者一个LB就可以满足暴露多个Service的需求</p>
+<p>实际上就是kubernetes对反向代理的一个抽象，它的工作原理类似于Nginx</p>
+<h2 id="Volume："><a href="#Volume：" class="headerlink" title="Volume："></a><strong>Volume：</strong></h2><p>存储卷，用来管理k8s存储，一个volume卷可以被挂载在Pod中一个或者多个容器的指定路径下面。解决数据持久化存储的问题，将Pod和卷的生命周期分离</p>
+<p><strong>Label ：</strong></p>
+<p>标签，附加到某个资源上，用于关联对象、查询和筛选</p>
+<h1 id="Kubernetes搭建过程中遇到的问题，与解决办法。"><a href="#Kubernetes搭建过程中遇到的问题，与解决办法。" class="headerlink" title="Kubernetes搭建过程中遇到的问题，与解决办法。"></a>Kubernetes搭建过程中遇到的问题，与解决办法。</h1><p><strong>Q1</strong>:服务器只有一台，合作之后发现针对某一台服务器无法实现既作为自己集群的master又作为其他集群的node</p>
+<p>A1：重新开启两台虚拟机，重新搭建k8s</p>
+<p><strong>Q2：</strong>遇见提示没有docker，kubernetes的command以及提示8080端口有误</p>
+<p>A2：1.以为是自己没有安装好docker，后来发现是没有root权限是无法使用到docker命令。使用命令su root登录以获取root权限</p>
+<ol>
+<li>还需要对docker进行启动，使用开机自启动更加方便，利用命令systemctl start 和systemctl enable</li>
+</ol>
+<p>**Q3:**在第一次kubeadm init提示错误之后，再次kubeadm init提示文件错误</p>
+<p>A3：在询问老师之后，才知道如果第一次init出现错误则会留存一些残余的配置文件，需要kubeadm reset才可以再次init，否则会被第一次的配置文件影响阻碍</p>
+<p><strong>Q4：</strong>ifconfig无法拿到内网ip，没有发现显示内网ip</p>
+<p>A4：由于使用的是vmware模拟两台虚拟机centos，最初猜测是网络模式设置问题.最初猜测是网络利用NAT模式不行，然后换成主桥模式，结果还是不行</p>
+<p>之后从主桥模式换回NAT模式，发现ifconfig又一次出现了ip地址</p>
+<p>猜测原因：长时间的待机可能有一些配置影响到了需要重新切换</p>
+<p><strong>Q5：</strong>在node节点忘记换源折腾了半小时</p>
+<p>A5：由于国内墙直接访问到dockerhub，速度非常的慢。我开始没有意识到，因为我在master换了源但是node没换，然后想在node打包时候就发现慢了</p>
+<p><strong>Q6</strong>发现yml文件连不上githubsercontent</p>
+<p>A6：最开始我尝试了挂梯子，然后我发现梯子由于采用的是role模式代理没有让我的虚拟机访问外网加速</p>
+<p>然后我之后尝试去映射，直接找到ip，然后发现就通过了访问</p>
+<p>在hosts设置映射，然后就可以连上了</p>
+<p><strong>Q7：</strong>在master部署好了helo_world镜像发现，pod位于node1的全报错，位于master就可以running</p>
+<p>A7：在k8s中要部署hello_world，Node需要hello_world镜像才可以部署，master的hello_world镜像影响不了node</p>
+<p><strong>Q8：</strong>在k8s安装flannel时候利用换源过的yml文件结果报错了</p>
+<p>A8：由于国内墙的存在无法直接访问到githubercontent那个资源网站</p>
+<p>所以最开始尝试博客上给出的yml，利用的其中呢一些网站被换到了镜像网站</p>
+<p>可是博客文章发表于2022&#x2F;2，在11月的今天再去访问发现爆错了无法访问（这也是我后面才发现的）</p>
+<p>所以我建议以后在k8s安装flannel用原版的yml文件不要用野路子yml</p>
+<p><strong>Q9：</strong>关于kube-flannel,不安装pod网络配置就会一直pending</p>
+<p>A9：最开始一直显示Node1 not ready</p>
+<p>然后我看kubectl get pod -n kube-system</p>
+<p>然后找到对应的pod</p>
+<p>输入命令kubectl describe pod kube-flannel-ds-amd64-6dsmg -n kube-system</p>
+<p>发现问题就是kube-flannel这个镜像有点问题</p>
+<p>仔细一看日志log发现是镜像一直没有拉取，但是奇怪的是在master机上docker images显示这个镜像已经在我本地机上了，然后我一直在弄master中的镜像，删除和重装。经历几次之后发现</p>
+<p>Kubectl get pods -A显示出没有拉取镜像的其实是node1节点</p>
+<p>说明系统是要在node1有那个镜像</p>
+<p>此后在node1单独pull镜像成功之后就好了</p>
+<p><strong>Q10:</strong> k8s部署时coredns出现CrashLoopBackOff的错误</p>
+<p>A10：参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40017011/article/details/116698422">https://blog.csdn.net/qq_40017011/article/details/116698422</a></p>
+<p>通过kubectl get pods -A发现这里是coredns的错误</p>
+<p>vi &#x2F;etc&#x2F;resolv.conf查看配置文件,</p>
+<p>发现里面nameserver那一栏并不是主机master的地址,然后把他修改掉</p>
+<p>192.168.217.132</p>
+<p>192.168.217.1</p>
+<p>vi修改完之后使用命令</p>
+<p># systemctl stop kubelet # systemctl stop docker # iptables –flush # iptables -tnat –flush # systemctl start kubelet # systemctl start docker</p>
+<p><strong>Q11：</strong>重启之后又一次k8s部署时coredns出现CrashLoopBackOff的错误</p>
+<p>A11：我发现每一次重启之后这个配置文件都会重新被修改然后报错，就得自己手动改回去，可能是某种系统配置问题，但是再次手动修改resolv之后又恢复正常</p>
+<p><strong>Q12：</strong>虚拟机在某段时间之后提示Xauortiry，导致ssh连接变慢，且无法获取管理员权限</p>
+<p>A12：首先尝试删除Xauority文件发现不好使</p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/dong_liuqi/article/details/108842873">https://blog.csdn.net/dong_liuqi/article/details/108842873</a></p>
+<p>发现是应为&#x2F;home&#x2F;下没有创建&#x2F;userA&#x2F;文件夹且因为没有给userA对于&#x2F;home&#x2F;userA&#x2F;的写权限，所以导致在连接时无法创建文件.Xauthority</p>
+<p>最后通过以下命令解决</p>
+<p>sudo mkdir &#x2F;home&#x2F;a944613709</p>
+<p>chown a944613709:a944613709 -R &#x2F;home&#x2F;a944613709</p>
+<p>usermod -s &#x2F;bin&#x2F;bash a944613709</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/shizhuofan.GitHub.io/categories/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="category-chain-item">面向服务的软件系统</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/shizhuofan.GitHub.io/tags/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/">#面向服务的软件系统</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>《面向服务的软件系统》实验三：微服务与容器技术</div>
+      <div>http://yoursite.com/2023/04/21/面向服务实验三-120L021011石卓凡/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fars</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%B1%95%E7%A4%BA/" title="面向服务的软件系统-大作业展示">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">面向服务的软件系统-大作业展示</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%AE%9E%E9%AA%8C%E4%BA%8C-120L021011-%E7%9F%B3%E5%8D%93%E5%87%A1/" title="《面向服务的软件系统》实验二：Dubbo环境搭建与服务部署">
+                        <span class="hidden-mobile">《面向服务的软件系统》实验二：Dubbo环境搭建与服务部署</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

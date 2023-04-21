@@ -1,0 +1,923 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fars">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《面向服务的软件系统》实验报告 ——实验四：微服务综合实验 姓名： 石卓凡 学号： 120L021011 目录 1、 如果你要从头开发一个基于微服务架构的项目，项目中的服务最终要部署在k8s管理的镜像环境中，你认为应如何创建项目？与本次实验过程相比，哪些改进可以让开发更加合理高效？ 2 创建项目 2 改进 3 2、 如何将实验中多个provider服务实例的负载均衡策略改为轮询调用？即在多次反复调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《面向服务的软件系统》实验四：微服务综合实验">
+<meta property="og:url" content="http://yoursite.com/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%AE%9E%E9%AA%8C%E5%9B%9B-120L021011-%E7%9F%B3%E5%8D%93%E5%87%A1-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Fars&#39;Blog">
+<meta property="og:description" content="《面向服务的软件系统》实验报告 ——实验四：微服务综合实验 姓名： 石卓凡 学号： 120L021011 目录 1、 如果你要从头开发一个基于微服务架构的项目，项目中的服务最终要部署在k8s管理的镜像环境中，你认为应如何创建项目？与本次实验过程相比，哪些改进可以让开发更加合理高效？ 2 创建项目 2 改进 3 2、 如何将实验中多个provider服务实例的负载均衡策略改为轮询调用？即在多次反复调">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-21T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-04-21T04:27:06.417Z">
+<meta property="article:author" content="Fars">
+<meta property="article:tag" content="面向服务的软件系统">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>《面向服务的软件系统》实验四：微服务综合实验 - Fars&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="《面向服务的软件系统》实验四：微服务综合实验"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-21 11:42" pubdate>
+          2023年4月21日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          64 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">《面向服务的软件系统》实验四：微服务综合实验</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《面向服务的软件系统》实验报告</p>
+<p>——实验四：微服务综合实验</p>
+<p>姓名： 石卓凡 学号： 120L021011</p>
+<p>目录</p>
+<p><a href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A6%81%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E9%A1%B9%E7%9B%AE%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%9C%80%E7%BB%88%E8%A6%81%E9%83%A8%E7%BD%B2%E5%9C%A8k8s%E7%AE%A1%E7%90%86%E7%9A%84%E9%95%9C%E5%83%8F%E7%8E%AF%E5%A2%83%E4%B8%AD%E4%BD%A0%E8%AE%A4%E4%B8%BA%E5%BA%94%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E4%B8%8E%E6%9C%AC%E6%AC%A1%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B%E7%9B%B8%E6%AF%94%E5%93%AA%E4%BA%9B%E6%94%B9%E8%BF%9B%E5%8F%AF%E4%BB%A5%E8%AE%A9%E5%BC%80%E5%8F%91%E6%9B%B4%E5%8A%A0%E5%90%88%E7%90%86%E9%AB%98%E6%95%88">1、 如果你要从头开发一个基于微服务架构的项目，项目中的服务最终要部署在k8s管理的镜像环境中，你认为应如何创建项目？与本次实验过程相比，哪些改进可以让开发更加合理高效？ 2</a></p>
+<p><a href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE">创建项目 2</a></p>
+<p><a href="#%E6%94%B9%E8%BF%9B">改进 3</a></p>
+<p><a href="#%E5%A6%82%E4%BD%95%E5%B0%86%E5%AE%9E%E9%AA%8C%E4%B8%AD%E5%A4%9A%E4%B8%AAprovider%E6%9C%8D%E5%8A%A1%E5%AE%9E%E4%BE%8B%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5%E6%94%B9%E4%B8%BA%E8%BD%AE%E8%AF%A2%E8%B0%83%E7%94%A8%E5%8D%B3%E5%9C%A8%E5%A4%9A%E6%AC%A1%E5%8F%8D%E5%A4%8D%E8%B0%83%E7%94%A8%E6%97%B6%E8%BD%AE%E6%B5%81%E8%B0%83%E7%94%A8%E5%90%84%E4%B8%AA%E6%9C%8D%E5%8A%A1%E5%AE%9E%E4%BE%8B">2、 如何将实验中多个provider服务实例的负载均衡策略改为轮询调用？即在多次反复调用时轮流调用各个服务实例。 5</a></p>
+<p><a href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%BB%E8%A6%81%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95">3、 实验过程中遇到的主要问题与解决办法。 9</a></p>
+<p><a href="#1%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98">1.服务器内存问题 10</a></p>
+<p><a href="#2%E5%A4%9A%E6%AC%A1%E6%98%BE%E7%A4%BAprovider%E7%9A%84%E5%90%8C%E4%B8%80ip%E9%97%AE%E9%A2%98">2.多次显示provider的同一ip问题 10</a></p>
+<p><a href="#3dubbo-admin%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98">3.Dubbo-admin部署问题 11</a></p>
+<p><a href="#31%E9%83%A8%E7%BD%B2%E6%9C%80%E6%96%B0%E7%89%88dubbo-admin%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98">3.1.部署最新版Dubbo-admin中的问题 11</a></p>
+<p><a href="#32%E9%83%A8%E7%BD%B2%E6%97%A7%E7%89%88dubbo-admin">3.2.部署旧版dubbo-admin 12</a></p>
+<p><a href="#4%E9%83%A8%E7%BD%B2%E6%89%93%E5%8C%85provider%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98">4.部署打包provider中的问题 13</a></p>
+<p><a href="#41api%E5%92%8Cprovider%E7%9A%84%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E6%89%93%E5%8C%85provider">4.1.Api和provider的依赖关系，导致无法打包provider 13</a></p>
+<p><a href="#42%E6%89%93%E5%8C%85%E4%B8%BAjar%E7%94%B1%E4%BA%8E%E5%90%AF%E5%8A%A8%E7%B1%BB%E5%9C%A8test%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E6%97%A0%E6%B3%95%E8%87%AA%E5%8A%A8%E6%89%BE%E5%88%B0%E5%90%AF%E5%8A%A8%E7%B1%BB">4.2.打包为jar，由于启动类在Test文件夹中无法自动找到启动类 14</a></p>
+<p><a href="#43provider%E6%89%93%E5%8C%85%E5%A5%BD%E7%9A%84%E9%95%9C%E5%83%8F%E7%9A%84docker%E7%9A%84%E5%AE%B9%E5%99%A8%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA">4.3.provider打包好的镜像的docker的容器自动退出 16</a></p>
+<p><a href="#44docker%E6%AF%8F%E6%AC%A1%E9%83%BD%E9%9C%80%E8%A6%81%E8%BF%9B%E5%85%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%89%93%E5%8C%85%E9%95%9C%E5%83%8F%E6%9C%89%E7%82%B9%E9%BA%BB%E7%83%A6%E5%BD%93%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%97%B6%E5%80%99%E6%97%A0%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%B7%A5%E4%BD%9C">4.4.docker每次都需要进入虚拟机进行打包镜像，有点麻烦，当虚拟机无法连接到时候，无法进行工作 16</a></p>
+<p><a href="#5%E5%A6%82%E4%BD%95%E5%9C%A8%E5%90%8E%E7%BB%AD%E6%9F%A5%E7%9C%8Bprovider%E7%9A%84ip">5.如何在后续查看provider的ip 17</a></p>
+<p><a href="#6%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98">6.端口问题 18</a></p>
+<p><a href="#%E5%AF%B9%E6%95%B4%E9%97%A8%E5%AE%9E%E9%AA%8C%E8%AF%BE%E7%A8%8B%E6%9C%89%E4%BD%95%E6%84%8F%E8%A7%81%E6%88%96%E5%BB%BA%E8%AE%AE">4、 对整门实验课程有何意见或建议。 18</a></p>
+<p><a href="#%E5%9B%9B%E4%B8%AA%E5%AE%9E%E9%AA%8C%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%BB%A5%E5%8F%8A%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%8C%87%E5%AF%BC%E4%B9%A6%E7%9A%84%E5%BB%BA%E8%AE%AE">1. 四个实验的设计以及对应的实验指导书的建议 18</a></p>
+<p><a href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9">实验内容 18</a></p>
+<p><a href="#%E5%AE%9E%E9%AA%8C%E6%8C%87%E5%AF%BC%E4%B9%A6">实验指导书 19</a></p>
+<p><a href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%9A%84%E9%97%AE%E9%A2%98">2. 前置知识的问题 19</a></p>
+<h1 id="如果你要从头开发一个基于微服务架构的项目，项目中的服务最终要部署在k8s管理的镜像环境中，你认为应如何创建项目？与本次实验过程相比，哪些改进可以让开发更加合理高效？"><a href="#如果你要从头开发一个基于微服务架构的项目，项目中的服务最终要部署在k8s管理的镜像环境中，你认为应如何创建项目？与本次实验过程相比，哪些改进可以让开发更加合理高效？" class="headerlink" title="如果你要从头开发一个基于微服务架构的项目，项目中的服务最终要部署在k8s管理的镜像环境中，你认为应如何创建项目？与本次实验过程相比，哪些改进可以让开发更加合理高效？"></a>如果你要从头开发一个基于微服务架构的项目，项目中的服务最终要部署在k8s管理的镜像环境中，你认为应如何创建项目？与本次实验过程相比，哪些改进可以让开发更加合理高效？</h1><h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p><strong>采用以下步骤：</strong></p>
+<ul>
+<li>明确项目的需求和目标，并确定项目中需要包含哪些微服务。</li>
+<li>建立项目的架构，设计每个微服务的功能和接口，并确定微服务之间的交互方式。</li>
+<li>根据项目的架构，分别开发各个微服务。</li>
+<li>将开发的微服务打包成镜像，上传到镜像仓库。</li>
+<li>在k8s管理的镜像环境中部署项目，并测试各个微服务的功能和性能。</li>
+<li>如果发现问题，及时调整项目的架构和代码，并重新部署。</li>
+</ul>
+<p>这些步骤中，最重要的是明确项目的需求和目标，并设计合理的架构。这样才能确保项目的可扩展性和可维护性，并且能够顺利地部署在k8s管理的镜像环境中。</p>
+<p><strong>以springcloud框架，dockerhub镜像仓库为例的具体步骤及注意事项</strong></p>
+<ol>
+<li>明确项目需求，确定springcloud最终划分模块数量及每个模块功能</li>
+<li>构建springcloud项目，分为多个模块。每个模块的端口号要写清楚，方便之后部署暴露对应端口</li>
+<li>使用maven，在maven写好build标签，给每一个模块一个清晰的打包模块名。且maven中利用好parent和child标签，给整个项目有一个root模块可以对所有模块进行管理，并且将公共依赖放入root的pom文件</li>
+<li>每个模块写dockerfile，dockerfile中的端口号要一一对应</li>
+<li>先打包为docker镜像，然后在docker中创建容器，通过容器是否成功运行和是否容器中运行有预期结果来进行判断镜像是否打包成功。</li>
+<li>Docker镜像如果有误，则重新检查代码以及打包过程，如果Docker镜像确定无误后，上传dockerhub</li>
+<li>在k8s服务器中写好deployment,service,volume等yaml文件，根据需求选定service类型，deployment实例个数，volume种类和容量大小，然后使用yaml文件进行部署微服务项目。</li>
+<li>测试k8s中部署项目是否无误，如果发现问题，及时调整项目的架构和代码，并重新部署。</li>
+</ol>
+<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><ol>
+<li>我会明确每个微服务项目的端口，写明使用到的端口，这样方便后续k8s的部署，在本次实验中的项目中需要暴露端口8888没有明确单独写出来，而是得去配置文件搜寻。改进点就是直接写明需要暴露哪些端口，防止端口不正确带来的问题</li>
+<li>我会通过maven的root根项目来对所有微服务模块进行maven管理，这样可以同时install和package而不用对每个模块再单独依次打包，且避开了因为父子模块依赖而产生的特定打包顺序问题。</li>
+<li>将公共依赖放入root的pom文件，这样就避免了子模块之间多个重复依赖</li>
+</ol>
+
+
+<p>图1.1使用root进行管理整个项目</p>
+<ol>
+<li>选用jenkins自动化部署，可以简化部署流程，也能够使得整个项目的过程更加合理高效</li>
+</ol>
+
+
+<p>图1.2使用jenkins的控制台</p>
+<ol>
+<li>可以把dockerhub仓库改为harbor镜像仓库，如果在企业项目不想放入dockerhub中可以自己搭建私有的harbor镜像仓库，保证了项目的私密性和安全性，更加符合实际情况。</li>
+</ol>
+<h1 id="如何将实验中多个provider服务实例的负载均衡策略改为轮询调用？即在多次反复调用时轮流调用各个服务实例。"><a href="#如何将实验中多个provider服务实例的负载均衡策略改为轮询调用？即在多次反复调用时轮流调用各个服务实例。" class="headerlink" title="如何将实验中多个provider服务实例的负载均衡策略改为轮询调用？即在多次反复调用时轮流调用各个服务实例。"></a>如何将实验中多个provider服务实例的负载均衡策略改为轮询调用？即在多次反复调用时轮流调用各个服务实例。</h1><p><strong>思路：</strong></p>
+<p>负载均衡策略可通过 Host 的IPVS（即 K8s 集群节点的IPVS）来实现的</p>
+<p><strong>原理</strong></p>
+<p>service底层实现主要由两个网络模式组成：iptables与IPVS。他们都是有kube-proxy维护</p>
+
+
+<p>图service底层概念图</p>
+
+
+<p>图service工作流程图</p>
+<p>k8s的service默认是采用iptables为网络模式：且iptables默认的负载均衡是random随机策略</p>
+<p>使用命令可以查看iptables当前的一些规则</p>
+<p>iptables-save</p>
+<p>k8s的service可以改为ipvs模式</p>
+<p>使用命令可以查看ipvs规则</p>
+<p>ipvsadm -L -n</p>
+<p>而IPVS的负载均衡方式如下</p>
+<table>
+<thead>
+<tr>
+<th>负载均衡方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>round-robin</td>
+<td>轮询调度是一种以轮询的方式依次将一个域名解析到多个IP 地址的调度不同服务器的计算方法</td>
+</tr>
+<tr>
+<td>least connection</td>
+<td>最小连接调度（Least-Connection Scheduling）算法是把新的连接请求分配到当前连接数最小的服务器</td>
+</tr>
+<tr>
+<td>source hash</td>
+<td>源地址哈希法是根据请求来源的地址，通过哈希函数计算得到的一个数值，用该数值对服务器列表的大小进行取模运算，得到的结果便是客服端要访问服务器的序号。采用源地址哈希法进行负载均衡，同一源地址的请求，当服务器列表不变时，它每次都会映射到同一台服务器进行访问。</td>
+</tr>
+<tr>
+<td>Random（默认）</td>
+<td>随机算法完成负载均衡</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+
+
+<p>图查看本实验中的iptable的nat表</p>
+<p>则本实验中想要采用轮询调用</p>
+<p><strong>大致步骤如下：</strong></p>
+<ul>
+<li>service切换为IPVS网络模式</li>
+<li>切换IPVS使用轮询的负载均衡策略</li>
+</ul>
+<ol>
+<li>使用命令在master节点上</li>
+</ol>
+<p>kubectl edit configmap kube-proxy -n kube-system</p>
+
+
+<p>图kubeconfig.conf</p>
+<ol>
+<li>更改配置</li>
+</ol>
+<p>然后发现当前我的服务已经默认为ipvs模式（Mode: ipvs）,但是负载均衡模式没有指定（默认为随机random）</p>
+<p>之后修改为</p>
+<p>scheduler: “rr”</p>
+<ol>
+<li>重新应用新配置</li>
+</ol>
+<p>然后需要让kube-proxy重新应用新的配置，这里采用删除等待其自动重建并且应用新的网络模式。</p>
+<p>最后重启之后发现服务实例成功改为了轮询调用rr</p>
+
+
+<p>图：成功示例</p>
+<h1 id="实验过程中遇到的主要问题与解决办法。"><a href="#实验过程中遇到的主要问题与解决办法。" class="headerlink" title="实验过程中遇到的主要问题与解决办法。"></a>实验过程中遇到的主要问题与解决办法。</h1><h2 id="1-服务器内存问题"><a href="#1-服务器内存问题" class="headerlink" title="1.服务器内存问题"></a>1.服务器内存问题</h2><p>服务器内存太小了，然后我部署的东西太多了，导致我后来部署provider时候一直自动重启pod，</p>
+<p>导致dubbo无法持续检测到，我还以为是代码问题改了一下午，结果最后反应过来是内存已经不够了。</p>
+<p>并且后续内存不够，会导致服务器无法正常关闭，一直显示关闭中。因此为了以防万一，使用快照是很重要的</p>
+<p><strong>解决方法：</strong></p>
+<ol>
+<li>删除一部分自己的deployment</li>
+<li>取出master的污点，在加入master分担</li>
+<li>给服务器扩容</li>
+</ol>
+
+
+<p>图2.1服务器内存和CPU使用率</p>
+<h2 id="2-多次显示provider的同一ip问题"><a href="#2-多次显示provider的同一ip问题" class="headerlink" title="2.多次显示provider的同一ip问题"></a>2.多次显示provider的同一ip问题</h2><p>由于默认选用的是负载均衡，所以多次consumer都是直接对应的第一个provider，只有快速多次连续输入请求之后才会跳转其他provider</p>
+<p><strong>解决方法：</strong>设为轮询访问，或者快速多次输入</p>
+<h2 id="3-Dubbo-admin部署问题"><a href="#3-Dubbo-admin部署问题" class="headerlink" title="3.Dubbo-admin部署问题"></a>3.Dubbo-admin部署问题</h2><h3 id="3-1-部署最新版Dubbo-admin中的问题"><a href="#3-1-部署最新版Dubbo-admin中的问题" class="headerlink" title="3.1.部署最新版Dubbo-admin中的问题"></a>3.1.部署最新版Dubbo-admin中的问题</h3><p>参考官方github链接：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/apache/dubbo-admin/blob/develop/README_ZH.md/#12-%E4%BD%BF%E7%94%A8-Kubernetes-%E6%96%87%E4%BB%B6">https://github.com/apache/dubbo-admin/blob/develop/README_ZH.md\#12-%E4%BD%BF%E7%94%A8-Kubernetes-%E6%96%87%E4%BB%B6</a></p>
+<p>最新的dubbo-admin中已经将tomcat集成在dubbo中不需要额外的tomcat运行，所以最开始尝试新版admin</p>
+<h4 id="3-1-1github访问失败"><a href="#3-1-1github访问失败" class="headerlink" title="3.1.1github访问失败"></a>3.1.1github访问失败</h4>
+
+<p>图2.2github访问失败</p>
+<p>这个还是因为墙的问题</p>
+<p><strong>解决方法：</strong>服务器上无法使用VPN梯子，因此我选择直接在服务器上借助hosts查找域名ip</p>
+<h4 id="3-1-2无法正常cd进入目标文件夹"><a href="#3-1-2无法正常cd进入目标文件夹" class="headerlink" title="3.1.2无法正常cd进入目标文件夹"></a>3.1.2无法正常cd进入目标文件夹</h4><p>发现官网给出的cd地址还需要加入&#x2F;root前缀，代表用户名</p>
+<p><strong>解决方法：</strong>加入&#x2F;root</p>
+<h4 id="3-1-3最终新版dubbo-admin成功部署，但是root账户权限出错"><a href="#3-1-3最终新版dubbo-admin成功部署，但是root账户权限出错" class="headerlink" title="3.1.3最终新版dubbo-admin成功部署，但是root账户权限出错"></a>3.1.3最终新版dubbo-admin成功部署，但是root账户权限出错</h4>
+
+<p>图2.4dubbo-admin权限出错</p>
+<p>猜测可能是新版的dubbo-admin不兼容之类的问题</p>
+<p>最终再多次重新部署仍然无法解决之后，我选择放弃新版dubbo</p>
+<p><strong>解决方法：</strong>更换回老版本dubbo</p>
+<h3 id="3-2-部署旧版dubbo-admin"><a href="#3-2-部署旧版dubbo-admin" class="headerlink" title="3.2.部署旧版dubbo-admin"></a>3.2.部署旧版dubbo-admin</h3><p>沿用lab2旧版的dubbo，选用的部署方案是</p>
+<p>服务器k8s部署zookeeper+本机启动tomcat来配合生成dubbo-admin</p>
+<h4 id="3-2-1-单独修改WEB-INF下的properties配置文件发现没有用"><a href="#3-2-1-单独修改WEB-INF下的properties配置文件发现没有用" class="headerlink" title="3.2.1.单独修改WEB-INF下的properties配置文件发现没有用"></a>3.2.1.单独修改WEB-INF下的properties配置文件发现没有用</h4><h4 id><a href="#" class="headerlink" title></a></h4><p>图2.5WEB-INF下的properties</p>
+<p>发现仅仅修改这个无法改变tomcat部署中的zookeeper地址</p>
+<p><strong>原理：</strong>tomcat会自动War包可以放在Tomcat下的webapps或者word目录下，随着tomcat服务器的启动，它可以自动被解压。应该从头开始修改War包</p>
+<p><strong>解决方案：</strong>从dubbo-master开始修改</p>
+
+
+<p>图2.6dubbo-master项目</p>
+<p>修改dubbo-master中的zookeeper地址</p>
+<p>去找原来的</p>
+<p>D:\360MoveData\Users\86189\Desktop\Service-orientedtechnology development\lab2\dubbox-master</p>
+<p>然后在dubbox项目中把127.0.0.1:2181换成zookeeper:&#x2F;&#x2F;47.92.244.182:32273</p>
+<p>重新install</p>
+<h2 id="4-部署打包provider中的问题"><a href="#4-部署打包provider中的问题" class="headerlink" title="4.部署打包provider中的问题"></a>4.部署打包provider中的问题</h2><h3 id="4-1-Api和provider的依赖关系，导致无法打包provider"><a href="#4-1-Api和provider的依赖关系，导致无法打包provider" class="headerlink" title="4.1.Api和provider的依赖关系，导致无法打包provider"></a>4.1.Api和provider的依赖关系，导致无法打包provider</h3><p>之前一直使用的是api的package而没有使用install，导致后续打包provider的时候无法找到api的依赖项</p>
+<p><strong>原理：</strong></p>
+<p>Maven 的 install 命令和 package 命令都可以用于构建项目，但是它们的作用略有不同。</p>
+<p>Maven 的 install 命令会将项目的构建结果（如 jar 包）安装到本地仓库中，以供其它项目使用。例如，如果项目 A 依赖于项目 B，那么在构建项目 B 时，可以使用 Maven 的 install 命令将项目 B 的 jar 包安装到本地仓库中，然后在构建项目 A 时，Maven 会自动从本地仓库中查找并加载项目 B 的 jar 包。</p>
+<p>Maven 的 package 命令仅会生成项目的构建结果，但不会将其安装到本地仓库中。例如，如果您使用 Maven 的 package 命令来构建项目 B，那么 Maven 会在项目 B 的 target 目录下生成 jar 包，但不会安装到本地仓库中。如果项目 A 依赖于项目 B，则需要手动将项目 B 的 jar 包复制到项目 A 的依赖路径下，或者使用 Maven 的 install 命令来安装项目 B 的 jar 包。</p>
+<h3 id="4-2-打包为jar，由于启动类在Test文件夹中无法自动找到启动类"><a href="#4-2-打包为jar，由于启动类在Test文件夹中无法自动找到启动类" class="headerlink" title="4.2.打包为jar，由于启动类在Test文件夹中无法自动找到启动类"></a>4.2.打包为jar，由于启动类在Test文件夹中无法自动找到启动类</h3><p>当时使用了两种解决方案，方案1失败，方案2最终成功</p>
+<p><strong>方案1失败</strong></p>
+<p>在IDEA的项目结构中导入现有模块，然后指定启动类，然后点击构建工件jar</p>
+
+
+<p>图2.7.1导入现有模块</p>
+
+
+<p>图2.7.2构建现有模块</p>
+<p><strong>方案2成功</strong></p>
+<p>修改pom文件，加入build标签内容</p>
+<ol>
+<li>&lt;build&gt;</li>
+<li>&lt;finalName&gt;provider&lt;&#x2F;finalName&gt;<em>&lt;!– 导出jar的名字 –&gt;</em></li>
+<li>&lt;plugins&gt;</li>
+<li>&lt;plugin&gt;</li>
+<li>&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</li>
+<li>&lt;artifactId&gt;spring-boot-maven-plugin&lt;&#x2F;artifactId&gt;</li>
+<li>&lt;version&gt;2.1.5.RELEASE&lt;&#x2F;version&gt;</li>
+<li></li>
+<li>&lt;executions&gt;</li>
+<li>&lt;execution&gt;</li>
+<li>&lt;phase&gt;package&lt;&#x2F;phase&gt;</li>
+<li>&lt;goals&gt;</li>
+<li>&lt;goal&gt;repackage&lt;&#x2F;goal&gt;</li>
+<li>&lt;&#x2F;goals&gt;</li>
+<li>&lt;&#x2F;execution&gt;</li>
+<li>&lt;&#x2F;executions&gt;</li>
+<li>&lt;configuration&gt;</li>
+<li>&lt;includeSystemScope&gt;true&lt;&#x2F;includeSystemScope&gt;</li>
+<li>&lt;mainClass&gt;ProviderApplication&lt;&#x2F;mainClass&gt;</li>
+<li>&lt;&#x2F;configuration&gt;</li>
+<li>&lt;&#x2F;plugin&gt;</li>
+<li>&lt;&#x2F;plugins&gt;</li>
+<li>&lt;&#x2F;build&gt;</li>
+</ol>
+<p>然后使用install最终成功</p>
+<h3 id="4-3-provider打包好的镜像的docker的容器自动退出"><a href="#4-3-provider打包好的镜像的docker的容器自动退出" class="headerlink" title="4.3.provider打包好的镜像的docker的容器自动退出"></a>4.3.provider打包好的镜像的docker的容器自动退出</h3><p><strong>原理：</strong></p>
+<p>因为docker中一旦把镜像中的执行完一遍之后就会自动停止，所以容器则会显示退出或者结束</p>
+<p><strong>解决方案：</strong></p>
+<p>修改provider和consumer的启动类代码，加入一段死循环代码防止自动完成</p>
+
+
+<p>图2.8修改的代码</p>
+<h3 id="4-4-docker每次都需要进入虚拟机进行打包镜像，有点麻烦，当虚拟机无法连接到时候，无法进行工作"><a href="#4-4-docker每次都需要进入虚拟机进行打包镜像，有点麻烦，当虚拟机无法连接到时候，无法进行工作" class="headerlink" title="4.4.docker每次都需要进入虚拟机进行打包镜像，有点麻烦，当虚拟机无法连接到时候，无法进行工作"></a>4.4.docker每次都需要进入虚拟机进行打包镜像，有点麻烦，当虚拟机无法连接到时候，无法进行工作</h3><p>自己的虚拟机在中期突然发生NAT模式无法访问到网络，同时也无法被SSH连接，于是我的虚拟机打包docker镜像的方法失效</p>
+<p><strong>解决方案：</strong></p>
+<p>安装docker desktop，使用win版的docker</p>
+<p>并且利用IDEA集成docker的功能直接在IDEA完成docker镜像的打包以及上传</p>
+
+
+<p>图2.9windows的docker集成</p>
+<h2 id="5-如何在后续查看provider的ip"><a href="#5-如何在后续查看provider的ip" class="headerlink" title="5.如何在后续查看provider的ip"></a>5.如何在后续查看provider的ip</h2><p><strong>解决方案：</strong></p>
+<p>修改provider和consumer的代码</p>
+<p>核心修改处：</p>
+<ol>
+<li>public class UserServiceImpl implements UserService {</li>
+<li></li>
+<li>public User getUser(Long id) {</li>
+<li>InetAddress addr &#x3D; null;</li>
+<li>String add &#x3D;”404”;</li>
+<li>try {</li>
+<li>addr &#x3D; InetAddress.getLocalHost();</li>
+<li>add &#x3D; addr.getHostAddress();</li>
+<li>} catch (UnknownHostException e) {</li>
+<li>e.printStackTrace();</li>
+<li>}</li>
+<li>System.out.println(“add &#x3D; “ + add);</li>
+<li>return new User(id, “当前ip” + add);</li>
+<li>}</li>
+<li>}</li>
+</ol>
+<h2 id="6-端口问题"><a href="#6-端口问题" class="headerlink" title="6.端口问题"></a>6.端口问题</h2><p>由于我在服务器中已经部署jenkins启动了8080端口</p>
+<p><strong>解决方法：</strong>所以我将provider等端口都避开8080端口</p>
+<h1 id="对整门实验课程有何意见或建议。"><a href="#对整门实验课程有何意见或建议。" class="headerlink" title="对整门实验课程有何意见或建议。"></a>对整门实验课程有何意见或建议。</h1><h2 id="四个实验的设计以及对应的实验指导书的建议"><a href="#四个实验的设计以及对应的实验指导书的建议" class="headerlink" title="四个实验的设计以及对应的实验指导书的建议"></a>四个实验的设计以及对应的实验指导书的建议</h2><h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><ul>
+<li>lab1中部分的原理和机制，比如说Apache CXF</li>
+</ul>
+<p>因为时间问题可能有些无法适应现在的情况，并且在以后的工作中可能也使用和接触的机会较少。</p>
+<p>而且lab1完成之后，对于tomcat的机制或者说如何去使用tomcat，其实整个流程下来收获并不是很大。</p>
+<p>我认为比如说lab1换成学习和利用tomcat去发布一个helloworld的war包可能会比较合适，能够让同学们接触到tomcat的一些机制及原理。</p>
+<p>以及lab1中的spring+tomcat内容也可以换成springboot，因为现在的大类招生以及通识化教育，软工专业的同学没有很好的JavaWeb基础，在经过lab1之后也未必能了解到spring的内容。我认为如果改为让同学们自行新建一个springboot项目，实现最基础的hello_world或简单的增删改查，收获可能会更大一些。毕竟springboot算比spring更主流，并且更适合入门，尽管科班应该系统性地学习spring，但是可能光凭一次实验或者理论讲解可能有所欠缺</p>
+<ul>
+<li>lab2与lab4内容如果可以的话，我认为可以不用限定dubbo的版本</li>
+</ul>
+<p>lab2指导书提供的是老版的dubbo，安装老版的dubbo以及一些配置是比较繁琐且实际性价比个人感觉较低。或许可以换成让同学们自行参考github中的官网教程来安装dubbo，这样既可以跟上新版本进行接轨，并且还能锻炼从官网自学安装配置的能力</p>
+<h3 id="实验指导书"><a href="#实验指导书" class="headerlink" title="实验指导书"></a>实验指导书</h3><p>lab1，lab2的实验指导书已经有不少因为版本过时问题导致配置出错，实验指导书我认为已经可以定期更新一下，因为很多时候刚入门的同学可能遇上这些问题会花费很多时间去纠结这样一些小问题。</p>
+<p>我在想，能不能鼓励每一届同学们根据自己实验后的经验对指导书留下一些修改建议，然后再由助教老师们收集整理，然后根据这些改动去修改实验指导书，这样就能很方便地一届一届不断更新指导书，也以便于下一届同学收到改进后的实验书。</p>
+<h2 id="前置知识的问题"><a href="#前置知识的问题" class="headerlink" title="前置知识的问题"></a>前置知识的问题</h2><p>因为20届属于大类招生，大一大二对于软工专业课个人感觉太少了，从自己的感受上来看，无论是之前的软件构造还是现在的面向服务的软件系统，如果自己在上课之前没有做过项目或者没有一些基础的Java项目知识springboot等知识，就不能切身体会到一些重点.就个人感受，在自己学习过前后端内容和java之后，写过一些代码之后，再去回看教过的知识，才会发现受益匪浅，而自己在没有学习之前，总是无法理解含义。</p>
+<p>比如说本课程在介绍面向服务的架构，淘宝技术的演进这一节课的内容中，结合了自己从JavaWeb，JDBC一直到springcloud的知识感受很深，觉得理清了自己之前学习的思路，相当于对以前学过的知识做了一次彻底总结。但是如果自己之前从来没有接触过这些知识，也许会一头雾水。</p>
+<p>因此，我希望能够多加入一些前置知识的内容教学，比如说快速上手springboot，springcloud之类的。除了大作业和实验之外，适当的加入一些代码作业任务也是可以的我感觉。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/shizhuofan.GitHub.io/categories/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="category-chain-item">面向服务的软件系统</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/shizhuofan.GitHub.io/tags/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/">#面向服务的软件系统</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>《面向服务的软件系统》实验四：微服务综合实验</div>
+      <div>http://yoursite.com/2023/04/21/面向服务实验四-120L021011-石卓凡-实验报告/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fars</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%AE%9E%E9%AA%8C%E4%BA%8C-120L021011-%E7%9F%B3%E5%8D%93%E5%87%A1/" title="《面向服务的软件系统》实验二：Dubbo环境搭建与服务部署">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">《面向服务的软件系统》实验二：Dubbo环境搭建与服务部署</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F-%E5%AE%9E%E9%AA%8C%E4%B8%80%E6%8A%A5%E5%91%8A/" title="面向服务的软件系统实验一">
+                        <span class="hidden-mobile">面向服务的软件系统实验一</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

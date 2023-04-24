@@ -16,26 +16,26 @@
   <meta name="author" content="Fars">
   <meta name="keywords" content="">
   
-    <meta name="description" content="易错点在yml中某个具体属性值前面要空格！！！  application:   name:  （这里要空格）orderservice 小心这个配置  这个Data Id需要带后缀.yaml 是.yaml不是.yml  同源与跨域 远程调用RestTemplate注册中心Eureka   负载均衡合理分配任务，保证所有后端服务器都将性能充分发挥，从而保持服务器集群的整体性能最优，这就是负载均衡问题">
+    <meta name="description" content="易错点在yml中某个具体属性值前面要空格！！！  application:   name:  （这里要空格）orderservice 小心这个配置  这个Data Id需要带后缀.yaml 是.yaml不是.yml  同源与跨域 同源：协议，端口，域名都得一样！！！！才叫同源 远程调用RestTemplate​	我评价不好用 注册中心Eureka   负载均衡合理分配任务，保证所有后端服务器都将性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sprigcloud个人学习笔记">
 <meta property="og:url" content="http://yoursite.com/2023/04/21/SpringCloud/index.html">
 <meta property="og:site_name" content="Fars&#39;Blog">
-<meta property="og:description" content="易错点在yml中某个具体属性值前面要空格！！！  application:   name:  （这里要空格）orderservice 小心这个配置  这个Data Id需要带后缀.yaml 是.yaml不是.yml  同源与跨域 远程调用RestTemplate注册中心Eureka   负载均衡合理分配任务，保证所有后端服务器都将性能充分发挥，从而保持服务器集群的整体性能最优，这就是负载均衡问题">
+<meta property="og:description" content="易错点在yml中某个具体属性值前面要空格！！！  application:   name:  （这里要空格）orderservice 小心这个配置  这个Data Id需要带后缀.yaml 是.yaml不是.yml  同源与跨域 同源：协议，端口，域名都得一样！！！！才叫同源 远程调用RestTemplate​	我评价不好用 注册中心Eureka   负载均衡合理分配任务，保证所有后端服务器都将性">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220831203412409.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242356283.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220831211715567.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220901102506106.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220829214241081.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220829214326675.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220829214403631.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220829215026960.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220830110854507.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242357302.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242358428.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242358670.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242358705.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242358960.png">
 <meta property="article:published_time" content="2023-04-21T03:42:26.000Z">
-<meta property="article:modified_time" content="2023-04-21T03:44:15.596Z">
+<meta property="article:modified_time" content="2023-04-24T15:59:35.312Z">
 <meta property="article:author" content="Fars">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220831203412409.png">
+<meta name="twitter:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242356283.png">
   
   
   
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          185 字
+          276 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -282,21 +282,24 @@
             
               <div class="markdown-body">
                 
-                <h1 id="易错点"><a href="#易错点" class="headerlink" title="易错点"></a>易错点</h1><p>在yml中某个具体属性值前面要空格！！！</p>
+                <h1 id="易错点"><a href="#易错点" class="headerlink" title="易错点"></a>易错点</h1><p><strong>在yml中某个具体属性值前面要空格！！！</strong></p>
 <p> application:</p>
 <p>  name:  <strong>（这里要空格）</strong>orderservice</p>
 <p>小心这个配置</p>
-<p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220831203412409.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220831203412409"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242356283.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220831203412409"></p>
 <p>这个Data Id需要带后缀.yaml</p>
 <p><strong>是.yaml不是.yml</strong></p>
 <p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220831211715567.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220831211715567"></p>
 <h1 id="同源与跨域"><a href="#同源与跨域" class="headerlink" title="同源与跨域"></a>同源与跨域</h1><p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220901102506106.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220901102506106"></p>
-<h1 id="远程调用"><a href="#远程调用" class="headerlink" title="远程调用"></a>远程调用</h1><h2 id="RestTemplate"><a href="#RestTemplate" class="headerlink" title="RestTemplate"></a>RestTemplate</h2><h1 id="注册中心Eureka"><a href="#注册中心Eureka" class="headerlink" title="注册中心Eureka"></a>注册中心Eureka</h1><p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220829214241081.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220829214241081"></p>
-<p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220829214326675.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220829214326675"></p>
-<p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220829214403631.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220829214403631"></p>
+<p><strong>同源</strong>：协议，端口，域名都得一样！！！！才叫同源</p>
+<h1 id="远程调用"><a href="#远程调用" class="headerlink" title="远程调用"></a>远程调用</h1><h2 id="RestTemplate"><a href="#RestTemplate" class="headerlink" title="RestTemplate"></a>RestTemplate</h2><p>​	我评价不好用</p>
+<h1 id="注册中心Eureka"><a href="#注册中心Eureka" class="headerlink" title="注册中心Eureka"></a>注册中心Eureka</h1><p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242357302.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220829214241081"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242358428.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220829214326675"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242358670.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220829214403631"></p>
 <h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>合理分配任务，保证所有后端服务器都将性能充分发挥，从而保持服务器集群的整体性能最优，这就是负载均衡问题</p>
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220829215026960.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220829215026960"></p>
-<p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220830110854507.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220830110854507"></p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242358705.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220829215026960"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242358960.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220830110854507">![image-2022083011085450</p>
+<h1 id="注册中心nacos"><a href="#注册中心nacos" class="headerlink" title="注册中心nacos"></a>注册中心nacos</h1><p>和eureka类似但是我更推荐Nacos，还有dubbo</p>
 
                 
               </div>
@@ -359,9 +362,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/SpringBoot/" title="SpringBoot个人学习笔记">
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/LeetCode/" title="LeetCode刷题琐碎笔记">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SpringBoot个人学习笔记</span>
+                        <span class="hidden-mobile">LeetCode刷题琐碎笔记</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -369,8 +372,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E3%80%8A%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E3%80%8B%E5%A4%A7%E4%BD%9C%E4%B8%9A/" title="《面向服务的软件系统》大作业">
-                        <span class="hidden-mobile">《面向服务的软件系统》大作业</span>
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E3%80%8A%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E3%80%8B%E5%AE%9E%E9%AA%8C2%E6%8C%87%E5%AF%BC%E4%B9%A6tips%20/" title="《面向服务的软件系统》实验2指导书tips">
+                        <span class="hidden-mobile">《面向服务的软件系统》实验2指导书tips</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

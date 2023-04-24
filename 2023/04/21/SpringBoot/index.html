@@ -16,16 +16,16 @@
   <meta name="author" content="Fars">
   <meta name="keywords" content="">
   
-    <meta name="description" content="SpringBoot1注解常用知识点@slj4加在applicaiton（） 就可以使用log.info()用于日志 @Resource按名字 @Autowired按类型 @RequestBody1public R&lt;Employee&gt; login(HttpServletRequest request,@RequestBody Employee employee)  接受前端页面传递过来">
+    <meta name="description" content="SpringBoot1注解常用知识点@slj4加在applicaiton（） 就可以使用log.info()用于日志 @Resource按名字注入 @Autowired按类型注入 @RequestBody1public R&lt;Employee&gt; login(HttpServletRequest request,@RequestBody Employee employee)  接受前端页面">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot个人学习笔记">
 <meta property="og:url" content="http://yoursite.com/2023/04/21/SpringBoot/index.html">
 <meta property="og:site_name" content="Fars&#39;Blog">
-<meta property="og:description" content="SpringBoot1注解常用知识点@slj4加在applicaiton（） 就可以使用log.info()用于日志 @Resource按名字 @Autowired按类型 @RequestBody1public R&lt;Employee&gt; login(HttpServletRequest request,@RequestBody Employee employee)  接受前端页面传递过来">
+<meta property="og:description" content="SpringBoot1注解常用知识点@slj4加在applicaiton（） 就可以使用log.info()用于日志 @Resource按名字注入 @Autowired按类型注入 @RequestBody1public R&lt;Employee&gt; login(HttpServletRequest request,@RequestBody Employee employee)  接受前端页面">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729142905658.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729145403442.png">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729135403460.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242346310.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242346436.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242347284.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/4b5b4df2651347f2b1f411749c703508.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/9b0364cae44f4c19a0c2f19f7a74948c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQmxhQ2xvdWQ=,size_18,color_FFFFFF,t_70,g_se,x_16">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220821153738660.png">
@@ -53,7 +53,6 @@
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729194603645.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729194412201.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220821145945528.png">
-<meta property="og:image" content="file:///C:/Users/86189/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220822145137197.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220822150235770.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220822150250562.png">
@@ -71,10 +70,10 @@
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220825143810519.png">
 <meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220825143910403.png">
 <meta property="article:published_time" content="2023-04-21T03:42:26.000Z">
-<meta property="article:modified_time" content="2023-04-21T03:43:53.516Z">
+<meta property="article:modified_time" content="2023-04-24T15:52:09.085Z">
 <meta property="article:author" content="Fars">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729142905658.png">
+<meta name="twitter:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242346310.png">
   
   
   
@@ -267,7 +266,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19k 字
+          22k 字
         
       </span>
     
@@ -278,7 +277,7 @@
         
         
         
-          163 分钟
+          185 分钟
         
       </span>
     
@@ -323,40 +322,75 @@
                 
                 <h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><h2 id="1注解常用知识点"><a href="#1注解常用知识点" class="headerlink" title="1注解常用知识点"></a>1注解常用知识点</h2><h4 id="slj4"><a href="#slj4" class="headerlink" title="@slj4"></a>@slj4</h4><p>加在applicaiton（）</p>
 <p>就可以使用log.info()用于日志</p>
-<h4 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h4><p>按名字</p>
-<h5 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h5><p>按类型</p>
-<h5 id="RequestBody"><a href="#RequestBody" class="headerlink" title="@RequestBody"></a>@RequestBody</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> R&lt;Employee&gt; <span class="hljs-title function_">login</span><span class="hljs-params">(HttpServletRequest request,<span class="hljs-meta">@RequestBody</span> Employee employee)</span><br></code></pre></td></tr></table></figure>
+<h4 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h4><p>按名字注入</p>
+<h4 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h4><p>按类型注入</p>
+<h4 id="RequestBody"><a href="#RequestBody" class="headerlink" title="@RequestBody"></a>@RequestBody</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> R&lt;Employee&gt; <span class="hljs-title function_">login</span><span class="hljs-params">(HttpServletRequest request,<span class="hljs-meta">@RequestBody</span> Employee employee)</span><br></code></pre></td></tr></table></figure>
 
 <p>接受前端页面传递过来的数据，根据同名字</p>
-<p>MD5加密</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">employee.set<span class="hljs-constructor">Password(DigestUtils.<span class="hljs-params">md5DigestAsHex</span>(<span class="hljs-string">&quot;123456&quot;</span>.<span class="hljs-params">getBytes</span>()</span>));<br></code></pre></td></tr></table></figure>
+<p><strong>而Body请求体只存在于POST请求</strong></p>
+<h4 id="MD5加密"><a href="#MD5加密" class="headerlink" title="MD5加密"></a>MD5加密</h4><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">employee.set<span class="hljs-constructor">Password(DigestUtils.<span class="hljs-params">md5DigestAsHex</span>(<span class="hljs-string">&quot;123456&quot;</span>.<span class="hljs-params">getBytes</span>()</span>));<br></code></pre></td></tr></table></figure>
 
 
 
-<h5 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h5><h5 id="在方法前注解"><a href="#在方法前注解" class="headerlink" title="在方法前注解"></a>在方法前注解</h5><p>让spring在需要的时候，通过自行自动调用这个方法，自行自动创建对象，</p>
-<h1 id="传统方式"><a href="#传统方式" class="headerlink" title="传统方式"></a>传统方式</h1><h3 id="针对localhost-8080-x2F-shop-page-x3D-1"><a href="#针对localhost-8080-x2F-shop-page-x3D-1" class="headerlink" title="针对localhost:8080&#x2F;shop?page&#x3D;1"></a>针对localhost:8080&#x2F;shop?page&#x3D;1</h3><p><strong>如果是通过这种<img src="/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729142905658.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220729142905658"></strong></p>
-<p><strong>传送数据参数给后端</strong></p>
+<h4 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h4><p>@Bean是放在方法的注释上了，因为它很明确地告诉被注释的方法，你给我产生一个Bean，然后交给Spring容器，剩下的你就别管了</p>
+<p>记住，@Bean就放在方法上，就是让方法去产生一个Bean，然后交给Spring容器。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>&#123;<br>       <span class="hljs-meta">@Bean</span><br>       <span class="hljs-keyword">public</span> <span class="hljs-title class_">AccountDao</span> <span class="hljs-title function_">accountDao</span>(<span class="hljs-params"></span>)&#123;<br>           <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AccountDao</span>();<br>       &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>不知道大家有没有想过，用于注册Bean的注解的有那么多个，为何还要出现@Bean注解？</p>
+<p>原因很简单：类似@Component , @Repository , @ Controller , @Service 这些注册Bean的注解存在局限性，只能局限作用于自己编写的类，如果是一个jar包第三方库要加入IOC容器的话，这些注解就手无缚鸡之力了，是的，@Bean注解就可以做到这一点！当然除了@Bean注解能做到还有@Import也能把第三方库中的类实例交给spring管理，而且@Import更加方便快捷，只是@Import注解并不在本篇范围内，这里就不再概述。</p>
+<p>使用@Bean注解的另一个好处就是能够动态获取一个Bean对象，能够根据环境不同得到不同的Bean对象<br>————————————————<br>版权声明：本文为CSDN博主「宜春」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44543508/article/details/103718958">https://blog.csdn.net/qq_44543508/article/details/103718958</a></p>
+<h4 id="在方法前注解"><a href="#在方法前注解" class="headerlink" title="在方法前注解"></a>在方法前注解</h4><p>让spring在需要的时候，通过自行自动调用这个方法，自行自动创建对象，</p>
+<h3 id="Spring注解的理解"><a href="#Spring注解的理解" class="headerlink" title="Spring注解的理解"></a>Spring注解的理解</h3><p>参考链接： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44543508/article/details/103718958">https://blog.csdn.net/qq_44543508/article/details/103718958</a></p>
+<p>一类注解是用于注册Bean比如@Component , @Repository , @ Controller , @Service , @Configration</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">假如IOC容器就是一间空屋子，首先这间空屋子啥都没有，我们要吃大餐，我们就要从外部搬运食材和餐具进来。这里把某一样食材或者某一样餐具搬进空屋子的操作就相当于每个注册Bean的注解作用类似。注册Bean的注解作用就是往IOC容器中放（注册）东西！<br>用于注册Bean的注解： 比如@Component , @Repository , @ Controller , @Service , @Configration这些注解就是用于注册Bean，放进IOC容器中，一来交给spring管理方便解耦，二来还可以进行二次使用，啥是二次使用呢？这里的二次使用可以理解为：在你开始从外部搬运食材和餐具进空屋子的时候，一次性搬运了猪肉、羊肉、铁勺、筷子四样东西，这个时候你要开始吃大餐，首先你吃东西的时候肯定要用筷子或者铁勺，别说你手抓，只要你需要，你就会去找，这个时候发现你已经把筷子或者铁勺放进了屋子，你就不用再去外部拿筷子进屋子了，意思就是IOC容器中已经存在，就可以只要拿去用，而不必再去注册！而拿屋子里已有的东西的操作就是下面要讲的用于使用Bean的注解！<br>————————————————<br>版权声明：本文为CSDN博主「宜春」的原创文章，遵循CC <span class="hljs-number">4.0</span> BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：https:<span class="hljs-regexp">//</span>blog.csdn.net<span class="hljs-regexp">/qq_44543508/</span>article<span class="hljs-regexp">/details/</span><span class="hljs-number">103718958</span><br></code></pre></td></tr></table></figure>
+
+<p>一类注解是用于使用Bean</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs aspectj">用于使用Bean的注解：比如<span class="hljs-meta">@Autowired</span> , <span class="hljs-meta">@Resource</span>注解，这些注解就是把屋子里的东西自己拿来用，如果你要拿，前提一定是屋子（IOC）里有的，不然就会报错<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="接口方法接收前端传入参数"><a href="#接口方法接收前端传入参数" class="headerlink" title="接口方法接收前端传入参数"></a>接口方法接收前端传入参数</h1><h2 id="传统方式—针对localhost-8080-x2F-shop-page-x3D-1"><a href="#传统方式—针对localhost-8080-x2F-shop-page-x3D-1" class="headerlink" title="传统方式—针对localhost:8080&#x2F;shop?page&#x3D;1"></a>传统方式—针对localhost:8080&#x2F;shop?page&#x3D;1</h2><p>*如果是通过这种传送数据参数给后端</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242346310.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230424234625955"></p>
 <p>用的是@RequestParam</p>
-<p>如果省略了也是默认@RequestParam</p>
-<p>所以则可以直接（int page,int pageSize)即可</p>
+<p>如果省略了也是默认@RequestParam，所以则可以直接（int page,int pageSize)即可</p>
 <p><strong>接口方法参数不使用任何注释</strong>:这其实也是默认使用的是Request.getParameter() 方法对参数进行获取的,只是没有显示使用@RequestParam而已,</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@GetMapping(&quot;/page&quot;)</span><br><span class="hljs-keyword">public</span> R&lt;Page&gt; <span class="hljs-title function_">page</span><span class="hljs-params">(<span class="hljs-type">int</span> page, <span class="hljs-type">int</span> pageSize, String name)</span><br></code></pre></td></tr></table></figure>
 
 <p>也可以用@RequestParam</p>
-<h1 id="RESTFUL格式"><a href="#RESTFUL格式" class="headerlink" title="RESTFUL格式"></a>RESTFUL格式</h1><h3 id="针对localhost-8080-x2F-10048"><a href="#针对localhost-8080-x2F-10048" class="headerlink" title="针对localhost:8080&#x2F;10048"></a>针对localhost:8080&#x2F;10048</h3><p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729145403442.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220729145403442"></p>
-<p>这样的加个@GetMapping(“&#x2F;{id}”)   @PathVariable也行</p>
-<h1 id="JSON方式"><a href="#JSON方式" class="headerlink" title="JSON方式"></a>JSON方式</h1><p>​	加@RequestBody</p>
-<h1 id="只有管理员（admin）才能看到启用，禁用按钮？非管理员看不见该按钮"><a href="#只有管理员（admin）才能看到启用，禁用按钮？非管理员看不见该按钮" class="headerlink" title="只有管理员（admin）才能看到启用，禁用按钮？非管理员看不见该按钮"></a>只有管理员（admin）才能看到启用，禁用按钮？非管理员看不见该按钮</h1><h4 id="下面是代码展示-lt-v-if-gt-lt-gt"><a href="#下面是代码展示-lt-v-if-gt-lt-gt" class="headerlink" title="下面是代码展示&lt;   v-if&gt;&lt;&gt;"></a>下面是代码展示&lt;   v-if&gt;&lt;&gt;</h4><p v-if="IfEmpty">出现</p>
+<h2 id="RESTFUL格式—-针对localhost-8080-x2F-10048"><a href="#RESTFUL格式—-针对localhost-8080-x2F-10048" class="headerlink" title="RESTFUL格式—-针对localhost:8080&#x2F;10048"></a>RESTFUL格式—-针对localhost:8080&#x2F;10048</h2><p>这样的加个@GetMapping(“&#x2F;{id}”)   @PathVariable也行</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242346436.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230424234642164"></p>
+<h2 id="JSON方式—-针对POST方法的请求体"><a href="#JSON方式—-针对POST方法的请求体" class="headerlink" title="JSON方式—-针对POST方法的请求体"></a>JSON方式—-针对POST方法的请求体</h2><p>​	加@RequestBody</p>
+<h1 id="只有管理员（admin）才能看到启用，禁用按钮？非管理员看不见该按钮"><a href="#只有管理员（admin）才能看到启用，禁用按钮？非管理员看不见该按钮" class="headerlink" title="只有管理员（admin）才能看到启用，禁用按钮？非管理员看不见该按钮"></a>只有管理员（admin）才能看到启用，禁用按钮？非管理员看不见该按钮</h1><h4 id="下面是代码展示-lt-v-if-gt-lt-gt"><a href="#下面是代码展示-lt-v-if-gt-lt-gt" class="headerlink" title="下面是代码展示&lt;   v-if&gt;&lt;&gt;"></a>下面是代码展示&lt;   v-if&gt;&lt;&gt;</h4><p><strong>可以利用v-if完成要求</strong></p>
+<p v-if="IfEmpty">出现</p>
 
-<p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729135403460.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220729135403460"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304242347284.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230424234710060"></p>
 <p><strong>从userInfo中取出username，并赋值给user模型数据</strong><br><img src="https://img-blog.csdnimg.cn/4b5b4df2651347f2b1f411749c703508.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>判断模型数据user的值是否等于admin，若等于则显示按钮</strong><br><img src="https://img-blog.csdnimg.cn/9b0364cae44f4c19a0c2f19f7a74948c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQmxhQ2xvdWQ=,size_18,color_FFFFFF,t_70,g_se,x_16" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <h2 id="当maven无法下载源代码时候执行"><a href="#当maven无法下载源代码时候执行" class="headerlink" title="当maven无法下载源代码时候执行"></a><strong>当maven无法下载源代码时候执行</strong></h2><p>【检查方式<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=maven&spm=1001.2101.3001.7020">maven</a>正确情况下，再执行本步骤】则在项目下，项目根目录下 或 pom.xml同级目录中执行</p>
 <p><strong>mvn dependency:resolve -Dclassifier&#x3D;sources</strong></p>
-<h2 id="2-servlet-session-request-application"><a href="#2-servlet-session-request-application" class="headerlink" title="2.servlet,session,request,application"></a>2.servlet,session,request,application</h2><p>session是一个客户端</p>
-<h2 id="3-springboot整合mybatis"><a href="#3-springboot整合mybatis" class="headerlink" title="3.springboot整合mybatis"></a>3.springboot整合mybatis</h2><p>1.勾选mybatis，mysql</p>
-<ol start="2">
-<li></li>
+<p><strong>可能原因2：网络问题</strong></p>
+<p>1.没换源且没魔法上网</p>
+<p>2.换了源又魔法上网</p>
+<h2 id="2-servlet-session-request-application"><a href="#2-servlet-session-request-application" class="headerlink" title="2.servlet,session,request,application"></a>2.servlet,session,request,application</h2><ol>
+<li><h4 id="request"><a href="#request" class="headerlink" title="request"></a><strong>request</strong></h4></li>
 </ol>
+<p>  request是表示一个请求，只要发出一个请求就会创建一个request，它的作用域：仅在当前请求中有效。</p>
+<p>用处：常用于服务器间同一请求不同页面之间的参数传递，常应用于表单的控件值传递。</p>
+<p>方法：request.setAttribute(); request.getAttribute(); request.removeAttribute(); request.getParameter().</p>
+<ol start="2">
+<li><h4 id="session"><a href="#session" class="headerlink" title="session"></a>session</h4></li>
+</ol>
+<p>  服务器会为每个会话创建一个session对象，所以session中的数据可供当前会话中所有servlet共享。</p>
+<p>会话：用户打开浏览器会话开始，直到关闭浏览器会话才会结束。一次会话期间只会创建一个session对象。</p>
+<p>用处：常用于web开发中的登陆验证界面（当用户登录成功后浏览器分配其一个session键值对）。</p>
+<p>方法：session.setAttribute(); session.getAttribute(); session.removeAttribute();</p>
+<p>获得session对象方法：</p>
+<p>在Servlet中：HttpSession session &#x3D; request.getSession();<br>由于session属于jsp九大内置对象之一，当然可以直接使用。例如：&lt;%session.serAttribute(“name”,“admin”)%&gt;。<br>session被销毁<br>1)session超时;<br>2)客户端关闭后，再也访问不到和该客户端对应的session了，它会在超时之后被销毁;<br>3)调用session. invalidate();<br>备注： session是服务器端对象，保存在服务器端。并且服务器可以将创建session后产生的sessionid通过一个cookie返回给客户端，以便下次验证。（session底层依赖于cookie）</p>
+<ol start="3">
+<li><h4 id="Application（ServletContext）"><a href="#Application（ServletContext）" class="headerlink" title="Application（ServletContext）"></a>Application（ServletContext）</h4></li>
+</ol>
+<p>  作用范围：所有的用户都可以取得此信息，此信息在整个服务器上被保留。Application属性范围值，只要设置一次，则所有的网页窗口都可以取得数据。ServletContext在服务器启动时创建，在服务器关闭时销毁，一个JavaWeb应用只创建一个ServletContext对象，所有的客户端在访问服务器时都共享同一个ServletContext对象;ServletContext对象一般用于在多个客户端间共享数据时使用;<br>  ————————————————<br>  版权声明：本文为CSDN博主「之前我没得选，现在我想做个好人」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>  原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43368645/article/details/114382818">https://blog.csdn.net/qq_43368645/article/details/114382818</a></p>
 <h2 id="4-spring整合mybatis-plus"><a href="#4-spring整合mybatis-plus" class="headerlink" title="4.spring整合mybatis-plus"></a>4.spring整合mybatis-plus</h2><p>1.勾选mysql，然后手动pom添加（因为目前还没有更新）</p>
 <pre><code class="hljs">&lt;dependency&gt;
     &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
@@ -610,8 +644,7 @@ public R&lt;Page&gt; page(int page,int pageSize,String name)&#123;
 <p>ThreadLocal就是在一个线程中用于保存的局部变量</p>
 <p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220729194412201.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220729194412201"></p>
 <p><img src="/shizhuofan.GitHub.io/2023/04/21/SpringBoot/Users/86189/AppData/Roaming/Typora/typora-user-images/image-20220821145945528.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20220821145945528"></p>
-<h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h2 id="IOC控制反转"><a href="#IOC控制反转" class="headerlink" title="IOC控制反转"></a>IOC控制反转</h2><p><img src="file:///C:/Users/86189/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="21  2 3  2 6  2 8  2 9  3 0  20 ， 3 ． 什 么 是 IOC  控 制 反 转 loC(1nversion of control) 是 一 个 概 念 ， 是 一 种 思 想 。 由 spring 容 器 进 行 对 象 的 创 建 和 依 赖 注 入 ， 程 序 员 在 使 用 时 直 接 取 出 使  用 ．  正 转 ： 由 程 序 员 进 行 对 象 的 创 建 和 依 赖 注 入 称 为 正 转 ． 程 序 员 说 了 算 ．  Student Stu  new Student() ；  stu.setName(&quot;%k-±i&quot;) ，  stu.setAge(22);  = &gt; 程 序 员 创 建 对 象  程 序 员 进 行 赋 值  反 转 ： 由 spring 容 器 创 建 对 象 和 依 赖 注 入 称 为 反 转 ， 将 控 制 权 从 程 序 员 手 中 夺 走 ， 由 给 spr 土 ng 容 器 ， 称 为 反 转 ．  &lt;bean id=&quot;stu&quot; class=.com/bjpowernode.pojo.student&quot;&gt;  &lt;property name=&quot; name &quot; value=&quot; 弓 长 三 ． &quot; &gt;  &lt;property name=&quot; age &quot; value=&quot; 22 &quot; &gt;  &lt;/bean&gt;  ： ： ： &gt; spr 主 ng 容 器 负 责 对 象 的 创 建  ===&gt;spring 容 器 依 赖 注 入 值 "></p>
-<h2 id="Favicon-ico是自动成为网页图标"><a href="#Favicon-ico是自动成为网页图标" class="headerlink" title="Favicon.ico是自动成为网页图标"></a>Favicon.ico是自动成为网页图标</h2><h2 id="RestController-x3D-Contreller-Responsebody"><a href="#RestController-x3D-Contreller-Responsebody" class="headerlink" title="@RestController&#x3D;@Contreller+@Responsebody"></a>@RestController&#x3D;@Contreller+@Responsebody</h2><p> <code>@ResponseBody</code> 注解是将返回的数据结构转换为 Json 格式</p>
+<h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h2 id="Favicon-ico是自动成为网页图标"><a href="#Favicon-ico是自动成为网页图标" class="headerlink" title="Favicon.ico是自动成为网页图标"></a>Favicon.ico是自动成为网页图标</h2><h2 id="RestController-x3D-Contreller-Responsebody"><a href="#RestController-x3D-Contreller-Responsebody" class="headerlink" title="@RestController&#x3D;@Contreller+@Responsebody"></a>@RestController&#x3D;@Contreller+@Responsebody</h2><p> <code>@ResponseBody</code> 注解是将返回的数据结构转换为 Json 格式</p>
 <p>所以@RestContreller也可以使得返回Json格式数据</p>
 <h2 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h2><p>后端java对象     《—-》前端Json</p>
 <p><code>SpringBoot处理JSON数据时，需要用到两个重要的JSON转换注解，分别是@RequestBody和@ResponseBody。</code><br><code>@RequestBody:将请求主体的数据绑定到形参上，该注解应用在方法的形参上</code><br><code>@ResponseBody:直接返回Json对象，该注解应用在方法上。</code></p>
@@ -920,9 +953,9 @@ public R&lt;String&gt; upload(MultipartFile file)&#123;
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/LeetCode/" title="LeetCode刷题琐碎笔记">
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E3%80%8A%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E3%80%8B%E5%A4%A7%E4%BD%9C%E4%B8%9A/" title="《面向服务的软件系统》大作业">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode刷题琐碎笔记</span>
+                        <span class="hidden-mobile">《面向服务的软件系统》大作业</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -930,8 +963,8 @@ public R&lt;String&gt; upload(MultipartFile file)&#123;
                   <article class="post-next col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/SpringCloud/" title="Sprigcloud个人学习笔记">
-                        <span class="hidden-mobile">Sprigcloud个人学习笔记</span>
+                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/" title="校园点评-个人日志">
+                        <span class="hidden-mobile">校园点评-个人日志</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

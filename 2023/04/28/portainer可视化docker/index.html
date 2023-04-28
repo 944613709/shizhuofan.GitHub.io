@@ -16,24 +16,27 @@
   <meta name="author" content="Fars">
   <meta name="keywords" content="">
   
-    <meta name="description" content="校园点评项目中间件及数据库启动项目以及快速复习参考：鱼皮笔记：https:&#x2F;&#x2F;bcdh.yuque.com&#x2F;staff-wpxfif&#x2F;resource&#x2F;vwcn5s#cEfva 1.mysql用8.0 2.redis用docker desktop 数据库名字叫hitdp _redis没有密码   3，nginx位于hitdp里面  待办：  改掉项目名字，我目前只改了数据库名字hitdp">
+    <meta name="description" content="[TOC] 也是今天无意中发现的Portainer 之前采用的1panel和宝塔做运维可视化 现在换成docker+Portainer 宝塔和1panel和portranier对比宝塔广告太多，而且不适合深入了解运维技术 1panel个人感觉无广告颜值很高，但是还是有局限，不适合深入了解运维技术 如果是后期了解了运维和docker的话，我推荐portainer 参考Docker可视化工具——Por">
 <meta property="og:type" content="article">
-<meta property="og:title" content="校园点评-个人日志">
-<meta property="og:url" content="http://yoursite.com/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:title" content="portainer可视化docker">
+<meta property="og:url" content="http://yoursite.com/2023/04/28/portainer%E5%8F%AF%E8%A7%86%E5%8C%96docker/index.html">
 <meta property="og:site_name" content="Fars&#39;Blog">
-<meta property="og:description" content="校园点评项目中间件及数据库启动项目以及快速复习参考：鱼皮笔记：https:&#x2F;&#x2F;bcdh.yuque.com&#x2F;staff-wpxfif&#x2F;resource&#x2F;vwcn5s#cEfva 1.mysql用8.0 2.redis用docker desktop 数据库名字叫hitdp _redis没有密码   3，nginx位于hitdp里面  待办：  改掉项目名字，我目前只改了数据库名字hitdp">
+<meta property="og:description" content="[TOC] 也是今天无意中发现的Portainer 之前采用的1panel和宝塔做运维可视化 现在换成docker+Portainer 宝塔和1panel和portranier对比宝塔广告太多，而且不适合深入了解运维技术 1panel个人感觉无广告颜值很高，但是还是有局限，不适合深入了解运维技术 如果是后期了解了运维和docker的话，我推荐portainer 参考Docker可视化工具——Por">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/image-20230414112351015.png">
-<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304211135667.png">
-<meta property="article:published_time" content="2023-04-21T03:42:26.000Z">
-<meta property="article:modified_time" content="2023-04-21T03:48:57.793Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/1781a70f6c5e4c3d80e02f197041686a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/dffe82c95eac4dca9d2e14f206f9f2a2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2a2245e8bf474ed4b6e9a79a18fa4ff4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c5d7f87e5b094285b601dfb377accb27.png">
+<meta property="article:published_time" content="2023-04-28T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-04-28T03:20:36.991Z">
 <meta property="article:author" content="Fars">
+<meta property="article:tag" content="运维">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/image-20230414112351015.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/1781a70f6c5e4c3d80e02f197041686a.png">
   
   
   
-  <title>校园点评-个人日志 - Fars&#39;Blog</title>
+  <title>portainer可视化docker - Fars&#39;Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="校园点评-个人日志"></span>
+            <span id="subtitle" data-typed-text="portainer可视化docker"></span>
           
         </div>
 
@@ -210,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-21 11:42" pubdate>
-          2023年4月21日 中午
+        <time datetime="2023-04-28 11:42" pubdate>
+          2023年4月28日 中午
         </time>
       </span>
     
@@ -222,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          183 字
+          722 字
         
       </span>
     
@@ -233,7 +236,7 @@
         
         
         
-          2 分钟
+          7 分钟
         
       </span>
     
@@ -271,23 +274,31 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">校园点评-个人日志</h1>
+            <h1 style="display: none">portainer可视化docker</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="校园点评项目中间件及数据库"><a href="#校园点评项目中间件及数据库" class="headerlink" title="校园点评项目中间件及数据库"></a>校园点评项目中间件及数据库</h1><p>启动项目以及快速复习参考：鱼皮笔记：<a target="_blank" rel="noopener" href="https://bcdh.yuque.com/staff-wpxfif/resource/vwcn5s#cEfva">https://bcdh.yuque.com/staff-wpxfif/resource/vwcn5s#cEfva</a></p>
-<p>1.mysql用8.0</p>
-<p>2.redis用docker desktop</p>
-<p>数据库名字叫hitdp</p>
-<p>_redis没有密码</p>
-<img src="/shizhuofan.GitHub.io/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/image-20230414112351015.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230414112351015">
+                <p>[TOC]</p>
+<p>也是今天无意中发现的Portainer</p>
+<p>之前采用的1panel和宝塔做运维可视化</p>
+<p>现在换成docker+Portainer</p>
+<h3 id="宝塔和1panel和portranier对比"><a href="#宝塔和1panel和portranier对比" class="headerlink" title="宝塔和1panel和portranier对比"></a>宝塔和1panel和portranier对比</h3><p>宝塔广告太多，而且不适合深入了解运维技术</p>
+<p>1panel个人感觉无广告颜值很高，但是还是有局限，不适合深入了解运维技术</p>
+<p>如果是后期了解了运维和docker的话，我推荐portainer</p>
+<p>参考<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1866869">Docker可视化工具——Portainer全解 - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+<p><strong>1.在本机的wsl的ubuntu执行安装命令</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#通过命令安装 Portainer</span><br><br>docker volume create portainer_data<br>docker run -d -p <span class="hljs-number">9000</span>:<span class="hljs-number">9000</span> -v <span class="hljs-regexp">/var/</span>run<span class="hljs-regexp">/docker.sock:/</span>var<span class="hljs-regexp">/run/</span>docker.sock -v portainer_data:<span class="hljs-regexp">/data portainer/</span>portainer<br>cd <span class="hljs-regexp">/usr/</span>libexec<span class="hljs-regexp">/docker/</span><br>sudo ln -s docker-runc-current docker-runc<br></code></pre></td></tr></table></figure>
 
-<p>3，nginx位于hitdp里面</p>
-<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304211135667.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230421113506598"></p>
-<h1 id="待办："><a href="#待办：" class="headerlink" title="待办："></a>待办：</h1><ul>
-<li><input disabled type="checkbox"> 改掉项目名字，我目前只改了数据库名字hitdp</li>
-</ul>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<p>可以在win上面的dockerdesktop发现 启动了一个docker容器<img src="https://img-blog.csdnimg.cn/1781a70f6c5e4c3d80e02f197041686a.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="点击并拖拽以移动">编辑</p>
+<p><strong>2.通过本地浏览器访问：*http:&#x2F;&#x2F;服务器公网IP:9000*， 直接进入 Portainer 界面</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/dffe82c95eac4dca9d2e14f206f9f2a2.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="点击并拖拽以移动">编辑</p>
+<p>可以发现wsl上的docker容器都是  win下面dockerDesktop的docker</p>
+<p><strong>这俩玩意其实就是dockerDesktop把你的win下的wsl的docker可视化了</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/2a2245e8bf474ed4b6e9a79a18fa4ff4.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/c5d7f87e5b094285b601dfb377accb27.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="点击并拖拽以移动">编辑</p>
+<h3 id="wsl与docker-Desktop互通"><a href="#wsl与docker-Desktop互通" class="headerlink" title="wsl与docker Desktop互通"></a>wsl与docker Desktop互通</h3><p>实际上docker Desktop也就是跑了一个wsl，然后在这个wsl运行docker</p>
 
                 
               </div>
@@ -296,6 +307,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/shizhuofan.GitHub.io/categories/%E8%BF%90%E7%BB%B4/" class="category-chain-item">运维</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/shizhuofan.GitHub.io/tags/%E8%BF%90%E7%BB%B4/">#运维</a>
+      
+    </div>
   
 </div>
 
@@ -305,8 +344,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>校园点评-个人日志</div>
-      <div>http://yoursite.com/2023/04/21/校园点评项目/</div>
+      <div>portainer可视化docker</div>
+      <div>http://yoursite.com/2023/04/28/portainer可视化docker/</div>
     </div>
     <div class="license-meta">
       
@@ -318,7 +357,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月21日</div>
+          <div>2023年4月28日</div>
         </div>
       
       
@@ -350,9 +389,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/" title="论文笔记">
+                      <a href="/shizhuofan.GitHub.io/2023/04/28/long%E5%92%8CLong/" title="long和Long">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">论文笔记</span>
+                        <span class="hidden-mobile">long和Long</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -360,8 +399,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E8%AE%A1%E7%BD%91%E9%A2%98%E7%9B%AE/" title="计网题目笔记">
-                        <span class="hidden-mobile">计网题目笔记</span>
+                      <a href="/shizhuofan.GitHub.io/2023/04/28/%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F&amp;&amp;%E8%B4%A5%E8%80%85%E6%A0%91&amp;&amp;k%E8%B7%AF%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" title="外部排序&amp;&amp;败者树&amp;&amp;k路归并排序">
+                        <span class="hidden-mobile">外部排序&amp;&amp;败者树&amp;&amp;k路归并排序</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

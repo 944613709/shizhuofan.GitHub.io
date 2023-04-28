@@ -16,24 +16,22 @@
   <meta name="author" content="Fars">
   <meta name="keywords" content="">
   
-    <meta name="description" content="校园点评项目中间件及数据库启动项目以及快速复习参考：鱼皮笔记：https:&#x2F;&#x2F;bcdh.yuque.com&#x2F;staff-wpxfif&#x2F;resource&#x2F;vwcn5s#cEfva 1.mysql用8.0 2.redis用docker desktop 数据库名字叫hitdp _redis没有密码   3，nginx位于hitdp里面  待办：  改掉项目名字，我目前只改了数据库名字hitdp">
+    <meta name="description" content="[TOC] 参考：Java——你知道long和Long有什么区别吗？_long long 区别_刘水镜的博客-CSDN博客 java的数据类型：   基本类型 包装类    long Long   int Integer   byte Byte   float Float   double Double   在java中有时候的运算必须是两个类对象之间进行的，不充许对象与数字之间进行运算。所以需要">
 <meta property="og:type" content="article">
-<meta property="og:title" content="校园点评-个人日志">
-<meta property="og:url" content="http://yoursite.com/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:title" content="long和Long">
+<meta property="og:url" content="http://yoursite.com/2023/04/28/long%E5%92%8CLong/index.html">
 <meta property="og:site_name" content="Fars&#39;Blog">
-<meta property="og:description" content="校园点评项目中间件及数据库启动项目以及快速复习参考：鱼皮笔记：https:&#x2F;&#x2F;bcdh.yuque.com&#x2F;staff-wpxfif&#x2F;resource&#x2F;vwcn5s#cEfva 1.mysql用8.0 2.redis用docker desktop 数据库名字叫hitdp _redis没有密码   3，nginx位于hitdp里面  待办：  改掉项目名字，我目前只改了数据库名字hitdp">
+<meta property="og:description" content="[TOC] 参考：Java——你知道long和Long有什么区别吗？_long long 区别_刘水镜的博客-CSDN博客 java的数据类型：   基本类型 包装类    long Long   int Integer   byte Byte   float Float   double Double   在java中有时候的运算必须是两个类对象之间进行的，不充许对象与数字之间进行运算。所以需要">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/image-20230414112351015.png">
-<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304211135667.png">
-<meta property="article:published_time" content="2023-04-21T03:42:26.000Z">
-<meta property="article:modified_time" content="2023-04-21T03:48:57.793Z">
+<meta property="article:published_time" content="2023-04-28T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-04-28T03:13:10.631Z">
 <meta property="article:author" content="Fars">
+<meta property="article:tag" content="java基础">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://yoursite.com/shizhuofan.GitHub.io/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/image-20230414112351015.png">
   
   
   
-  <title>校园点评-个人日志 - Fars&#39;Blog</title>
+  <title>long和Long - Fars&#39;Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="校园点评-个人日志"></span>
+            <span id="subtitle" data-typed-text="long和Long"></span>
           
         </div>
 
@@ -210,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-21 11:42" pubdate>
-          2023年4月21日 中午
+        <time datetime="2023-04-28 11:42" pubdate>
+          2023年4月28日 中午
         </time>
       </span>
     
@@ -222,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          183 字
+          567 字
         
       </span>
     
@@ -233,7 +231,7 @@
         
         
         
-          2 分钟
+          5 分钟
         
       </span>
     
@@ -271,23 +269,54 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">校园点评-个人日志</h1>
+            <h1 style="display: none">long和Long</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="校园点评项目中间件及数据库"><a href="#校园点评项目中间件及数据库" class="headerlink" title="校园点评项目中间件及数据库"></a>校园点评项目中间件及数据库</h1><p>启动项目以及快速复习参考：鱼皮笔记：<a target="_blank" rel="noopener" href="https://bcdh.yuque.com/staff-wpxfif/resource/vwcn5s#cEfva">https://bcdh.yuque.com/staff-wpxfif/resource/vwcn5s#cEfva</a></p>
-<p>1.mysql用8.0</p>
-<p>2.redis用docker desktop</p>
-<p>数据库名字叫hitdp</p>
-<p>_redis没有密码</p>
-<img src="/shizhuofan.GitHub.io/2023/04/21/%E6%A0%A1%E5%9B%AD%E7%82%B9%E8%AF%84%E9%A1%B9%E7%9B%AE/image-20230414112351015.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload class title="image-20230414112351015">
+                <p>[TOC]</p>
+<p>参考：Java——你知道long和Long有什么区别吗？_long long 区别_刘水镜的博客-CSDN博客</p>
+<h1 id="java的数据类型："><a href="#java的数据类型：" class="headerlink" title="java的数据类型："></a>java的数据类型：</h1><table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>包装类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+</tbody></table>
+<p>在java中有时候的运算必须是两个<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%B1%BB%E5%AF%B9%E8%B1%A1&spm=1001.2101.3001.7020">类对象</a>之间进行的，不充许对象与数字之间进行运算。所以需要有一个对象，这个对象把数字进行了一下包装，这样这个对象就可以和另一个对象进行运算了。</p>
+<h1 id="long与Long的关系"><a href="#long与Long的关系" class="headerlink" title="long与Long的关系"></a>long与Long的关系</h1><p>Long就是把基础类型long包装成类</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-keyword">Long</span> &#123;<br>	<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">Long</span> (<span class="hljs-keyword">int</span> i)&#123;<br>		<span class="hljs-keyword">this</span>.i=i;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>3，nginx位于hitdp里面</p>
-<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202304211135667.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="image-20230421113506598"></p>
-<h1 id="待办："><a href="#待办：" class="headerlink" title="待办："></a>待办：</h1><ul>
-<li><input disabled type="checkbox"> 改掉项目名字，我目前只改了数据库名字hitdp</li>
-</ul>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="点击并拖拽以移动"></p>
+<h1 id="使用时的区别"><a href="#使用时的区别" class="headerlink" title="使用时的区别"></a>使用时的区别</h1><ol>
+<li>long l1 &#x3D;1;  long l2 &#x3D;1;</li>
+<li>Long lc1 &#x3D; new Long(1);   Long lc2 &#x3D; 1L;</li>
+<li>相等判断，由于long是基础类型所以可以直接l1 &#x3D;&#x3D; l2</li>
+<li>由于Long是类，所以只能lc1.equal(l2)</li>
+<li>long默认初始值0，Long默认初始值NULL</li>
+</ol>
+<p>到底是选择Long 还是long这个还得看具体环境，如果你认为这个属性不能为null,那么就用long，因为它默认初值为0，如果这个字段可以为null，那么就应该选择Long。</p>
 
                 
               </div>
@@ -296,6 +325,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/shizhuofan.GitHub.io/categories/%E9%9A%8F%E5%BF%83%E8%AE%B0/" class="category-chain-item">随心记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/shizhuofan.GitHub.io/tags/java%E5%9F%BA%E7%A1%80/">#java基础</a>
+      
+    </div>
   
 </div>
 
@@ -305,8 +362,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>校园点评-个人日志</div>
-      <div>http://yoursite.com/2023/04/21/校园点评项目/</div>
+      <div>long和Long</div>
+      <div>http://yoursite.com/2023/04/28/long和Long/</div>
     </div>
     <div class="license-meta">
       
@@ -318,7 +375,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月21日</div>
+          <div>2023年4月28日</div>
         </div>
       
       
@@ -350,18 +407,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E5%A4%A7%E4%BD%9C%E4%B8%9A%E9%80%89%E9%A2%98%E6%8A%A5%E5%91%8A_%E7%9F%B3%E5%8D%93%E5%87%A1_%E8%8B%8F%E6%B3%BD%E6%A5%B7_%E8%89%BE%E6%B0%B8%E4%BA%AE/" title="《面向服务的软件系统》大作业选题报告">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">《面向服务的软件系统》大作业选题报告</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E6%AF%8F%E6%97%A5%E8%AE%BA%E6%96%87/" title="论文笔记">
-                        <span class="hidden-mobile">论文笔记</span>
+                      <a href="/shizhuofan.GitHub.io/2023/04/28/%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F&amp;&amp;%E8%B4%A5%E8%80%85%E6%A0%91&amp;&amp;k%E8%B7%AF%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" title="外部排序&amp;&amp;败者树&amp;&amp;k路归并排序">
+                        <span class="hidden-mobile">外部排序&amp;&amp;败者树&amp;&amp;k路归并排序</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -1,0 +1,1166 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fars">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="目 录 1 作业目的与要求………………………………………………………………………………………….. 1 2 软件测试环境搭建………………………………………………………………………………………. 1 2.1 自定测试项目环境搭建………………………………………………………………………. 1 2.2 指定软件系统测试环境搭建……………………………………………………………….. 1 2.2.1 环境配置描">
+<meta property="og:type" content="article">
+<meta property="og:title" content="投票系统-软件测试报告">
+<meta property="og:url" content="http://yoursite.com/2023/05/15/%E6%8A%95%E7%A5%A8%E7%B3%BB%E7%BB%9F-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Fars&#39;Blog">
+<meta property="og:description" content="目 录 1 作业目的与要求………………………………………………………………………………………….. 1 2 软件测试环境搭建………………………………………………………………………………………. 1 2.1 自定测试项目环境搭建………………………………………………………………………. 1 2.2 指定软件系统测试环境搭建……………………………………………………………….. 1 2.2.1 环境配置描">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957558.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957562.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957568.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957562.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957592.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957350.jpg">
+<meta property="article:published_time" content="2023-05-15T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-05-15T12:03:26.001Z">
+<meta property="article:author" content="Fars">
+<meta property="article:tag" content="软件构造">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957558.jpg">
+  
+  
+  
+  <title>投票系统-软件测试报告 - Fars&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fars个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="投票系统-软件测试报告"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-15 11:42" pubdate>
+          2023年5月15日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          104 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">投票系统-软件测试报告</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>目 录</p>
+<p><a href="#_Toc5019">1 作业目的与要求………………………………………………………………………………………….. 1</a></p>
+<p><a href="#_Toc28587">2 软件测试环境搭建………………………………………………………………………………………. 1</a></p>
+<p><a href="#_Toc7059">2.1 自定测试项目环境搭建………………………………………………………………………. 1</a></p>
+<p><a href="#_Toc5567">2.2 指定软件系统测试环境搭建……………………………………………………………….. 1</a></p>
+<p><a href="#_Toc13059">2.2.1 环境配置描述………………………………………………………………………………….. 2</a></p>
+<p><a href="#_Toc26511">2.2.2 搭建过程描述………………………………………………………………………………….. 2</a></p>
+<p><a href="#_Toc21973">3 软件测试过程及结果…………………………………………………………………………………… 2</a></p>
+<p><a href="#_Toc5239">3.1 白盒测试（单元测试）………………………………………………………………………. 2</a></p>
+<p><a href="#_Toc29862">3.1.1 顺序结构程序测试…………………………………………………………………………… 2</a></p>
+<p><a href="#_Toc5767">3.1.2 分支结构程序测试…………………………………………………………………………… 5</a></p>
+<p><a href="#_Toc25992">3.1.3 循环结构程序测试…………………………………………………………………………… 9</a></p>
+<h1 id="1-作业目的与要求"><a href="#1-作业目的与要求" class="headerlink" title="1 作业目的与要求"></a>1 作业目的与要求</h1><p>（1）学习软件测试的基本方法；</p>
+<p>（2）实践软件测试的基本过程；</p>
+<p>（3）掌握单元测试、集成测试的方法；</p>
+<p>（4）掌握白盒测试和黑盒测试的基本方法；</p>
+<p>（5）学习UI的基本测评和用户体验；</p>
+<p>（6）本次作业要求主要由个人独立完成。</p>
+<h1 id="2-软件测试环境搭建"><a href="#2-软件测试环境搭建" class="headerlink" title="2 软件测试环境搭建"></a>2 软件测试环境搭建</h1><h2 id="2-1-自定测试项目环境搭建"><a href="#2-1-自定测试项目环境搭建" class="headerlink" title="2.1 自定测试项目环境搭建"></a>2.1 自定测试项目环境搭建</h2><p>l <strong>硬件环境</strong></p>
+<p>X64 CPU；2GHz；2G RAM；256GHD Disk 以上</p>
+<p>l <strong>软件环境</strong></p>
+<p>Windows7&#x2F;10 64位以上；VirtualBox&#x2F;Vmware 11以上；Ubuntu 16.04 LTS 64位&#x2F;优麒麟 64位 以上；</p>
+<p>l <strong>开发工具</strong></p>
+<p>IDEA</p>
+<p>软件构造Lab3—投票系统部分代码</p>
+<h2 id="2-2-指定软件系统测试环境搭建"><a href="#2-2-指定软件系统测试环境搭建" class="headerlink" title="2.2 指定软件系统测试环境搭建"></a>2.2 指定软件系统测试环境搭建</h2><p>l <strong>硬件环境</strong></p>
+<p>X64 CPU；2GHz；2G RAM；256GHD Disk 以上</p>
+<p>l <strong>软件环境</strong></p>
+<p>Windows7&#x2F;10 64位以上；VirtualBox&#x2F;Vmware 11以上；Ubuntu 16.04 LTS 64位&#x2F;优麒麟 64位 以上；</p>
+<p>l <strong>浏览器</strong></p>
+<p>Google浏览器</p>
+<p>l <strong>网络代理</strong></p>
+<p>EasyConnect校内网vpn</p>
+<p>l <strong>选取系统</strong></p>
+<p>哈工大统一身份认证，今日哈工大</p>
+<p><a target="_blank" rel="noopener" href="http://ids-hit-edu-cn-s.ivpn.hit.edu.cn/">http://ids-hit-edu-cn-s.ivpn.hit.edu.cn/</a></p>
+<h2 id="2-2-1-环境配置描述"><a href="#2-2-1-环境配置描述" class="headerlink" title="2.2.1 环境配置描述"></a>2.2.1 环境配置描述</h2><p>l Windows10系统</p>
+<p>l 校外网络，使用EasyConnect作为VPN转换为校园网络</p>
+<p>l Google浏览器</p>
+<h2 id="2-2-2-搭建过程描述"><a href="#2-2-2-搭建过程描述" class="headerlink" title="2.2.2 搭建过程描述"></a>2.2.2 搭建过程描述</h2><p>l 下载安装EasyConnect</p>
+<p>l 输入i.hit.edu.cn</p>
+<p>l 登录学工号和密码</p>
+<p>l 成功接入校园网VPN</p>
+<h1 id="3-软件测试过程及结果"><a href="#3-软件测试过程及结果" class="headerlink" title="3 软件测试过程及结果"></a>3 软件测试过程及结果</h1><h2 id="3-1-白盒测试（单元测试）"><a href="#3-1-白盒测试（单元测试）" class="headerlink" title="3.1 白盒测试（单元测试）"></a>3.1 白盒测试（单元测试）</h2><h2 id="3-1-1-顺序结构程序测试"><a href="#3-1-1-顺序结构程序测试" class="headerlink" title="3.1.1 顺序结构程序测试"></a>3.1.1 顺序结构程序测试</h2><p>3.1.1.1测试对象</p>
+<p><strong>源代码</strong></p>
+<p>\1.   <em>&#x2F;&#x2F;immutable</em></p>
+<p>\2.   public class VoteType {</p>
+<p>\3.    </p>
+<p>\4.    <em>&#x2F;&#x2F; key**为选项名、value为选项名对应的分数</em></p>
+<p>\5.    private Map&lt;String, Integer&gt; options &#x3D; new HashMap&lt;&gt;();</p>
+<p>\6.    </p>
+<p>\7.    <em>&#x2F;&#x2F; Rep Invariants</em></p>
+<p>\8.    <em>&#x2F;&#x2F;</em> <em>选项名key不能为””，其中不允许出现空格</em></p>
+<p>\9.    *&#x2F;&#x2F; options.size()*<em>选项个数需要&gt;&#x3D;2</em></p>
+<p>\10.  <em>&#x2F;&#x2F; Abstract Function</em></p>
+<p>\11.  *&#x2F;&#x2F; AF(String,Integer)-&gt;*<em>选项其中key为选项名、value为选项名对应的分数</em></p>
+<p>\12.  <em>&#x2F;&#x2F; Safety from Rep Exposure</em></p>
+<p>\13.  <em>&#x2F;&#x2F;</em> <em>所有的数据域都是私有的</em></p>
+<p>\14.  <em>&#x2F;&#x2F;</em> <em>用Collections.unmodifiableMap()转化为不可变类型返回给外部</em></p>
+<p>\15.  </p>
+<p>\16.  <em>&#x2F;</em>**</p>
+<p>\17.  *</p>
+<p>\18.  * @param options voteType对应的选项名和分数</p>
+<p>\19.  *&#x2F;</p>
+<p>\20.  public VoteType(Map&lt;String,Integer&gt; options) {</p>
+<p>\21.  this.options&#x3D;new HashMap&lt;&gt;(options);</p>
+<p>\22.  checkRep();</p>
+<p>\23.  }</p>
+<p><strong>流程图</strong></p>
+<p> 根据传入的Map，创建一个投票类型对象</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957558.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>图3.1.1.1流程图</p>
+<p>3.1.1.2测试用例设计</p>
+<table>
+<thead>
+<tr>
+<th><strong>分类</strong></th>
+<th><strong>细则</strong></th>
+<th><strong>样例</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不存在投票选项</td>
+<td>空白</td>
+<td>Null</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>存在投票选项</td>
+<td>Key符合条件</td>
+<td>options2.put(“喜欢”,2);  options2.put(“不喜欢”,0);  options2.put(“无所谓”,1);</td>
+<td></td>
+</tr>
+<tr>
+<td>Key不符合条件</td>
+<td>options3.put(“特别特别的喜欢”,2);  options3.put(“ “,0);  options3.put(“无 所 谓”,1);</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>3.1.1.3测试过程与结果</p>
+<p><strong>测试步骤：</strong></p>
+<p>l Stub程序创建options</p>
+<p>l Stub程序给定options的变量</p>
+<p>l 利用junit进行判定</p>
+<p>  针对VoteType(Map&lt;String,Integer&gt; options)</p>
+<p>  1.不存在投票选项</p>
+<p>  2.存在投票选项</p>
+<p>  2.1Key符合条件</p>
+<p>  2.2Key不符合条件</p>
+<p><strong>结果：</strong></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957562.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>3.1.1.4 Driver或Stub程序的编制</p>
+<p>\1.    <em>&#x2F;</em>**</p>
+<p>\2.    * 针对VoteType(Map&lt;String,Integer&gt; options)</p>
+<p>\3.    * 1.不存在投票选项</p>
+<p>\4.    * 2.存在投票选项</p>
+<p>\5.    * 2.1Key符合条件</p>
+<p>\6.    * 2.2Key不符合条件</p>
+<p>\7.    *&#x2F;</p>
+<p>\8.    @Test</p>
+<p>\9.    public void VoteTypeTest_NotRegex()</p>
+<p>\10.  {</p>
+<p>\11.  Map&lt;String, Integer&gt; options &#x3D; new HashMap&lt;&gt;();</p>
+<p>\12.  VoteType voteType &#x3D; new VoteType(options);</p>
+<p>\13.  assertEquals(options,voteType.getOptions());</p>
+<p>\14.  </p>
+<p>\15.  Map&lt;String, Integer&gt; options2 &#x3D; new HashMap&lt;&gt;();</p>
+<p>\16.  options2.put(“喜欢”,2);</p>
+<p>\17.  options2.put(“不喜欢”,0);</p>
+<p>\18.  options2.put(“无所谓”,1);</p>
+<p>\19.  VoteType voteType2 &#x3D; new VoteType(options2);</p>
+<p>\20.  assertEquals(options2,voteType2.getOptions());</p>
+<p>\21.  </p>
+<p>\22. <em>&#x2F;&#x2F; Map&lt;String, Integer&gt; options3 &#x3D; new HashMap&lt;&gt;();</em></p>
+<p>\23. *&#x2F;&#x2F; options3.put(“*<em>特别特别的喜欢”,2);</em></p>
+<p>\24. <em>&#x2F;&#x2F; options3.put(“ “,0);</em></p>
+<p>\25. *&#x2F;&#x2F; options3.put(“*<em>无 所 谓”,1);</em></p>
+<p>\26. <em>&#x2F;&#x2F; VoteType voteType3 &#x3D; new VoteType(options3);</em></p>
+<p>\27. <em>&#x2F;&#x2F; assertFalse(false,voteType3.getOptions());</em></p>
+<p>\28.  }</p>
+<h2 id="3-1-2-分支结构程序测试"><a href="#3-1-2-分支结构程序测试" class="headerlink" title="3.1.2 分支结构程序测试"></a>3.1.2 分支结构程序测试</h2><p>3.1.2.1测试对象</p>
+<p><strong>源代码</strong></p>
+<p>\1.   public VoteType(String regex) throws IllegalArgumentException{</p>
+<p>\2.    <em>&#x2F;&#x2F; split**的参数是一个正则表达式，‘|’需要转义</em></p>
+<p>\3.    String[] inputOptions &#x3D; regex.split(“\|”);</p>
+<p>\4.    *&#x2F;&#x2F;*<em>得到 “喜欢”(2)</em></p>
+<p>\5.    *&#x2F;&#x2F;*<em>或者得到 “支持”</em></p>
+<p>\6.    if(inputOptions.length &lt; 2) {</p>
+<p>\7.     throw new IllegalArgumentException(“非法输入:选项少于两个”);</p>
+<p>\8.    }</p>
+<p>\9.    Pattern regexWithNum &#x3D; Pattern.compile(“&quot;(\S+)&quot;\(([-]?\d+)\)”);</p>
+<p>\10.  Pattern regexWithoutNum &#x3D; Pattern.compile(“&quot;(\S+)&quot;“);</p>
+<p>\11.  int unMatchFlag&#x3D;0;*&#x2F;&#x2F;*<em>不匹配次数</em></p>
+<p>\12.  *&#x2F;&#x2F;*<em>先尝试匹配有数字模式</em></p>
+<p>\13.  for (String option : inputOptions) {</p>
+<p>\14.   Matcher m &#x3D; regexWithNum.matcher(option);</p>
+<p>\15.   if(!m.matches())</p>
+<p>\16.   {</p>
+<p>\17.   unMatchFlag++;*&#x2F;&#x2F;*<em>若这个当前不匹配，不匹配次数+1</em></p>
+<p>\18.   break;</p>
+<p>\19.   }</p>
+<p>\20.   if (m.group(1).length() &gt; 5)</p>
+<p>\21.   throw new IllegalArgumentException(“选项名长度超过5”);</p>
+<p>\22.   options.put(m.group(1), Integer.valueOf(m.group(2)));</p>
+<p>\23.  }</p>
+<p>\24.  if(unMatchFlag&#x3D;&#x3D;0)</p>
+<p>\25.  {</p>
+<p>\26.   checkRep();</p>
+<p>\27.   return;</p>
+<p>\28.  }</p>
+<p>\29.  *&#x2F;&#x2F;*<em>匹配无数字的等权重格式</em></p>
+<p>\30.  for (String option : inputOptions) {</p>
+<p>\31.   Matcher m &#x3D; regexWithoutNum.matcher(option);</p>
+<p>\32.   if(!m.matches())</p>
+<p>\33.   {</p>
+<p>\34.   unMatchFlag++;*&#x2F;&#x2F;*<em>若这个当前不匹配，不匹配次数+1</em></p>
+<p>\35.   break;</p>
+<p>\36.   }</p>
+<p>\37.   if (m.group(1).length() &gt; 5)</p>
+<p>\38.   throw new IllegalArgumentException(“选项名长度超过5”);</p>
+<p>\39.   options.put(m.group(1), 1);</p>
+<p>\40.  }</p>
+<p>\41.  if(unMatchFlag&#x3D;&#x3D;2)*&#x2F;&#x2F;*<em>代表都不匹配</em></p>
+<p>\42.   throw new IllegalArgumentException(“两种情况都不匹配”);</p>
+<p>\43.  checkRep();</p>
+<p>\44.  }</p>
+<p><strong>流程图</strong></p>
+<p> 根据满足特定语法规则的字符串，创建一个投票类型对象</p>
+<p>@param regex 遵循特定语法的、包含投票类型信息的字符串（待任务12再考虑）</p>
+<p>该字符串的语法规则如下：</p>
+<p>&#x2F;&#x2F;    “喜欢”(2)|“不喜欢”(0)|“无所谓”(1)</p>
+<p>&#x2F;&#x2F; 其中，用双引号括起来的文字部分是一个投票选项，长度不超过 5，其中不</p>
+<p>&#x2F;&#x2F; 允许出现空格；用括号括起来的数字是投票选项对应的分数，可以是正整数、0</p>
+<p>&#x2F;&#x2F; 或负整数，不能带小数，正整数不需要使用“+”，但负整数需要使用“-”；不同</p>
+<p>&#x2F;&#x2F; 的投票选项之间用“|”隔开。</p>
+<p>&#x2F;&#x2F; 也可以用如下形式：</p>
+<p>&#x2F;&#x2F;    “支持”|“反对”|“弃权”</p>
+<p>&#x2F;&#x2F; 与上面的例子相比，区别是没有分数。这种情况表明各个投票选项的权重是一样的</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957568.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>图3.1.1.1流程图</p>
+<p>3.1.2.2测试用例设计</p>
+<table>
+<thead>
+<tr>
+<th><strong>分类</strong></th>
+<th><strong>细则</strong></th>
+<th><strong>样例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>匹配有数字模式</td>
+<td>不含负数</td>
+<td>“喜欢”(2)|”不喜欢”(0)|”无所谓”(1)</td>
+</tr>
+<tr>
+<td>含负数</td>
+<td>“喜欢”(-2)|”不喜欢”(0)|”无所谓”(1)</td>
+<td></td>
+</tr>
+<tr>
+<td>匹配无数字模式</td>
+<td>不超过5个长度</td>
+<td>“支持”|”反对”|”弃权”</td>
+</tr>
+<tr>
+<td>超过5个长度</td>
+<td>“支持”|”反对”|”弃权”|”超级支持”|”超级弃权”|”超级超级支持”</td>
+<td></td>
+</tr>
+<tr>
+<td>无法匹配正常模式</td>
+<td></td>
+<td>“支持(1)”|”反对”|”弃权”</td>
+</tr>
+</tbody></table>
+<p>3.1.2.3测试过程与结果</p>
+<p><strong>测试步骤：</strong></p>
+<p>l Stub程序创建options</p>
+<p>l Stub程序给定options的变量</p>
+<p>l 利用junit进行判定</p>
+<p>  测试成功：</p>
+<p>  1.测试带数字的</p>
+<p>  1.1不含负数</p>
+<p>  1.2含负数</p>
+<p>  2.测试不带数字的</p>
+<p>  测试抛出异常：</p>
+<p>  1，超过5个长度</p>
+<p>2.格式不对</p>
+<p><strong>结果：</strong></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957562.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>3.1.2.4 Driver或Stub程序的编制</p>
+<p>\1.    <em>&#x2F;</em>**</p>
+<p>\2.    * 针对VoteType(String regex)</p>
+<p>\3.    * 测试成功：</p>
+<p>\4.    * 1.测试带数字的</p>
+<p>\5.    * 1.1不含负数</p>
+<p>\6.    * 1.2含负数</p>
+<p>\7.    * 2.测试不带数字的</p>
+<p>\8.    * 测试抛出异常：</p>
+<p>\9.    * 1，超过5个长度</p>
+<p>\10.  * 2.格式不对</p>
+<p>\11.  *&#x2F;</p>
+<p>\12.  @Test</p>
+<p>\13.  public void VoteTypeTest_regex()</p>
+<p>\14.  {</p>
+<p>\15.  *&#x2F;&#x2F;“*<em>喜欢”(2)|”不喜欢”(0)|”无所谓”(1)</em></p>
+<p>\16.  Map&lt;String, Integer&gt; options &#x3D; new HashMap&lt;&gt;();</p>
+<p>\17.  options.put(“喜欢”,2);</p>
+<p>\18.  options.put(“不喜欢”,0);</p>
+<p>\19.  options.put(“无所谓”,1);</p>
+<p>\20.  VoteType voteType &#x3D; new VoteType(“&quot;喜欢&quot;(2)|&quot;不喜欢&quot;(0)|&quot;无所谓&quot;(1)”);</p>
+<p>\21.  assertEquals(options,voteType.getOptions());</p>
+<p>\22.  </p>
+<p>\23.  *&#x2F;&#x2F;“*<em>喜欢”(-2)|”不喜欢”(0)|”无所谓”(1)</em></p>
+<p>\24.  Map&lt;String, Integer&gt; options3 &#x3D; new HashMap&lt;&gt;();</p>
+<p>\25.  options3.put(“喜欢”,-2);</p>
+<p>\26.  options3.put(“不喜欢”,0);</p>
+<p>\27.  options3.put(“无所谓”,1);</p>
+<p>\28.  VoteType voteType3 &#x3D; new VoteType(“&quot;喜欢&quot;(-2)|&quot;不喜欢&quot;(0)|&quot;无所谓&quot;(1)”);</p>
+<p>\29.  assertEquals(options3,voteType3.getOptions());</p>
+<p>\30.  </p>
+<p>\31.  *&#x2F;&#x2F;“*<em>支持”|”反对”|”弃权”</em></p>
+<p>\32.  *&#x2F;&#x2F;*<em>没有分数都默认为1</em></p>
+<p>\33.  Map&lt;String, Integer&gt; options2 &#x3D; new HashMap&lt;&gt;();</p>
+<p>\34.  options2.put(“支持”,1);</p>
+<p>\35.  options2.put(“反对”,1);</p>
+<p>\36.  options2.put(“弃权”,1);</p>
+<p>\37.  VoteType voteType2 &#x3D; new VoteType(“&quot;支持&quot;|&quot;反对&quot;|&quot;弃权&quot;“);</p>
+<p>\38.  assertEquals(options2,voteType2.getOptions());</p>
+<p>\39.  </p>
+<p>\40.  assertThrows(IllegalArgumentException.class,()-&gt;new VoteType(“&quot;超级超级支持&quot;|&quot;反对&quot;|&quot;弃权&quot;“),”选项名长度超过5”);</p>
+<p>\41.  assertThrows(IllegalArgumentException.class,()-&gt;new VoteType(“&quot;支持&quot;(1)|&quot;反对&quot;|&quot;弃权&quot;“),”两种情况都不匹配”);</p>
+<p>\42.  }</p>
+<h2 id="3-1-3-循环结构程序测试"><a href="#3-1-3-循环结构程序测试" class="headerlink" title="3.1.3 循环结构程序测试"></a>3.1.3 循环结构程序测试</h2><p>3.1.3.1测试对象</p>
+<p><strong>源代码</strong></p>
+<p>\1.    <em>&#x2F;</em>**</p>
+<p>\2.    * 在addVote中负责检查该选票合法性并标记</p>
+<p>\3.    * @param vote 投票</p>
+<p>\4.    * @param voter 投票人</p>
+<p>\5.    *&#x2F;</p>
+<p>\6.    public void checkVote(Vote<C> vote,Voter voter)</C></p>
+<p>\7.    {</p>
+<p>\8.    Set&lt;VoteItem<C>&gt; voteItems &#x3D; vote.getVoteItems();</C></p>
+<p>\9.    for (VoteItem<C> voteItem : voteItems) {</C></p>
+<p>\10.   if(!candidates.contains(voteItem.getCandidate()))</p>
+<p>\11.   {</p>
+<p>\12.   voteIsLegal.put(vote,false);*&#x2F;&#x2F;*<em>包含了不在本次投票活动的候选人</em></p>
+<p>\13.   return;</p>
+<p>\14.   }</p>
+<p>\15.  </p>
+<p>\16.   if(!voteType.checkLegality(voteItem.getVoteValue()))</p>
+<p>\17.   {</p>
+<p>\18.   voteIsLegal.put(vote,false);*&#x2F;&#x2F;*<em>一张选票中出现了本次投票不允许的选项值</em></p>
+<p>\19.   return;</p>
+<p>\20.   }</p>
+<p>\21.  </p>
+<p>\22.   for(VoteItem<C> voteItem2 : voteItems)</C></p>
+<p>\23.   {</p>
+<p>\24.   if(voteItem2!&#x3D;voteItem &amp;&amp; voteItem2.getCandidate().equals(voteItem.getCandidate()))</p>
+<p>\25.   {</p>
+<p>\26.    voteIsLegal.put(vote,false);*&#x2F;&#x2F;*<em>一张选票中有对同一个候选对象的多次投票</em></p>
+<p>\27.    return;</p>
+<p>\28.   }</p>
+<p>\29.   }</p>
+<p>\30.  }</p>
+<p>\31.  for (C candidate : candidates) {</p>
+<p>\32.   if(!vote.candidateIncluded(candidate))</p>
+<p>\33.   {</p>
+<p>\34.   voteIsLegal.put(vote,false);*&#x2F;&#x2F;*<em>一张选票中没有包含本次投票活动中的所有候选人</em></p>
+<p>\35.   return;</p>
+<p>\36.   }</p>
+<p>\37.  </p>
+<p>\38.  }</p>
+<p>\39.  *&#x2F;&#x2F;*<em>若都无异常</em></p>
+<p>\40.  voteIsLegal.put(vote,true);*&#x2F;&#x2F;*<em>鉴定为合法</em></p>
+<p>\41.  }</p>
+<p><strong>流程图：</strong></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957592.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>图3.1.3.2.1流程图</p>
+<p>3.1.3.2测试用例设计</p>
+<p> <strong>checkVote****测试</strong></p>
+<p>  四种共用不合法选票的测试</p>
+<p>  <strong>选票不合法情况:</strong></p>
+<p>  一张选票中没有包含本次投票活动中的所有候选人</p>
+<p>  一张选票中包含了不在本次投票活动中的候选人</p>
+<p>  一张选票中出现了本次投票不允许的选项值</p>
+<p>  一张选票中有对同一个候选对象的多次投票</p>
+<p><strong>候选人candidate1.candidate2，candidate3，candidate4</strong></p>
+<p>投票人vr1，选票为空</p>
+<p>投票人vr2，选票里candidate5，candidate1，candidate2，candidate3</p>
+<p>投票人vr3,选票里有candidate1.candidate2，candidate3，candidate4但是出现了本次投票不允许的选项值”like”</p>
+<p>投票人vr3,选票里有candidate1.candidate2，candidate5，candidate4</p>
+<p>投票人vr4,选票里有candidate1.candidate2，candidate3，candidate5</p>
+<table>
+<thead>
+<tr>
+<th><strong>分类</strong></th>
+<th><strong>细则</strong></th>
+<th><strong>样例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0次循环</td>
+<td>从循环入口直接跳到循环出口</td>
+<td>投票人vr1，选票为空</td>
+</tr>
+<tr>
+<td>1次循环</td>
+<td>查找循环初始值方面的错误</td>
+<td>投票人vr2，选票里candidate5，candidate1，candidate2，candidate3</td>
+</tr>
+<tr>
+<td>2次循环</td>
+<td>检查在多次循环时才能暴露的错误</td>
+<td>投票人vr3,选票里有candidate1.candidate2，candidate3，candidate4但是出现了本次投票不允许的选项值”like”</td>
+</tr>
+<tr>
+<td>m次循环</td>
+<td>此时的m＜n，也是检查在多次循环时才能暴露的错误</td>
+<td>投票人vr3,选票里有candidate1.candidate2，candidate5，candidate4</td>
+</tr>
+<tr>
+<td>最大次数循环</td>
+<td></td>
+<td>投票人vr4,选票里有candidate1.candidate2，candidate3，candidate5</td>
+</tr>
+</tbody></table>
+<p>3.1.3.3测试过程与结果</p>
+<p><strong>测试步骤：</strong></p>
+<p><strong>候选人candidate1.candidate2，candidate3，candidate4</strong></p>
+<p>投票人vr1，选票为空</p>
+<p>投票人vr2，选票里candidate5，candidate1，candidate2，candidate3</p>
+<p>投票人vr3,选票里有candidate1.candidate2，candidate3，candidate4但是出现了本次投票不允许的选项值”like”</p>
+<p>投票人vr3,选票里有candidate1.candidate2，candidate5，candidate4</p>
+<p>投票人vr4,选票里有candidate1.candidate2，candidate3，candidate5</p>
+<p>l 创建投票人</p>
+<p>l 设定投票人权重</p>
+<p>l 设定投票类型</p>
+<p>l 创建候选人</p>
+<p>l 创建投票项</p>
+<p>l 创建投票</p>
+<p>l 创建投票活动</p>
+<p>l 更新投票人投票</p>
+<p><strong>结果：</strong></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305151957350.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>3.1.3.4 Driver或Stub程序的编制</p>
+<p>\1.    <em>&#x2F;</em>**</p>
+<p>\2.    * 是statisticTest的检测第二种异常情况：</p>
+<p>\3.    * (也是checkVote的测试）</p>
+<p>\4.    * 四种共用不合法选票的测试</p>
+<p>\5.    * * 选票不合法情况</p>
+<p>\6.    * * ? 一张选票中没有包含本次投票活动中的所有候选人</p>
+<p>\7.    * * ? 一张选票中包含了不在本次投票活动中的候选人</p>
+<p>\8.    * * ? 一张选票中出现了本次投票不允许的选项值</p>
+<p>\9.    * * ? 一张选票中有对同一个候选对象的多次投票</p>
+<p>\10.  * 具体测试样例:</p>
+<p>\11.  *候选人candidate1.candidate2，candidate3，candidate4</p>
+<p>\12.  *投票人vr1，选票为空</p>
+<p>\13.  *投票人vr2，选票里candidate5，candidate1，candidate2，candidate3</p>
+<p>\14.  *投票人vr3,选票里有candidate1.candidate2，candidate3，candidate4但是出现了本次投票不允许的选项值”like”</p>
+<p>\15.  *投票人vr3,选票里有candidate1.candidate2，candidate5，candidate4</p>
+<p>\16.  *投票人vr4,选票里有candidate1.candidate2，candidate3，candidate5</p>
+<p>\17.  *&#x2F;</p>
+<p>\18.  @Test</p>
+<p>\19.  void checkVote_statistics_BuHeFaTest() {</p>
+<p>\20.  <em>&#x2F;&#x2F;</em> <em>创建2个投票人</em></p>
+<p>\21.  Voter vr1 &#x3D; new Voter(“v1”);</p>
+<p>\22.  Voter vr2 &#x3D; new Voter(“v2”);</p>
+<p>\23.  Voter vr3 &#x3D; new Voter(“v3”);</p>
+<p>\24.  Voter vr4 &#x3D; new Voter(“v4”);</p>
+<p>\25.  </p>
+<p>\26.  <em>&#x2F;&#x2F;</em> <em>设定2个投票人的权重</em></p>
+<p>\27.  Map&lt;Voter, Double&gt; weightedVoters &#x3D; new HashMap&lt;&gt;();</p>
+<p>\28.  weightedVoters.put(vr1, 1.0);</p>
+<p>\29.  weightedVoters.put(vr2, 1.0);</p>
+<p>\30.  weightedVoters.put(vr3, 1.0);</p>
+<p>\31.  weightedVoters.put(vr4, 1.0);</p>
+<p>\32.  </p>
+<p>\33.  <em>&#x2F;&#x2F;</em> <em>设定投票类型</em></p>
+<p>\34.  Map&lt;String, Integer&gt; types &#x3D; new HashMap&lt;&gt;();</p>
+<p>\35.  types.put(“Support”, 1);</p>
+<p>\36.  types.put(“Oppose”, -1);</p>
+<p>\37.  types.put(“Waive”, 0);</p>
+<p>\38.  VoteType voteType &#x3D; new VoteType(types);</p>
+<p>\39.  </p>
+<p>\40.  <em>&#x2F;&#x2F;</em> <em>创建候选对象：候选人</em></p>
+<p>\41.  Person p1 &#x3D; new Person(“candidate1”, 19);</p>
+<p>\42.  Person p2 &#x3D; new Person(“candidate2”, 20);</p>
+<p>\43.  Person p3 &#x3D; new Person(“candidate3”, 20);</p>
+<p>\44.  ArrayList<Person> candidates &#x3D; new ArrayList&lt;&gt;();</Person></p>
+<p>\45.  candidates.add(p1);</p>
+<p>\46.  candidates.add(p2);</p>
+<p>\47.  <em>&#x2F;&#x2F;</em> <em>创建投票项，前三个是投票人vr1对三个候选对象的投票项，后三个是vr2的投票项</em></p>
+<p>\48.  VoteItem<Person> vi11 &#x3D; new VoteItem&lt;&gt;(p1, “Support”);</Person></p>
+<p>\49.  Set&lt;VoteItem<Person>&gt; voteItems1 &#x3D; new HashSet&lt;&gt;();</Person></p>
+<p>\50.  voteItems1.add(vi11);</p>
+<p>\51.  </p>
+<p>\52.  VoteItem<Person> vi21 &#x3D; new VoteItem&lt;&gt;(p1, “Oppose”);</Person></p>
+<p>\53.  VoteItem<Person> vi22 &#x3D; new VoteItem&lt;&gt;(p3, “Waive”);</Person></p>
+<p>\54.  Set&lt;VoteItem<Person>&gt; voteItems2 &#x3D; new HashSet&lt;&gt;();</Person></p>
+<p>\55.  voteItems2.add(vi21);</p>
+<p>\56.  voteItems2.add(vi22);</p>
+<p>\57.  </p>
+<p>\58.  VoteItem<Person> vi31 &#x3D; new VoteItem&lt;&gt;(p1, “Oppose”);</Person></p>
+<p>\59.  VoteItem<Person> vi32 &#x3D; new VoteItem&lt;&gt;(p2, “like”);</Person></p>
+<p>\60.  Set&lt;VoteItem<Person>&gt; voteItems3 &#x3D; new HashSet&lt;&gt;();</Person></p>
+<p>\61.  voteItems3.add(vi31);</p>
+<p>\62.  voteItems3.add(vi32);</p>
+<p>\63.  </p>
+<p>\64.  VoteItem<Person> vi41 &#x3D; new VoteItem&lt;&gt;(p1, “Support”);</Person></p>
+<p>\65.  VoteItem<Person> vi42 &#x3D; new VoteItem&lt;&gt;(p1, “Oppose”);</Person></p>
+<p>\66.  Set&lt;VoteItem<Person>&gt; voteItems4 &#x3D; new HashSet&lt;&gt;();</Person></p>
+<p>\67.  voteItems4.add(vi41);</p>
+<p>\68.  voteItems4.add(vi42);</p>
+<p>\69.  </p>
+<p>\70.  <em>&#x2F;&#x2F;</em> <em>创建2个投票人vr1、vr2的选票</em></p>
+<p>\71.  Vote<Person> rv1 &#x3D; new Vote<Person>(voteItems1, new GregorianCalendar(2019, 6, 14, 16, 15, 30));</Person></Person></p>
+<p>\72.  Vote<Person> rv2 &#x3D; new Vote<Person>(voteItems2, new GregorianCalendar(2019, 6, 14, 16, 15, 30));</Person></Person></p>
+<p>\73.  Vote<Person> rv3 &#x3D; new Vote<Person>(voteItems3, new GregorianCalendar(2019, 6, 14, 16, 15, 30));</Person></Person></p>
+<p>\74.  Vote<Person> rv4 &#x3D; new Vote<Person>(voteItems4, new GregorianCalendar(2019, 6, 14, 16, 15, 30));</Person></Person></p>
+<p>\75. <em>&#x2F;&#x2F; System.out.println(“rv1 &#x3D; “ + rv1);</em></p>
+<p>\76. <em>&#x2F;&#x2F; System.out.println(“rv2 &#x3D; “ + rv2);</em></p>
+<p>\77.  <em>&#x2F;&#x2F;</em> <em>创建投票活动</em></p>
+<p>\78.  GeneralPollImpl<Person> poll&#x3D; new GeneralPollImpl<Person>();</Person></Person></p>
+<p>\79.  <em>&#x2F;&#x2F;</em> <em>设定投票基本信息：名称、日期、投票类型、选出的数量</em></p>
+<p>\80.  String name &#x3D; “代表选举”;</p>
+<p>\81.  GregorianCalendar date &#x3D; new GregorianCalendar(2019, 6, 14, 16, 15, 30);</p>
+<p>\82.  int quantity &#x3D; 1;</p>
+<p>\83.  poll.setInfo(name, date, voteType, quantity);</p>
+<p>\84.  </p>
+<p>\85.  <em>&#x2F;&#x2F;</em> <em>增加投票人及其权重</em></p>
+<p>\86.  poll.addVoters(weightedVoters);</p>
+<p>\87.  poll.addCandidates(candidates);</p>
+<p>\88.  <em>&#x2F;&#x2F;</em> <em>增加三个投票人的选票</em></p>
+<p>\89.  poll.addVote(rv1, vr1);</p>
+<p>\90.  poll.addVote(rv2, vr2);</p>
+<p>\91.  poll.addVote(rv3, vr3);</p>
+<p>\92.  poll.addVote(rv4, vr4);</p>
+<p>\93.  GeneralPollImpl election &#x3D; poll;</p>
+<p>\94.  Map&lt;Vote<Person>, Boolean&gt; voteIsLegal &#x3D; election.getVoteIsLegal();</Person></p>
+<p>\95.  for (Map.Entry&lt;Vote<Person>, Boolean&gt; voteBooleanEntry : voteIsLegal.entrySet()) {</Person></p>
+<p>\96.   Boolean isLegal &#x3D; voteBooleanEntry.getValue();</p>
+<p>\97.   assertEquals(false, isLegal);</p>
+<p>\98.  }</p>
+<p>\99.  }</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/shizhuofan.GitHub.io/categories/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/" class="category-chain-item">软件构造</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/shizhuofan.GitHub.io/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/">#软件构造</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>投票系统-软件测试报告</div>
+      <div>http://yoursite.com/2023/05/15/投票系统-软件测试报告/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fars</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/05/15/%E5%AF%B9%E5%93%88%E5%B7%A5%E5%A4%A7%E6%A0%A1%E5%9B%AD%E7%BD%91%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/" title="对哈工大校园网的系统测试">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">对哈工大校园网的系统测试</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/05/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%9C%9F%E6%9C%AB%E7%AC%94%E8%AE%B0/" title="编译系统笔记">
+                        <span class="hidden-mobile">编译系统笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

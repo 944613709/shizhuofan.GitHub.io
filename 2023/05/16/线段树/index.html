@@ -1,0 +1,1127 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fars">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="线段树问题： 区间查询求和问题:给定一个含有n个整数序列的数组A，查询任意区间最大值与区间和的复杂度为O(n)，若进行m次查询，则总的复杂度为O(mn)。 设计一个数据结构(线段树)，优化区间查询与求和操作，使其时间复杂度为O(logn)。举例描述说明: 1该数据结构的节点与结构; 2建立与更新（数组A中某一个元素值更新时）数据结构的具体步骤; 3任意区间查询与求和操作的具体步骤。 提示:更新数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线段树-哈工大作业">
+<meta property="og:url" content="http://yoursite.com/2023/05/16/%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
+<meta property="og:site_name" content="Fars&#39;Blog">
+<meta property="og:description" content="线段树问题： 区间查询求和问题:给定一个含有n个整数序列的数组A，查询任意区间最大值与区间和的复杂度为O(n)，若进行m次查询，则总的复杂度为O(mn)。 设计一个数据结构(线段树)，优化区间查询与求和操作，使其时间复杂度为O(logn)。举例描述说明: 1该数据结构的节点与结构; 2建立与更新（数组A中某一个元素值更新时）数据结构的具体步骤; 3任意区间查询与求和操作的具体步骤。 提示:更新数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117707.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117720.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117715.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117728.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117723.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117746.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117420.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117543.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117553.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117770.jpg">
+<meta property="article:published_time" content="2023-05-16T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-05-16T03:18:48.607Z">
+<meta property="article:author" content="Fars">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117707.jpg">
+  
+  
+  
+  <title>线段树-哈工大作业 - Fars&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fars个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="线段树-哈工大作业"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-16 11:42" pubdate>
+          2023年5月16日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          72 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">线段树-哈工大作业</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ul>
+<li><h1 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h1><p><strong>问题：</strong></p>
+<p>区间查询求和问题:给定一个含有n个整数序列的数组A，查询任意区间最大值与区间和的复杂度为O(n)，若进行m次查询，则总的复杂度为O(mn)。</p>
+<p>设计一个数据结构(线段树)，优化区间查询与求和操作，使其时间复杂度为O(logn)。举例描述说明:</p>
+<p>1该数据结构的节点与结构;</p>
+<p>2建立与更新（数组A中某一个元素值更新时）数据结构的具体步骤;</p>
+<p>3任意区间查询与求和操作的具体步骤。</p>
+<p>提示:更新数据结构时，采用延迟更新策略，即，更新时，不立即进行更新操作，只标记这个点需要更新，真正使用时（如查询时）才进行更新。</p>
+<p>git地址：<a target="_blank" rel="noopener" href="https://github.com/944613709/HIT-Data-Structures-and-Algorithms">https://github.com/944613709/HIT-Data-Structures-and-Algorithms</a></p>
+<p><strong>举例说明：（代码在最后一起展示）</strong></p>
+<p><strong>1、**<strong>该数据结构的节点与结构</strong></strong>;**</p>
+<p><strong>1****结点：</strong></p>
+<p>typedef long long ll;</p>
+<p>struct TREE</p>
+<p>{</p>
+<p>  int l,r;&#x2F;&#x2F;代表节点维护的区间范围;代表了a[l]-&gt;a[r] </p>
+<p>  ll SUM; &#x2F;&#x2F;&#x2F;&#x2F;代表了a[l]-&gt;a[r]的值的sum总和 </p>
+<p>  ll lazy; &#x2F;&#x2F;涉及lazy标记的东西;</p>
+<p>  ll Max;&#x2F;&#x2F;代表了a[l]-&gt;a[r]的值的最大值 </p>
+<p>}t[MAXN &lt;&lt; 2];</p>
+<p>L,r代表的是区间Data[l]-&gt;Data[r] </p>
+<p>SUM代表的是这个区间的所有值的总和</p>
+<p>Lazy标记用于采用延迟更新策略</p>
+<p>Max代表的是这个区间的所有值的最大值</p>
+<p><strong>2****结构：</strong></p>
+<p>采用线段树来优化区间查询，每一个结点储存着Data[L]-&gt;Data[R]的信息，其中叶节点的L&#x3D;R，不断地将大区间划分为小区间，利用递归建立线段树，</p>
+<p><strong>举例<strong><strong>A</strong></strong>【<strong><strong>1</strong></strong>】到<strong><strong>A</strong></strong>【<strong><strong>6</strong></strong>】的线段树</strong></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117707.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="扫描全能王 2021-11-23 18.24_2"><strong><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117720.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="扫描全能王 2021-11-23 18.24_3"></strong></p>
+<p><strong>2、<strong><strong>建立与更新（数组</strong></strong>A**<strong>中某一个元素值更新时）数据结构的具体步骤</strong></strong>;**</p>
+<p><strong>建立：</strong></p>
+<p>若为叶子结点，直接赋值；否则根据构造左右子树得到该结点的值</p>
+<h3 id="1-建立线段树"><a href="#1-建立线段树" class="headerlink" title="1. 建立线段树"></a>1. 建立线段树</h3><p>\1.     如果l &#x3D;&#x3D; r情况则直接将SUM和Max 赋值为a[l]</p>
+<p>\2.     如果l！&#x3D;r情况，则递归建立线段树</p>
+<p>(1)   定义Mid &#x3D; t[p].l + t[p].r &gt;&gt; 1;</p>
+<p>(2)   递归调用build(lson(p),l,mid);处理左子树</p>
+<p>(3)   递归调用build(rson(p),mid + 1,r);处理右子树</p>
+<p>(4)   回溯后将子节点信息保存下来t[p].SUM &#x3D; t[lson(p)].SUM + t[rson(p)].SUM；t[p].Max &#x3D; max(t[lson(p)].Max,t[rson(p)].Max);</p>
+<p><strong>举例<strong><strong>A[1]&#x3D;1,A[2]&#x3D;2,A[3]&#x3D;3,A[4]&#x3D;4</strong></strong>建立线段树</strong></p>
+<p><strong><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117715.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="扫描全能王 2021-11-23 18.24_4"></strong></p>
+<p><strong>更新：</strong></p>
+<p>(1)   单个数值修改线段树（数组A中某一个元素值更新时），可以借助于已有的区间修改，不如想要将令A[L]的值变成y，利用区间更新函数等价于将从A[L]到A[L]的值都加入value &#x3D;y-A[L]</p>
+<p>而区间更新具体方法：</p>
+<p>1、如果当前区间被完全覆盖在目标区间里，修改sum和max</p>
+<p>2.如果没有完全覆盖，则先下传lazy </p>
+<p>3、如果这个区间的左儿子和目标区间有交集，那么搜索左儿子</p>
+<p>​         4、如果这个区间的右儿子和目标区间有交集，那么搜索右儿子</p>
+<p>\2.   区间更新线段树update函数</p>
+<p>(1)   如果区间被覆盖的情况</p>
+<p>①   直接进行修改</p>
+<p>②   t[p].SUM +&#x3D; value * (t[p].r - t[p].l + 1);</p>
+<p>③   t[p].Max +&#x3D; value;</p>
+<p>④   t[p].lazy +&#x3D; value;</p>
+<p>⑤   Return结束</p>
+<p>(2)   如果区间没有被覆盖的情况</p>
+<p>①   执行push_down（p）函数，执行向下更新左右儿子结点的数据</p>
+<p>\1)     当lazy不为零的时候，将左右儿子的值利用lazy修改左右儿子的SUM和Max</p>
+<p>\2)     将当前p的lazy下传给左右儿子的lazy</p>
+<p>\3)     当前p的lazy清零</p>
+<p>②   定义mid &#x3D; t[p].l + t[p].r &gt;&gt; 1便于后续判断</p>
+<p>\1)     如果覆盖了左儿子就修改左儿子update(lson(p),l,r,value)</p>
+<p>\2)     如果覆盖了右儿子就修改右儿子update(rson(p),l,r,value)</p>
+<p>③   更新当前p结点的Sum和Max数据</p>
+<p>\3.   单个数值修改线段树（数组A中某一个元素值更新时）</p>
+<p>(1)   令Data[L]的值变成y，利用区间更新函数等价于将Data[L]-&gt;Data[L]的值都加入value &#x3D;y-Data[L]</p>
+<p>(2)   update(1,l,l,value);</p>
+<p><strong>举例：</strong></p>
+<p><strong>更新<strong><strong>A</strong></strong>【<strong><strong>1</strong></strong>】修改为<strong><strong>2</strong></strong>（假定<strong><strong>A[1]&#x3D;1,A[2]&#x3D;2,A[3]&#x3D;3,A[4]&#x3D;4</strong></strong>建立线段树）**</strong><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117728.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="扫描全能王 2021-11-23 19.15_1">**</p>
+<p><strong>举例：</strong></p>
+<p><strong>更新<strong><strong>A</strong></strong>【<strong><strong>1</strong></strong>】到<strong><strong>A</strong></strong>【<strong><strong>3</strong></strong>】的值都加入<strong><strong>1</strong></strong>（假定<strong><strong>A[1]&#x3D;1,A[2]&#x3D;2,A[3]&#x3D;3,A[4]&#x3D;4</strong></strong>建立线段树）</strong></p>
+<p><strong><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117723.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="扫描全能王 2021-11-23 18.45_1"></strong></p>
+<p><strong>3、****任意区间查询与求和操作的具体步骤。</strong></p>
+<p>1、如果当前区间被完全覆盖在目标区间里，直接return</p>
+<p>2、如果没有完全覆盖，则先pushdown执行向下更新左右儿子结点的数据</p>
+<p>3、如果这个区间的左儿子和目标区间有交集，那么处理左儿子</p>
+<p>​         4、如果这个区间的右儿子和目标区间有交集，那么处理右儿子</p>
+<p>\4.   查询区间和querySum函数</p>
+<p>(1)   如果区间被覆盖</p>
+<p>①   直接返回区间的数据Returnt [p].SUM</p>
+<p>(2)   如果区间没有被覆盖</p>
+<p>①   执行push_down（P），执行向下更新左右儿子结点的数据</p>
+<p>\1)     当lazy不为零的时候，将左右儿子的值利用lazy修改左右儿子的SUM和Max</p>
+<p>\2)     将当前p的lazy下传给左右儿子的lazy</p>
+<p>\3)     当前p的lazy清零</p>
+<p>②   定义mid &#x3D; t[p].l + t[p].r &gt;&gt; 1;方便后续判断</p>
+<p>③   如果(l &lt;&#x3D; mid)需要查询左儿子，就加入整理左儿子的数据sum +&#x3D; querySum(lson(p),l,r)</p>
+<p>④   如果(r &gt; mid)，如要查询右儿子，就加入整理右儿子的数据sum +&#x3D; querySum(rson(p),l,r);</p>
+<p>⑤   返回return sum</p>
+<p>\5.   查询区间最大值query_Max函数</p>
+<p>(1)   如果区间被覆盖</p>
+<p>①   直接return t[p].Max</p>
+<p>(2)   如果区间没有被覆盖</p>
+<p>①   定义mid &#x3D; t[p].l + t[p].r &gt;&gt; 1;方便后续判定</p>
+<p>②   定义maxL &#x3D; -inf,maxR &#x3D; -inf;</p>
+<p>③   如果(l &lt;&#x3D; mid)需要查询左儿子，则查左儿子的最大值maxL &#x3D; max(maxL,query_Max(lson(p),l,r));</p>
+<p>④   如果(r &gt; mid)需要查询右儿子，则查询右儿子最大值maxR &#x3D; max(maxR,query_Max(rson(p),l,r));</p>
+<p>(3)   返回 左右子树的最大值</p>
+<p><strong>举例：</strong></p>
+<p><strong>查询<strong><strong>A</strong></strong>【<strong><strong>2</strong></strong>】到<strong><strong>A</strong></strong>【<strong><strong>4</strong></strong>】的区间和，最大值（假定，<strong><strong>A[1]&#x3D;1,A[2]&#x3D;2,A[3]&#x3D;3,A[4]&#x3D;4</strong></strong>建立线段树，并且已经更新<strong><strong>A</strong></strong>【<strong><strong>1</strong></strong>】到<strong><strong>A</strong></strong>【<strong><strong>3</strong></strong>】的值都加入<strong><strong>1</strong></strong>）</strong></p>
+<p><strong><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117746.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="扫描全能王 2021-11-23 18.45_3"><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117420.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="扫描全能王 2021-11-23 18.45_4"></strong></p>
+<p><strong>得到查询结果</strong></p>
+<h2 id="算法思想：-采用线段树来优化区间查询，每一个结点储存着Data-L-gt-Data-R-的信息，其中叶节点的L-x3D-R，不断地将大区间划分为小区间，利用递归建立线段树，在利用这些区间进行修改和查询。而在进行更新数据时候利用延迟标记lazy标记，如果当前区间需要被修改的区间被完全覆盖就用lazy标记，在下一次查询或者更新时候才调用lazy下传和清零修改"><a href="#算法思想：-采用线段树来优化区间查询，每一个结点储存着Data-L-gt-Data-R-的信息，其中叶节点的L-x3D-R，不断地将大区间划分为小区间，利用递归建立线段树，在利用这些区间进行修改和查询。而在进行更新数据时候利用延迟标记lazy标记，如果当前区间需要被修改的区间被完全覆盖就用lazy标记，在下一次查询或者更新时候才调用lazy下传和清零修改" class="headerlink" title="算法思想： 采用线段树来优化区间查询，每一个结点储存着Data[L]-&gt;Data[R]的信息，其中叶节点的L&#x3D;R，不断地将大区间划分为小区间，利用递归建立线段树，在利用这些区间进行修改和查询。而在进行更新数据时候利用延迟标记lazy标记，如果当前区间需要被修改的区间被完全覆盖就用lazy标记，在下一次查询或者更新时候才调用lazy下传和清零修改"></a>算法思想： 采用线段树来优化区间查询，每一个结点储存着Data[L]-&gt;Data[R]的信息，其中叶节点的L&#x3D;R，不断地将大区间划分为小区间，利用递归建立线段树，在利用这些区间进行修改和查询。而在进行更新数据时候利用延迟标记lazy标记，如果当前区间需要被修改的区间被完全覆盖就用lazy标记，在下一次查询或者更新时候才调用lazy下传和清零修改</h2><p><strong>算法步骤</strong></p>
+<p>\6.   结点：</p>
+<p>struct tree</p>
+<p>{</p>
+<p>  int l,r;&#x2F;&#x2F;代表节点维护的区间范围;代表了a[l]-&gt;a[r] </p>
+<p>  ll SUM; &#x2F;&#x2F;代表该节点维护的值;&#x2F;&#x2F;!!!!!!!!!sum总和 </p>
+<p>  ll lazy; &#x2F;&#x2F;涉及lazy标记的东西;</p>
+<p>  ll Max;&#x2F;&#x2F;最大值 </p>
+<p>}t[MAXN &lt;&lt; 2];</p>
+<p>L,r代表的是区间Data[l]-&gt;Data[r] </p>
+<p>SUM代表的是这个区间的所有值的总和</p>
+<p>Lazy标记用于采用延迟更新策略</p>
+<p>Max代表的是这个区间的所有值的最大值</p>
+<p>ll Data[MAXN];，数组Data代表这每一个区间的一块地点存储的值</p>
+<h3 id="7-建立线段树"><a href="#7-建立线段树" class="headerlink" title="7. 建立线段树"></a>7. 建立线段树</h3><p>\3.     如果l &#x3D;&#x3D; r情况则直接将SUM和Max 赋值为a[l]</p>
+<p>\4.     如果l！&#x3D;r情况，则递归建立线段树</p>
+<p>(1)   定义Mid &#x3D; t[p].l + t[p].r &gt;&gt; 1;</p>
+<p>(2)   递归调用build(lson(p),l,mid);处理左子树</p>
+<p>(3)   递归调用build(rson(p),mid + 1,r);处理右子树</p>
+<p>(4)   回溯后将子节点信息保存下来t[p].SUM &#x3D; t[lson(p)].SUM + t[rson(p)].SUM；t[p].Max &#x3D; max(t[lson(p)].Max,t[rson(p)].Max);</p>
+<p>\8.   区间更新线段树update函数</p>
+<p>(1)   如果区间被覆盖的情况</p>
+<p>①   直接进行修改</p>
+<p>②   t[p].SUM +&#x3D; value * (t[p].r - t[p].l + 1);</p>
+<p>③       t[p].Max +&#x3D; value;</p>
+<p>④       t[p].lazy +&#x3D; value;</p>
+<p>⑤   Return结束</p>
+<p>(2)   如果区间没有被覆盖的情况</p>
+<p>①   执行push_down（p）函数，执行向下更新左右儿子结点的数据</p>
+<p>\1)     当lazy不为零的时候，将左右儿子的值利用lazy修改左右儿子的SUM和Max</p>
+<p>\2)     将当前p的lazy下传给左右儿子的lazy</p>
+<p>\3)     当前p的lazy清零</p>
+<p>②   定义mid &#x3D; t[p].l + t[p].r &gt;&gt; 1便于后续判断</p>
+<p>\1)     如果覆盖了左儿子就修改左儿子update(lson(p),l,r,value)</p>
+<p>\2)     如果覆盖了右儿子就修改右儿子update(rson(p),l,r,value)</p>
+<p>③   更新当前p结点的Sum和Max数据</p>
+<p>\9.   单个数值修改线段树（数组A中某一个元素值更新时）</p>
+<p>(1)   令Data[L]的值变成y，利用区间更新函数等价于将Data[L]-&gt;Data[L]的值都加入value &#x3D;y-Data[L]</p>
+<p>(2)   update(1,l,l,value);</p>
+<p>\10. 查询区间和querySum函数</p>
+<p>(1)   如果区间被覆盖</p>
+<p>①   直接返回区间的数据Returnt [p].SUM</p>
+<p>(2)   如果区间没有被覆盖</p>
+<p>①   执行push_down（P），执行向下更新左右儿子结点的数据</p>
+<p>\1)     当lazy不为零的时候，将左右儿子的值利用lazy修改左右儿子的SUM和Max</p>
+<p>\2)     将当前p的lazy下传给左右儿子的lazy</p>
+<p>\3)     当前p的lazy清零</p>
+<p>②   定义mid &#x3D; t[p].l + t[p].r &gt;&gt; 1;方便后续判断</p>
+<p>③   如果(l &lt;&#x3D; mid)需要查询左儿子，就加入整理左儿子的数据sum +&#x3D; querySum(lson(p),l,r)</p>
+<p>④   如果(r &gt; mid)，如要查询右儿子，就加入整理右儿子的数据sum +&#x3D; querySum(rson(p),l,r);</p>
+<p>⑤   返回return sum</p>
+<p>\11. 查询区间最大值query_Max函数</p>
+<p>(1)   如果区间被覆盖</p>
+<p>①   直接return t[p].Max</p>
+<p>(2)   如果区间没有被覆盖</p>
+<p>①   定义mid &#x3D; t[p].l + t[p].r &gt;&gt; 1;方便后续判定</p>
+<p>②   定义maxL &#x3D; -inf,maxR &#x3D; -inf;</p>
+<p>③   如果(l &lt;&#x3D; mid)需要查询左儿子，则查左儿子的最大值maxL &#x3D; max(maxL,query_Max(lson(p),l,r));</p>
+<p>④   如果(r &gt; mid)需要查询右儿子，则查询右儿子最大值maxR &#x3D; max(maxR,query_Max(rson(p),l,r));</p>
+<p>(3)   返回 左右子树的最大值</p>
+<p>测试样例：<img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117543.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117553.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161117770.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<h1 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h1><ul>
+<li><pre><code class="hljs">\#include&lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+typedef long long ll;
+
+\#define mem(a,x) memset(a,x,sizeof(a))
+
+\#define IOS ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+const double PI = acos(-1.0);
+
+const ll MAXN = 2e5 + 10;
+
+const ll mod = 998244353;
+
+const ll inf = 1e18;
+
+const ll mo = 1e9+7;
+
+int n,m,mx;
+
+ll Data[MAXN];//代表这每一个区间的一块地点存储的值 
+
+struct TREE
+
+&#123;
+
+  int l,r;//代表节点维护的区间范围;代表了a[l]-&gt;a[r] 
+
+  ll SUM; ////!!!!!!!!!sum总和 
+
+  ll lazy; //涉及lazy标记的东西;
+
+  ll Max;//最大值
+
+&#125;t[MAXN &lt;&lt; 2];
+
+inline int lson(int p)&#123;return p &lt;&lt; 1;&#125;//左儿子;
+
+inline int rson(int p)&#123;return p &lt;&lt; 1 | 1;&#125;//右儿子;
+
+void build(int p,int l,int r)//建线段树 
+
+&#123;
+
+  t[p].l = l,t[p].r = r;
+
+  if(l == r)//叶子节点
+
+  &#123;
+
+​    t[p].SUM = Data[l];
+
+​    
+
+​    t[p].Max = Data[l];// 
+
+​    return;
+
+  &#125;
+
+  int mid = t[p].l + t[p].r &gt;&gt; 1;
+
+  build(lson(p),l,mid);
+
+  build(rson(p),mid + 1,r);
+
+  t[p].SUM = t[lson(p)].SUM + t[rson(p)].SUM;
+
+  t[p].Max = max(t[lson(p)].Max,t[rson(p)].Max);//递归建树!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+&#125;
+
+ 
+
+void push_down(int p)
+
+&#123;
+
+  if(t[p].lazy)
+
+  &#123;
+
+​    //如果lazy标记不为0
+
+​    t[lson(p)].SUM += t[p].lazy * (t[lson(p)].r - t[lson(p)].l + 1);
+
+​    t[rson(p)].SUM += t[p].lazy * (t[rson(p)].r - t[rson(p)].l + 1);
+
+​          t[lson(p)].Max += t[p].lazy;//!!!!
+
+​          t[rson(p)].Max += t[p].lazy;//!!!!
+
+​    //下传;
+
+​    t[lson(p)].lazy += t[p].lazy;
+
+​    t[rson(p)].lazy += t[p].lazy;
+
+ 
+
+​    t[p].lazy = 0;//下传完成,更新lazy为0;
+
+  &#125;
+
+&#125;
+
+void update(int p,int l,int r,ll value)//将区间 [x, y][x,y] 内每个数加上 k
+
+&#123;
+
+  if(l &lt;= t[p].l &amp;&amp; r &gt;= t[p].r)//1.区间被覆盖,就修改;
+
+  &#123;
+
+​    t[p].SUM += value * (t[p].r - t[p].l + 1);
+
+​    t[p].Max += value;
+
+​    t[p].lazy += value;
+
+​    return;
+
+  &#125;
+
+  push_down(p);     
+
+  int mid = t[p].l + t[p].r &gt;&gt; 1;
+
+  if(l &lt;= mid)
+
+​          update(lson(p),l,r,value);//覆盖了左儿子就修改左儿子;
+
+​    if(r &gt; mid)
+
+​          update(rson(p),l,r,value);
+
+ 
+
+  t[p].SUM = t[lson(p)].SUM + t[rson(p)].SUM;
+
+  t[p].Max = max(t[lson(p)].Max,t[rson(p)].Max);//!!!!!!!!!!!!!!
+
+&#125;
+
+ 
+
+ll querySum(int p,int l,int r)//输出区间 [x, y][x,y] 内每个数的和
+
+&#123;
+
+  if(l &lt;= t[p].l &amp;&amp; r &gt;= t[p].r)
+
+​          return t[p].SUM;//覆盖了该区间就直接返回整个数据;
+
+ 
+
+  push_down(p);
+
+ 
+
+  ll sum = 0;
+
+  int mid = t[p].l + t[p].r &gt;&gt; 1;
+
+  if(l &lt;= mid)
+
+​          sum += querySum(lson(p),l,r);
+
+  if(r &gt; mid)
+
+​          sum += querySum(rson(p),l,r);
+
+ 
+
+  return sum;
+
+&#125;
+
+ll query_Max(int p,int l,int r)
+
+&#123;
+
+  if(l &lt;= t[p].l &amp;&amp; r &gt;= t[p].r)
+
+​          return t[p].Max;
+
+ 
+
+  int mid = t[p].l + t[p].r &gt;&gt; 1;
+
+  ll maxL = -inf,maxR = -inf;
+
+  if(l &lt;= mid)maxL = max(maxL,query_Max(lson(p),l,r));
+
+  if(r &gt; mid)maxR = max(maxR,query_Max(rson(p),l,r));
+
+ 
+
+  return max(maxL,maxR);
+
+ 
+
+&#125;
+
+ 
+
+void update_point(int l,ll y)//l y -&gt;代表a[l]的值变成y\n
+
+&#123;//等将于 将区间[l,l]内每个数加上 value = y-a[l] 
+
+​     ll value = y- Data[l];
+
+​     update(1,l,l,value); 
+
+&#125;
+
+int main()
+
+&#123;
+
+​     printf(&quot;请输入一共有多少个数n,以及有多少次操作m\n&quot;);
+
+  scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+
+  printf(&quot;请依次输入这n个数的值,a[1]到a[n]\n&quot;);
+
+  for(int i = 1;i &lt;= n;i ++)
+
+​          scanf(&quot;%lld&quot;,&amp;Data[i]);
+
+  build(1,1,n);//建立线段树 a[1]-&gt;a[n]
+
+​     //执行操作
+
+​     printf(&quot;输入格式为\n&quot;);
+
+​     printf(&quot;0 L y -&gt;代表Data[L]的值变成y\n&quot;);
+
+​     printf(&quot;1 L r x -&gt;代表Data[L]-&gt;Data[r]每个值都加x\n&quot;);
+
+​     printf(&quot;2 L r  -&gt;代表输出DataL]-&gt;Data[r]每个数的和\n&quot;);
+
+​     printf(&quot;3 L r  -&gt;代表输出Data[L]-&gt;Data[r]每个数的最大值\n&quot;);
+
+​     int l,r;
+
+​     ll y;
+
+​     ll value;
+
+  for(int i = 1;i &lt;= m;i ++)
+
+  &#123;
+
+​    int oporate;
+
+​              scanf(&quot;%d&quot;,&amp;oporate);
+
+​    if(oporate == 0)
+
+​    &#123;
+
+​              scanf(&quot;%d&quot;,&amp;l);
+
+​              scanf(&quot;%lld&quot;,&amp;y);
+
+​              value = y-Data[l];
+
+​      update(1,l,l,value);
+
+​      printf(&quot;Data[%d]的值变为%lld，更新完毕\n&quot;,l,y);
+
+​          &#125;
+
+​    else if(oporate == 1)
+
+​    &#123;
+
+​              scanf(&quot;%d%d&quot;,&amp;l,&amp;r);
+
+​              scanf(&quot;%lld&quot;,&amp;value);
+
+​      update(1,l,r,value);
+
+​      printf(&quot;Data[%d]-&gt;Data[%d]的值都加上%lld 更新完毕\n&quot;,l,r,value);
+
+​    &#125;
+
+​    else if(oporate ==2)
+
+​    &#123;
+
+​      scanf(&quot;%d%d&quot;,&amp;l,&amp;r);
+
+​      printf(&quot;sum = %lld\n&quot;,querySum(1,l,r));
+
+​    &#125;
+
+​    else
+
+​    &#123;
+
+​         scanf(&quot;%d%d&quot;,&amp;l,&amp;r);
+
+​         mx = query_Max(1,l,r);//输入l,r，找出a[l]到a[r]的最大值 
+
+​          printf(&quot;MAX = %lld\n&quot;,mx);//出最大值
+
+​          &#125;
+
+  &#125;
+
+&#125;
+
+ 
+
+ 
+
+ 
+
+ 
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/shizhuofan.GitHub.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">#数据结构与算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>线段树-哈工大作业</div>
+      <div>http://yoursite.com/2023/05/16/线段树/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fars</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/05/16/%E6%A6%82%E7%8E%87%E8%AE%BA%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87-%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF%E7%9A%84%E8%81%94%E7%B3%BB%E5%8F%8A%E5%9C%A8%E7%94%9F%E6%B4%BB%E5%BD%93%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%A0%94%E7%A9%B6/" title="概率统计与计算机技术的联系及在生活当中的应用研究">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">概率统计与计算机技术的联系及在生活当中的应用研究</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/05/16/%E7%BB%99%E5%AE%9A%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%85%88%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E5%8F%AF%E8%83%BD%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91/" title="给定二叉树的先序遍历有多少种可能的二叉树">
+                        <span class="hidden-mobile">给定二叉树的先序遍历有多少种可能的二叉树</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

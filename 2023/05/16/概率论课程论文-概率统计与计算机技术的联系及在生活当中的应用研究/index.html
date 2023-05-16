@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fars">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="概率论与数理统计课程论文 题目：概率统计与计算机技术的联系及在生活当中的应用研究    班 号 2003001    学 号 120L021011   姓 名 石卓凡   日 期 2021.11.17   成 绩    **** 摘 要 概率论与数理统计是研究随机现象统计规律性的一门学科，是理工科各专业的一门重要的基础课程，一方面，它有别开生面的研究课题，有自己独特的概念和方法，内容丰富，结果深">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率统计与计算机技术的联系及在生活当中的应用研究">
+<meta property="og:url" content="http://yoursite.com/2023/05/16/%E6%A6%82%E7%8E%87%E8%AE%BA%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87-%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF%E7%9A%84%E8%81%94%E7%B3%BB%E5%8F%8A%E5%9C%A8%E7%94%9F%E6%B4%BB%E5%BD%93%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%A0%94%E7%A9%B6/index.html">
+<meta property="og:site_name" content="Fars&#39;Blog">
+<meta property="og:description" content="概率论与数理统计课程论文 题目：概率统计与计算机技术的联系及在生活当中的应用研究    班 号 2003001    学 号 120L021011   姓 名 石卓凡   日 期 2021.11.17   成 绩    **** 摘 要 概率论与数理统计是研究随机现象统计规律性的一门学科，是理工科各专业的一门重要的基础课程，一方面，它有别开生面的研究课题，有自己独特的概念和方法，内容丰富，结果深">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136113.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136124.gif">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136119.gif">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136121.gif">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136123.gif">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136137.gif">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136597.gif">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136733.gif">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136871.gif">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136979.gif">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136033.gif">
+<meta property="article:published_time" content="2023-05-16T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-05-16T03:36:47.563Z">
+<meta property="article:author" content="Fars">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136113.jpg">
+  
+  
+  
+  <title>概率统计与计算机技术的联系及在生活当中的应用研究 - Fars&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fars个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="概率统计与计算机技术的联系及在生活当中的应用研究"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-16 11:42" pubdate>
+          2023年5月16日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">概率统计与计算机技术的联系及在生活当中的应用研究</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136113.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><strong>概率论与数理统计课程论文</strong></p>
+<p>题目：概率统计与计算机技术的联系及在生活当中的应用研究</p>
+<table>
+<thead>
+<tr>
+<th><strong>班 号</strong></th>
+<th><strong>2003001</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>学 号</strong></td>
+<td><strong>120L021011</strong></td>
+</tr>
+<tr>
+<td><strong>姓 名</strong></td>
+<td><strong>石卓凡</strong></td>
+</tr>
+<tr>
+<td><strong>日 期</strong></td>
+<td><strong>2021.11.17</strong></td>
+</tr>
+<tr>
+<td><strong>成 绩</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>**<br>**</p>
+<p><strong>摘 要</strong></p>
+<p>概率论与数理统计是研究随机现象统计规律性的一门学科，是理工科各专业的一门重要的基础课程，一方面，它有别开生面的研究课题，有自己独特的概念和方法，内容丰富，结果深刻；其理论方法独特、抽象，既有严密的数学基础，又与众多学科有着密切的联系。随着科学技术，尤其是计算机的迅速发展，它已广泛应用于经济管理、工程技术、金融、生物、环境、国防等领域。</p>
+<p><strong>关键词：</strong>概率统计；日常生活；应用；统计规律；数学；计算机技术；</p>
+<p>**<br>**</p>
+<p><strong>一、引言</strong></p>
+<p>概率统计以自然界的随机现象为研究对象，它与人们的日常生活有着密切的联系.结合具体生活实际，对概率统计的应用进行全面分析，有利于增强人们行动的自觉性，防止上当受骗.文章主要结合具体实例，通过计算分析得出相应的结论，以更好地指导人们的日常行动.</p>
+<p><strong>二、概率统计</strong></p>
+<p>概率统计是一种研究自然界中随机事件统计规律的数学方法，它包括概率论和统计学。概率是概率论的基本概念，又可以称作或然率、机会率、机率（几率）或可能性。概率是对随机事件发生的可能性的一种估量。一般情况下，在0到1之间的实数代表着一个事件发生的可能性大小。该事件越接近1越有可能发生；越接近0越不可能发生。比如一个没有复习到位的人能有百分之多少的把握能顺利通过考试，或者抛硬币等这些都是属于概率问题。统计是一门以概率论为理论基础与数据有关的学问，它是一种通过描述数据特征从而探索数据规律的方法。一个学校的升学和就业情况、学生体能测试结果、公司的经营成本和收益等都是与统计有关系的。生活和工作中处处充满着概率数据，概率统计与人们的实际生活有着密切的联系，并对日常生活生产和科学研究等起着越来越重要的作用。生活中的概率统计问题有时出乎人们的预料，但了解概率统计在—-实际生活中的应用，根据概率统计透过事情现象看到本质，我们就可以简单地去解决生活中的一些问题。</p>
+<p><strong>三、随机数与伪随机数的生成</strong></p>
+<p>3.1在生活中，最困扰人们的一个问题就是如何做出一个无关痛痒、随意的选择―-随机数。随机数最重要的特性是它在产生时后面的那个数与前面的那个数毫无关系，因而可以给人们一种下一状态不可测的感觉，广泛地应用于抽奖、密码学中。真正的随机数是使用物理现象产生的：比如掷钱币、骰子、转轮、使用电子元件的噪音、核裂变等等。在真正关键性的应用中，比如在密码学中，人们一般使用真正的随机数，这样的随机数生成器属于物理性随机数生成器，但是对技术的要求比较高。所以在实际应用中往往使用伪随机数就足够了。这些数列是“似乎”随机的数，实际上它们是通过一个固定的、可以重复的计算方法产生的。它们并不真正地随机，因为它们实际上是可以计算出来的，但是它们具有类似于随机数的统计特征。这就是伪随机数生成器，按一定的算法和种子值生成。</p>
+<p>3.2而在计算机中， 还可以通过梅森旋转算法快速产生高质量的伪随机数。通常使用两个相近的变体，不同之处在于使用了不同的梅森素数。一个更新的和更常用的是MT19937，32位字长。还有一个变种是64位版的MT19937-64。对于一个k位的长度，梅森旋转算法会在[0，2k-1]的区间之间生成离散型均匀分布的随机数。伪随机数的一个特别大的优点是它们的计算不需要外部的特殊硬件的支持，因此在计算机科学中伪随机数依然被使用。真正的随机数必须使用专门的设备，比如热噪讯号、量子力学的效应、放射性元素的衰退辐射，或使用无法预测的现象，譬如用户按键盘的位置与速度、用户运动鼠标的路径坐标等来产生。</p>
+<p>3.3蒙特卡罗方法的计算机实现</p>
+<p>蒙特卡罗方法， 是一种使用随机数， 或更常见的伪随机数来解决很多计算问题的方法，也称统计模拟方法，是二十世纪四十年代中期由于科学技术的发展和电子计算机的发明，而被提出的一种以概率统计理论为指导的一类非常重要的数值计算方法。蒙特卡罗方法在金融工程学，宏观经济学，生物医学，计算物理学(如粒子输运计算、量子热力学计算、空气动力学计算)等领域应用广泛。</p>
+<p>当所求解的问题本身具有内在的随机性，借助计算机的运算能力可以直接模拟这种随机的过程，例如在核物理研究中，分析中子在反应堆中的传输过程。而当所求解问题可以转化为某种随机分布的特征数，比如随机事件出现的概率，或者随机变量的期望值。通过随机抽样的方法，以随机事件出现的频率估计其概率，或者以抽样的数字特征估算随机变量的数字特征，并将其作为问题的解。这种方法多用于求解复杂的多维积分问题。</p>
+<p>假设我们要计算一个不规则图形的面积，那么图形的不规则程度和分析性计算(比如积分)的复杂程度是成正比的。蒙特卡罗方法基于这样的思想：假想你有一袋豆子，把豆子均匀地朝这个图形上撒，然后数这个图形之中有多少颗豆子，这个豆子的数目就是图形的面积。当你的豆子越小，撒的越多的时候，结果就越精确。借助计算机程序可以生成大量均匀分布坐标点，然后统计出图形内的点数，通过它们占总点数的比例和坐标点生成范围的面积就可以求出图形面积。通过一些数学上的关系和计算公式，可以计算出一些特殊常数、参数的数值。</p>
+<p>此外对一些难以直接计算出的积分也可以使用此方法来估算，对被积函数变量区间进行随机均匀抽样，然后对被抽样点的函数值求平均，从而可以得到函数积分的近似值。此种方法的正确性是基于概率论的中心极限定理。当抽样点数为m时，使用此种方法所得近似解的统计误差只与m有关,不随积分维数的改变而改变。因此当积分维度较高时，蒙特卡罗方法相对于其他数值解法更优。</p>
+<p><strong>四、计算机数学软件与数理统计</strong></p>
+<p>在回归分析中，两个随机变量X，Y之间存在着某种相关关系，尤其在物理实验中，常常通过作图法得到一条直线，其斜率的值是一个包含所测物理常量的表达式，从而得出所测物理量。常见的就是一种线性关系，通过最小二乘法来逼近和拟合，可以近似的得到X，Y之间的线性关系。</p>
+<p>而通常的作图由于人眼本身的局限性，较难十分准确的做出最小二乘下的拟合直线，存在偏差，而直接使用最小二乘法计算有十分繁杂，从而有了数学软件的使用， 如MATLAB等， 可以十分方便地得出拟合曲线方程的各个参数。极大地减少了人的工作量，并且精确性也较高。</p>
+<p><strong>五、****计算机技术对概率论和数理统计的贡献具体例子</strong></p>
+<p>计算机科学与技术的发展极大地促进了概率论、数理统计方面工作的进步，大大提高了解决此类问题的效率与准确度，减少了计算上的复杂度。并且人们可以利用计算机程序来模拟现实生活中难以进行或者重复性较高的试验，(如模拟演示投掷硬币的试验)从而得出一个可以接受的结果，作为实验的数据，得出一个较为可靠的结论。</p>
+<p>计算机模拟演示DeMovire-Laplace中心极限定理。通过选取不同的参数n，演示随机序列前n项和的分布逐步趋向正态分布的过程。若随机变量X~B(n，p)，(0&lt;p&lt;1)的二项分布，则随着n的增大，X近似服从参数为np和np(1-p)的正态分布；以及局部极限定理的结论，即X在某一点的概率近似等于在该点的正态分布的密度函数值。</p>
+<p>中心极限定理中，对于独立同分布的随机变量X1,X2,X3…Xn,E(Xi)&#x3D;μ,D(Xi)&#x3D;σ2,i&#x3D;1,2,⋯有</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136124.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>即这些随机样本的均值总是围绕在总体均值周围，且分布近似呈正太分布</p>
+<p>则可以利用PYTHON采用对中心极限定理进行简单验证具体实例过程如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136119.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="文本框: import matplotlib.pyplot as plt import math import random as rd n=30  ##单次试验的样本数量 epoch=1000  ##试验次数 res=[0]*(n+1) for i in range(epoch):     average=0     for j in range(n):         average+=math.sin(rd.random()*math.pi/2)     res[round(average)]+=1   # 显示高度 def autolabel(rects):     for rect in rects:         height = rect.get_height()         plt.text(rect.get_x()+rect.get_width()/2.- 0.2, 1.03*height, &#39;%s&#39; % int(height))   name_list = range(0,n+1) num_list = res autolabel(plt.bar(range(len(num_list)), num_list, color=&#39;rgb&#39;, tick_label=name_list)) plt.show() "></td>
+</tr>
+</tbody></table>
+<p>得到下图</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136121.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="IMG_256"></p>
+<p>从上图的运行结果来看当前结果已经和理论值非常接近了，能够做到简单验证中心极限定理</p>
+<p>可见，计算机能够使得概率论的试验更为简便，并且能够演示一些较为抽象概念和理论，加深我们的理解，为理论证明提供了强有力的工具和方法。</p>
+<p><strong>六、****概率统计在计算机技术中的具体应用例子</strong></p>
+<p>计算机中的模式识别，是通过<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA/140338">计算机</a>用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B0%E5%AD%A6/107037">数学</a>技术方法来研究模式的自动处理和判读。</p>
+<p>而在这其中应用到的贝叶斯决策，就是在贝叶斯公式计算出后验概率的基础上，进一步做归属的决定——分类，根据观测对样本做出应该归属于哪一类的决策。</p>
+<p>其中所利用到贝叶斯公式的思想和理论：</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136123.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"><br> 代表样本X在某一类别ωi 中出现的概率，该样本也可能出现在其它的类别中，记作条件概率，是在特定类别这个条件下出现的概率。</p>
+<p>当根据经验及有关材料推测出主观概率后，对其是否准确没有充分把握时，可采用概率论中的贝叶斯公式进行修正，修正前的概率称为先验概率，修正后的概率称为后验概率</p>
+<p>·     后验概率：<br> <img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136137.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>·   <img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136597.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>·     其中P(X)表示样本X在所有类别中出现的概率之和最大</p>
+<p>·     </p>
+<p>贝叶斯决策其中主要包括两种决策方式，即最小错误贝叶斯决策，和最小风险贝叶斯决策。前者是在比较理想或者各类类别地位均等的情况下的决策，而后者则要考虑决策本身带来的代价和各类别地位的不均等。</p>
+<h3 id="最小错误贝叶斯决策"><a href="#最小错误贝叶斯决策" class="headerlink" title="最小错误贝叶斯决策:"></a>最小错误贝叶斯决策:</h3><p>在一般的模式识别问题中,人们往往希望尽量减少分类的错误,即目标是追求最小错误率。从最小错误率的要求出发,利用概率论中的贝叶斯公式,就能得出使错误率最小的分类决策,称之为最小错误率贝叶斯决策。</p>
+<p>将损失定义为0-1损失</p>
+<pre><code class="hljs">                         ![img](https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136655.gif)
+</code></pre>
+<p>化简条件风险</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136733.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>选择后验概率最大的分组或者类，则判断正确的可能性就是最大的，进而犯错的概率就是最小的，即最小错误贝叶斯决策 &#x3D; 最大后验贝叶斯决策。由于概率非负，如果每一次决策错误率都最小，那么总的错误率也是最小的。</p>
+<h3 id="最小风险贝叶斯决策"><a href="#最小风险贝叶斯决策" class="headerlink" title="最小风险贝叶斯决策:"></a>最小风险贝叶斯决策:</h3><p>据具体的场合不同,我们应关心的有可能并不仅仅是错误率,而是错误所带来的损失，同样,在癌细胞识别的例子中,我们不但应该关心所作的决策是否错误,更应该关心决策错误所带来的损失或风险。比如,如果把正常细胞误判为癌细胞,会给病人带来精神上的负担和不必要的进一步检查,这是一种损失﹔反之,如果把癌细胞误判为正常细胞,则损失更大,因为这可能会导致病人丧失了宝贵的早期发现癌症的机会,可能会造成影响病人生命的严重后果。将这两种类型的错误一视同仁来对待,在很多情况下是不恰当的。</p>
+<p>设对于实际状态为wj的向量x采取决策αi所带来的损失为</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136871.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>计算出条件风险：</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136979.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>选择风险最小的决策：</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161136033.gif" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>选择决策风险最小的分组或者类，当不同的决策所带来的的代价不相同时，我们会为每个决策添加不同的权重</p>
+<p>可见，概率统计在计算机技术中的应用有着至关重要的地位，在模式识别可以通过贝叶斯决策作为最优的决策，可以使决策的错误率达到最小，或者是其他设定规则下的最优结果。除此之外，概率统计还应用在计算机技术的其他方方面面。</p>
+<p><strong>七、研究概率统计在实际生活中的应用意义</strong></p>
+<p>概率统计与人们的日常行为有着密切的联系，人们在日常生活中随时随地都会与概率统计打交道.例如，保险行业、抽奖活动、生活游戏等等，都会出现概率统计的知识，而一些消费者如果缺乏概率统计的相关知识，往往会作出不理性的选择，对自己造成不利影响.事实上，在这些活动中，商家往往会利用概率统计的有关内容，再加上一些消费者抱有侥幸心理，认为通过概率统计的内容，自己会侥幸成为幸运者，而商家却获取巨大的利润.因此，结合具体的生活实际，探讨分析概率统计问题，有利于全面认识某些活动的本质现象，进而增强人们日常行为的自觉性，使人们在从事某种消费活动的时候作出更为理性的选择，从而维护自己的正当利益，避免发生不必要的损失.</p>
+<p><strong>八、总结</strong></p>
+<p>我们的日常生活生产和工作中处处充满着概率统计，与此同时概率统计理论与方法的应用也遍及计算机科学与技术领域。概率统计的应用范围是十分广泛的，它可以帮助我们提高彩票中奖率、计算考卷分数和面试通过率、了解体育比赛中的可能性和促进产品的促销等方方面面。虽然我们不能准确的预测一个事情在将来发展的情况，但利用概率统计，我们能更好地去处理不确定的因素与可能，为我们的生活生产和工作带来便利。因此我们要学好概率统计，对生活中的某些偶然事件做出理性的分析，从而充分发挥概率统计的指导作用，也为人类的发展做出自己的一份贡献。</p>
+<p><strong>参考文献</strong></p>
+<p>[1]<a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?filename=HBHS201903060&dbcode=CJFD&dbname=CJFD2019&v=XhYVi6LdrVKBm493NQL3gUbPd6o8aYjcHT-7ZhrOpV-WZESkf21M9yrmLvnkt6UV">论概率统计方法在教学中的应用</a>[J]. 何林海. 湖北开放职业学院学报. 2019(03)</p>
+<p>[2]<a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?filename=KJNJ202003085&dbcode=CJFD&dbname=CJFD2020&v=nAjVGv8ZXHr05odjMR9Swj89pv4RBobLNes1kPbnztfTeGN4GSA_zN_fVOeqJkQq">分层教学为主的《概率论与数理统计》的教学研究</a>[J]. 汤文菊,方成鸿,方小洪. 内江科技. 2020(03)</p>
+<p>[3]<a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?filename=DJKX199304014&dbcode=CJFD&dbname=CJFD1993&v=2VR_qDUBBur6Q901iNxLNdh-TxRXHW1Tr5ly2Y4tQHaLrB8y3vWHO4ywL6kTFmrb">概率统计方法在我国人口统计研究中的应用初探</a>[J]. 刘珠. 当代经济科学. 1993(04)</p>
+<p>[4]<a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?filename=JYXD201981133&dbcode=CJFD&dbname=CJFD2019&v=zJWHH6Q0afGZQb8LSE9r4ErvNPSAh__Kvf2UdWpVM7TF0aOchVHbNk5SZ1DagY6K">概率统计方法的应用案例研究</a>[J]. 姜丽颖,张国林. 教育现代化. 2019(81)</p>
+<p>[5]<a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?filename=ZXLJ201101094&dbcode=CJFD&dbname=CJFD2011&v=XZglFTSxg8GEyqlfqjvD5kC6ezCI8q44I0ROA2ygKq6OsM4vdOMoOUt_1C74d3QJ">基于概率统计方法确定油滴电荷量</a>[J]. 冯德军,鲁晓东,傅武伟,费玉良,黄孝肖. 科技资讯. 2011(01)</p>
+<p>[6]<a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?filename=JZGC201115174&dbcode=CJFD&dbname=CJFD2011&v=qpbc92arNdW1wjV6fWkfeCJcg-OjG8RBA2svbgI9u8UBtBlP6GChksIU3bR-fni7">客观现象的概率统计解释举例</a>[J]. 苑延华,徐莹,陈洪海. 价值工程. 2011(15)</p>
+<p>[7]模式识别（第三版）[M]. 张学工. 2010年8月第3版. 北京清华大学:清华大学出版社, 2010</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>概率统计与计算机技术的联系及在生活当中的应用研究</div>
+      <div>http://yoursite.com/2023/05/16/概率论课程论文-概率统计与计算机技术的联系及在生活当中的应用研究/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fars</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/05/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84lab2-%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84%E7%9A%84%E5%BB%BA%E7%AB%8B%E4%B8%8E%E9%81%8D%E5%8E%86/" title="数据结构lab2-树型结构的建立与遍历">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构lab2-树型结构的建立与遍历</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/05/16/%E7%BA%BF%E6%AE%B5%E6%A0%91/" title="线段树-哈工大作业">
+                        <span class="hidden-mobile">线段树-哈工大作业</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

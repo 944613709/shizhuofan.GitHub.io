@@ -1,0 +1,901 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <link rel="icon" href="/shizhuofan.GitHub.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Fars">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="哈尔滨工业大学计算机科学与技术学院 实验报告 课程名称：数据结构与算法 课程类型：必修 实验项目：树型结构的建立与遍历  实验题目：二叉树存储结构的建立与遍历 实验日期：2021.10.27 班级：2003001 学号：120L021011 姓名：石卓凡    设计成绩 报告成绩 指导老师         一、  实验目的 \1.     掌握树的链式存储方式及其操作实现（创建、遍历、查找等）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构lab2-树型结构的建立与遍历">
+<meta property="og:url" content="http://yoursite.com/2023/05/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84lab2-%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84%E7%9A%84%E5%BB%BA%E7%AB%8B%E4%B8%8E%E9%81%8D%E5%8E%86/index.html">
+<meta property="og:site_name" content="Fars&#39;Blog">
+<meta property="og:description" content="哈尔滨工业大学计算机科学与技术学院 实验报告 课程名称：数据结构与算法 课程类型：必修 实验项目：树型结构的建立与遍历  实验题目：二叉树存储结构的建立与遍历 实验日期：2021.10.27 班级：2003001 学号：120L021011 姓名：石卓凡    设计成绩 报告成绩 指导老师         一、  实验目的 \1.     掌握树的链式存储方式及其操作实现（创建、遍历、查找等）。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128372.png">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128380.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128382.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128384.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128388.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128405.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128992.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128051.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128109.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128298.jpg">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128653.jpg">
+<meta property="article:published_time" content="2023-05-16T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-05-16T03:28:35.490Z">
+<meta property="article:author" content="Fars">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128372.png">
+  
+  
+  
+  <title>数据结构lab2-树型结构的建立与遍历 - Fars&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/shizhuofan.GitHub.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/shizhuofan.GitHub.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/shizhuofan.GitHub.io/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/shizhuofan.GitHub.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/shizhuofan.GitHub.io/js/utils.js" ></script>
+  <script  src="/shizhuofan.GitHub.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/shizhuofan.GitHub.io/">
+      <strong>Fars个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/shizhuofan.GitHub.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/shizhuofan.GitHub.io/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据结构lab2-树型结构的建立与遍历"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-16 11:42" pubdate>
+          2023年5月16日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          152 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据结构lab2-树型结构的建立与遍历</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>哈尔滨工业大学计算机科学与技术学院</p>
+<p>实验报告</p>
+<p>课程名称：数据结构与算法</p>
+<p>课程类型：必修</p>
+<p>实验项目：树型结构的建立与遍历 </p>
+<p>实验题目：二叉树存储结构的建立与遍历</p>
+<p>实验日期：2021.10.27</p>
+<p>班级：2003001</p>
+<p>学号：120L021011</p>
+<p>姓名：石卓凡</p>
+<table>
+<thead>
+<tr>
+<th>设计成绩</th>
+<th>报告成绩</th>
+<th>指导老师</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>一、</strong>  <strong>实验目的</strong></p>
+<p>\1.     掌握树的链式存储方式及其操作实现（创建、遍历、查找等）。</p>
+<p>\2.     掌握二叉树用不同方法表示所对应的不同输入形式。</p>
+<p>\3.     掌握二叉树中各种重要性质在解决实际问题中的应用。</p>
+<p>\4.     掌握哈夫曼树的构造方法及其编码方法。</p>
+<p>\5.     掌握二叉排序树的特性及其构造方法。</p>
+<p><strong>二、实验要求及实验环境</strong></p>
+<p><strong>1<strong><strong>．</strong></strong>编</strong>写建立二叉树的二叉链表存储结构（左右链表示）的程序，并以适当的形式显示和保存二叉树； </p>
+<p>2．采用二叉树的二叉链表存储结构，编写程序实现二叉树的先序、中序和后序遍历的递归和非递归算法以及层序遍历算法，并以适当的形式显示和保存二叉树及其相应的遍历序列； </p>
+<p><strong>3****．给定一个二叉树，</strong> 编写算法完成下列应用:（二选一）</p>
+<p>（1）判断其是否为完全二叉树；</p>
+<p>（2）求二叉树中任意两个结点的公共祖先。</p>
+<p>实验环境：</p>
+<p>操作系统：Win7&#x2F;Win10</p>
+<p>集成开发环境：devcpp++</p>
+<p>外部库：暂无</p>
+<p>二、  <strong>设计思想</strong>（本程序中的用到的所有数据类型的定义，主程序的流程图及各程序模块之间的调用关系）</p>
+<p><strong>1.</strong>    <strong>函数功能和外部接口设计</strong></p>
+<p>本系统总计设计了13个函数，每个函数的功能和接口设计如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>函数名</th>
+<th>函数功能</th>
+<th>函数参数</th>
+<th>函数返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Main</td>
+<td>根据order执行各函数</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Creat</td>
+<td>读入TNode.txt的信息，建立根节点为Node的二叉树</td>
+<td>BTreeNode* &amp;Node</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>3</td>
+<td>VLR</td>
+<td>前序遍历</td>
+<td>BTreeNode *T</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>4</td>
+<td>LVR</td>
+<td>中序遍历</td>
+<td>BTreeNode *T</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>5</td>
+<td>LBR</td>
+<td>后序遍历</td>
+<td>BTreeNode *T</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>6</td>
+<td>LevelOrder</td>
+<td>层序遍历</td>
+<td>BTreeNode* T</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>7</td>
+<td>IsWanQuanErChaShu</td>
+<td>判断是否为完全二叉树</td>
+<td>BTreeNode* T</td>
+<td>Bool(True or false)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>ShuZuHua</td>
+<td>将链式存储转为顺序数组存储</td>
+<td>BTreeNode* NODE,TreeList TList[],int  i</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>9</td>
+<td>GongGongZuXian</td>
+<td>求两个节点对应的最近公共组先</td>
+<td>TreeList TList[],char A,char B</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>10</td>
+<td>PreOrder_2</td>
+<td>先序遍历非递归</td>
+<td>BTreeNode* T</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>11</td>
+<td>InOrder_2</td>
+<td>中序遍历非递归</td>
+<td>BTreeNode* T</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>12</td>
+<td>PostOrder_2</td>
+<td>后序遍历非递归</td>
+<td>BTreeNode* T</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Show</td>
+<td>图形展示二叉树</td>
+<td>BTreeNode* T</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Depth</td>
+<td>求出树的深度</td>
+<td>BTreeNode* T</td>
+<td>Int(depth)</td>
+</tr>
+</tbody></table>
+<p>数据定义</p>
+<p>typedef struct BTreeNode</p>
+<p>{</p>
+<p>​    char Value;</p>
+<p>​    struct   BTreeNode *Left;</p>
+<p>​    struct   BTreeNode *Right;</p>
+<p>}BTreeNode;</p>
+<p>typedef struct TreeList</p>
+<p>{</p>
+<p>​    char Value;</p>
+<p>}TreeList;</p>
+<p>1．逻辑设计   </p>
+<p>   （1）先序递归遍历</p>
+<p>​      1.如果树T不为空</p>
+<p>​       1.1输出T的数据域</p>
+<p>​       1.2递归的遍历左子树</p>
+<p>​       1.3递归的遍历右子树</p>
+<p>   （2）中序递归遍历</p>
+<p>​      1.如果树T不为空</p>
+<p>​        1.1递归的遍历左子树</p>
+<p>​        1.2输出T的数据域</p>
+<p>​        1.3递归的遍历右子树</p>
+<p>   （3）后序递归遍历</p>
+<p>​      1.如果树T不为空</p>
+<p>​             1.1递归的遍历左子树</p>
+<p>1.2递归的遍历右子树</p>
+<p>1.3输出T的数据域</p>
+<p>（4）先序遍历非递归</p>
+<p>\1.  如果根节点不为空则入栈</p>
+<p>\2.  While循环，当T不空或者栈不空</p>
+<p>2.1 借助while循环沿着T左子树,并且输出当前T，一直走到最左下角的空结点</p>
+<p>2.2 如果栈非空，则T&#x3D;栈顶元素，并且弹出栈顶，进入T的右子树</p>
+<p>2.3 在新的右子树为根节点重复上述进行遍历</p>
+<p>（5）中序遍历非递归</p>
+<p>\1.  如果根节点不为空则入栈</p>
+<p>2  While循环，当T不空或者栈不空</p>
+<p>2.1借助while循环沿着T左子树一直走到最左下角的空结点</p>
+<p>2.2如果栈非空，则T&#x3D;栈顶元素，并且弹出栈顶，并且输出当前T，进入T的右子树</p>
+<p>2.3在新的右子树为根节点重复上述进行遍历</p>
+<p>（6）后序遍历非递归</p>
+<p>\1.  如果根节点不为空则入栈</p>
+<p>\2.  While循环，当T不空或者栈不空</p>
+<p>2.1如果T不空则一直T&#x3D;T的左子树，并且进栈</p>
+<p>2.2如果T为空，T等于栈顶元素，并且弹出栈顶元素，考虑T的右子树，如果右子树存在且从未访问过，则最右子树进行后序遍历。否则，输出当前的T，并且用r记录当前的T，令T&#x3D;NULL进行下一次循环</p>
+<p>（7）层序遍历</p>
+<p>\1.  如果根节点不为空则入队</p>
+<p>\2.  循环直到队列为空</p>
+<p>2.1 q&#x3D;队头元素且出队,cout&lt;&lt;q;</p>
+<p>2.2 如果q有左儿子则入队</p>
+<p>2.3 如果q有右儿子则入队</p>
+<p>（8）判断是否为完全二叉树</p>
+<p>\1.  如果根节点不为空则入队</p>
+<p>\2.  循环直到队列为空</p>
+<p>2.1 如果左右孩子都有，直接左右孩子入队</p>
+<p>2.2 如果左孩子为空，右孩子不为空，则不是完全二叉树</p>
+<p>2.3 如果左孩子不为空，有孩子为空 ，或者如果左右孩子都为空，则从此以后访问到的结点都必须是叶子结点。如果此后出现非叶子结点，则不是完全二叉树</p>
+<p>（9）求两个节点对应的最近公共组先</p>
+<p>\1.  利用递归将链式存储转为数组存储</p>
+<p>1.1 如果传入的NODE不为空，则将Value和传入的下标i，对应存入数组，并且再次调用函数，将NODE的左右儿子及其对应下标传入函数</p>
+<p>1.2如果传入的NODE为空，则Value为#</p>
+<p>\2.  While循环直到找到公共祖先</p>
+<p>2.1 将两个结点下标较大的除以2，将其下标指向其父节点下标</p>
+<p>2.2 当两个节点下标相同时候，结束循环</p>
+<p>（10）图形展示二叉树</p>
+<p>\1.  如果根节点不为空则入队,同时利用Depth求出树的深度</p>
+<p>\2.  While直到所有都已经成功输出</p>
+<p>2.1 len记录当前队里size代表这一层有多少个结点</p>
+<p>2.2 While将当前这一层的所有节点输出，将左右子树入队，并且左右子树为空时候NEW一个节点将Value设为#，利用深度控制输出次数</p>
+<p>（11）创建二叉树</p>
+<p>\1.  文件读入根结点，入队</p>
+<p>\2.  如果根节点不空</p>
+<p>2.1 弹出队列首元素，读入左儿子，入队</p>
+<p>2.2 读入右儿子，入队</p>
+<p>2.3 借队列依次重复读入</p>
+<p>（12）求出树的深度</p>
+<p>\1.  如果结点存在，则递归调用返回左右子树最大值+1</p>
+<p>\2.  如果节点不存在，直接return 0</p>
+<p>2．物理设计</p>
+<p>1.BTreeNode用到左右儿子链式存储,链表结点中储存了Value值，   BTreeNode *Left指向该节点的左儿子，BTreeNode *Right指向该节点的右儿子</p>
+<p>2.TreeList用到左右儿子顺序存储，存储了Char型的Value，代表这个树节点的value值，下标关系代表和其他节点相应的父子关系</p>
+<p>3.stack栈用链式存储，栈有指向头节点的指针Node *head指向最初进入的元素（栈底），指向尾结点的Node *p，p指向栈顶最新进入的元素，记录栈元素数量的int length，而每个Node节点有对应数据类型的data，指向下一个结点的Node *next，</p>
+<p>4.queue队列用链式存储，有指向队首的指针Node *head，指向队尾的指针Node *rear，记录队列元素多少的int length,而每一个Node结点内部都有，对应数据类型的data，指向下一个结点的Node *next</p>
+<p>\3.  主程序流程图及各程序模块之间的调用关系</p>
+<p>\4.  </p>
+<p>流程图<img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128372.png" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="未命名文件(1)"></p>
+<p>调用关系</p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128380.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><strong>四、</strong>测试结果</p>
+<p><strong>样例<strong><strong>1</strong></strong>：</strong></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128382.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128384.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128388.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128405.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128992.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><strong>样例2****：</strong></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128051.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128109.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128298.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161128653.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p><strong>五、****经验体会与不足</strong></p>
+<p><strong>经验体会：</strong></p>
+<p>（1）对于遍历的非递归算法就是将递归算法利用while循环与if条件判断以及队列和栈的辅助，同一个思路写出来，递归算法简单易懂，非递归能够更进一步深入理解这种方式</p>
+<p>（2）在求判断是否为完全二叉树等很多关于二叉树的问题都是基于遍历二叉树的算法上来做的</p>
+<p>（3）在求公共祖先时候发现二叉树的存储方式，链式存储和数组存储各有利弊，在求公共祖先时候需要将链式转为数组，利用数组中父子结点对应下标数学关系很容易求出公共祖先</p>
+<p>（4）在后面我们所学习到的图的深度遍历和树的先序遍历十分相似，在非递归上也都应用到栈。</p>
+<p><strong>过程暴露的不足：</strong></p>
+<p>①　对于书写非递归遍历时候，没有一个总体的把握，第一次写while循环内部判断条件总是没有考虑完全</p>
+<p>②　解决方法：对while循环判断条件在写出程序大体框架之后再补充写出判断条件</p>
+<p>③　对于首次从链式存储转为数组存储树的时候非递归代码占了100多行，过于冗长</p>
+<p>④　解决方法：换成递归算法，直观而且简洁</p>
+<p><strong>六、****附录：源代码（带注释）</strong></p>
+<p>**</p>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br><span class="line">766</span><br><span class="line">767</span><br><span class="line">768</span><br><span class="line">769</span><br><span class="line">770</span><br><span class="line">771</span><br><span class="line">772</span><br><span class="line">773</span><br><span class="line">774</span><br><span class="line">775</span><br><span class="line">776</span><br><span class="line">777</span><br><span class="line">778</span><br><span class="line">779</span><br><span class="line">780</span><br><span class="line">781</span><br><span class="line">782</span><br><span class="line">783</span><br><span class="line">784</span><br><span class="line">785</span><br><span class="line">786</span><br><span class="line">787</span><br><span class="line">788</span><br><span class="line">789</span><br><span class="line">790</span><br><span class="line">791</span><br><span class="line">792</span><br><span class="line">793</span><br><span class="line">794</span><br><span class="line">795</span><br><span class="line">796</span><br><span class="line">797</span><br><span class="line">798</span><br><span class="line">799</span><br><span class="line">800</span><br><span class="line">801</span><br><span class="line">802</span><br><span class="line">803</span><br><span class="line">804</span><br><span class="line">805</span><br><span class="line">806</span><br><span class="line">807</span><br><span class="line">808</span><br><span class="line">809</span><br><span class="line">810</span><br><span class="line">811</span><br><span class="line">812</span><br><span class="line">813</span><br><span class="line">814</span><br><span class="line">815</span><br><span class="line">816</span><br><span class="line">817</span><br><span class="line">818</span><br><span class="line">819</span><br><span class="line">820</span><br><span class="line">821</span><br><span class="line">822</span><br><span class="line">823</span><br><span class="line">824</span><br><span class="line">825</span><br><span class="line">826</span><br><span class="line">827</span><br><span class="line">828</span><br><span class="line">829</span><br><span class="line">830</span><br><span class="line">831</span><br><span class="line">832</span><br><span class="line">833</span><br><span class="line">834</span><br><span class="line">835</span><br><span class="line">836</span><br><span class="line">837</span><br><span class="line">838</span><br><span class="line">839</span><br><span class="line">840</span><br><span class="line">841</span><br><span class="line">842</span><br><span class="line">843</span><br><span class="line">844</span><br><span class="line">845</span><br><span class="line">846</span><br><span class="line">847</span><br><span class="line">848</span><br><span class="line">849</span><br><span class="line">850</span><br><span class="line">851</span><br><span class="line">852</span><br><span class="line">853</span><br><span class="line">854</span><br><span class="line">855</span><br><span class="line">856</span><br><span class="line">857</span><br><span class="line">858</span><br><span class="line">859</span><br><span class="line">860</span><br><span class="line">861</span><br><span class="line">862</span><br><span class="line">863</span><br><span class="line">864</span><br><span class="line">865</span><br><span class="line">866</span><br><span class="line">867</span><br><span class="line">868</span><br><span class="line">869</span><br><span class="line">870</span><br><span class="line">871</span><br><span class="line">872</span><br><span class="line">873</span><br><span class="line">874</span><br><span class="line">875</span><br><span class="line">876</span><br><span class="line">877</span><br><span class="line">878</span><br><span class="line">879</span><br><span class="line">880</span><br><span class="line">881</span><br><span class="line">882</span><br><span class="line">883</span><br><span class="line">884</span><br><span class="line">885</span><br><span class="line">886</span><br><span class="line">887</span><br><span class="line">888</span><br><span class="line">889</span><br><span class="line">890</span><br><span class="line">891</span><br><span class="line">892</span><br><span class="line">893</span><br><span class="line">894</span><br><span class="line">895</span><br><span class="line">896</span><br><span class="line">897</span><br><span class="line">898</span><br><span class="line">899</span><br><span class="line">900</span><br><span class="line">901</span><br><span class="line">902</span><br><span class="line">903</span><br><span class="line">904</span><br><span class="line">905</span><br><span class="line">906</span><br><span class="line">907</span><br><span class="line">908</span><br><span class="line">909</span><br><span class="line">910</span><br><span class="line">911</span><br><span class="line">912</span><br><span class="line">913</span><br><span class="line">914</span><br><span class="line">915</span><br><span class="line">916</span><br><span class="line">917</span><br><span class="line">918</span><br><span class="line">919</span><br><span class="line">920</span><br><span class="line">921</span><br><span class="line">922</span><br><span class="line">923</span><br><span class="line">924</span><br><span class="line">925</span><br><span class="line">926</span><br><span class="line">927</span><br><span class="line">928</span><br><span class="line">929</span><br><span class="line">930</span><br><span class="line">931</span><br><span class="line">932</span><br><span class="line">933</span><br><span class="line">934</span><br><span class="line">935</span><br><span class="line">936</span><br><span class="line">937</span><br><span class="line">938</span><br><span class="line">939</span><br><span class="line">940</span><br><span class="line">941</span><br><span class="line">942</span><br><span class="line">943</span><br><span class="line">944</span><br><span class="line">945</span><br><span class="line">946</span><br><span class="line">947</span><br><span class="line">948</span><br><span class="line">949</span><br><span class="line">950</span><br><span class="line">951</span><br><span class="line">952</span><br><span class="line">953</span><br><span class="line">954</span><br><span class="line">955</span><br><span class="line">956</span><br><span class="line">957</span><br><span class="line">958</span><br><span class="line">959</span><br><span class="line">960</span><br><span class="line">961</span><br><span class="line">962</span><br><span class="line">963</span><br><span class="line">964</span><br><span class="line">965</span><br><span class="line">966</span><br><span class="line">967</span><br><span class="line">968</span><br><span class="line">969</span><br><span class="line">970</span><br><span class="line">971</span><br><span class="line">972</span><br><span class="line">973</span><br><span class="line">974</span><br><span class="line">975</span><br><span class="line">976</span><br><span class="line">977</span><br><span class="line">978</span><br><span class="line">979</span><br><span class="line">980</span><br><span class="line">981</span><br><span class="line">982</span><br><span class="line">983</span><br><span class="line">984</span><br><span class="line">985</span><br><span class="line">986</span><br><span class="line">987</span><br><span class="line">988</span><br><span class="line">989</span><br><span class="line">990</span><br><span class="line">991</span><br><span class="line">992</span><br><span class="line">993</span><br><span class="line">994</span><br><span class="line">995</span><br><span class="line">996</span><br><span class="line">997</span><br><span class="line">998</span><br><span class="line">999</span><br><span class="line">1000</span><br><span class="line">1001</span><br><span class="line">1002</span><br><span class="line">1003</span><br><span class="line">1004</span><br><span class="line">1005</span><br><span class="line">1006</span><br><span class="line">1007</span><br><span class="line">1008</span><br><span class="line">1009</span><br><span class="line">1010</span><br><span class="line">1011</span><br><span class="line">1012</span><br><span class="line">1013</span><br><span class="line">1014</span><br><span class="line">1015</span><br><span class="line">1016</span><br><span class="line">1017</span><br><span class="line">1018</span><br><span class="line">1019</span><br><span class="line">1020</span><br><span class="line">1021</span><br><span class="line">1022</span><br><span class="line">1023</span><br><span class="line">1024</span><br><span class="line">1025</span><br><span class="line">1026</span><br><span class="line">1027</span><br><span class="line">1028</span><br><span class="line">1029</span><br><span class="line">1030</span><br><span class="line">1031</span><br><span class="line">1032</span><br><span class="line">1033</span><br><span class="line">1034</span><br><span class="line">1035</span><br><span class="line">1036</span><br><span class="line">1037</span><br><span class="line">1038</span><br><span class="line">1039</span><br><span class="line">1040</span><br><span class="line">1041</span><br><span class="line">1042</span><br><span class="line">1043</span><br><span class="line">1044</span><br><span class="line">1045</span><br><span class="line">1046</span><br><span class="line">1047</span><br><span class="line">1048</span><br><span class="line">1049</span><br><span class="line">1050</span><br><span class="line">1051</span><br><span class="line">1052</span><br><span class="line">1053</span><br><span class="line">1054</span><br><span class="line">1055</span><br><span class="line">1056</span><br><span class="line">1057</span><br><span class="line">1058</span><br><span class="line">1059</span><br><span class="line">1060</span><br><span class="line">1061</span><br><span class="line">1062</span><br><span class="line">1063</span><br><span class="line">1064</span><br><span class="line">1065</span><br><span class="line">1066</span><br><span class="line">1067</span><br><span class="line">1068</span><br><span class="line">1069</span><br><span class="line">1070</span><br><span class="line">1071</span><br><span class="line">1072</span><br><span class="line">1073</span><br><span class="line">1074</span><br><span class="line">1075</span><br><span class="line">1076</span><br><span class="line">1077</span><br><span class="line">1078</span><br><span class="line">1079</span><br><span class="line">1080</span><br><span class="line">1081</span><br><span class="line">1082</span><br><span class="line">1083</span><br><span class="line">1084</span><br><span class="line">1085</span><br><span class="line">1086</span><br><span class="line">1087</span><br><span class="line">1088</span><br><span class="line">1089</span><br><span class="line">1090</span><br><span class="line">1091</span><br><span class="line">1092</span><br><span class="line">1093</span><br><span class="line">1094</span><br><span class="line">1095</span><br><span class="line">1096</span><br><span class="line">1097</span><br><span class="line">1098</span><br><span class="line">1099</span><br><span class="line">1100</span><br><span class="line">1101</span><br><span class="line">1102</span><br><span class="line">1103</span><br><span class="line">1104</span><br><span class="line">1105</span><br><span class="line">1106</span><br><span class="line">1107</span><br><span class="line">1108</span><br><span class="line">1109</span><br><span class="line">1110</span><br><span class="line">1111</span><br><span class="line">1112</span><br><span class="line">1113</span><br><span class="line">1114</span><br><span class="line">1115</span><br><span class="line">1116</span><br><span class="line">1117</span><br><span class="line">1118</span><br><span class="line">1119</span><br><span class="line">1120</span><br><span class="line">1121</span><br><span class="line">1122</span><br><span class="line">1123</span><br><span class="line">1124</span><br><span class="line">1125</span><br><span class="line">1126</span><br><span class="line">1127</span><br><span class="line">1128</span><br><span class="line">1129</span><br><span class="line">1130</span><br><span class="line">1131</span><br><span class="line">1132</span><br><span class="line">1133</span><br><span class="line">1134</span><br><span class="line">1135</span><br><span class="line">1136</span><br><span class="line">1137</span><br><span class="line">1138</span><br><span class="line">1139</span><br><span class="line">1140</span><br><span class="line">1141</span><br><span class="line">1142</span><br><span class="line">1143</span><br><span class="line">1144</span><br><span class="line">1145</span><br><span class="line">1146</span><br><span class="line">1147</span><br><span class="line">1148</span><br><span class="line">1149</span><br><span class="line">1150</span><br><span class="line">1151</span><br><span class="line">1152</span><br><span class="line">1153</span><br><span class="line">1154</span><br><span class="line">1155</span><br><span class="line">1156</span><br><span class="line">1157</span><br><span class="line">1158</span><br><span class="line">1159</span><br><span class="line">1160</span><br><span class="line">1161</span><br><span class="line">1162</span><br><span class="line">1163</span><br><span class="line">1164</span><br><span class="line">1165</span><br><span class="line">1166</span><br><span class="line">1167</span><br><span class="line">1168</span><br><span class="line">1169</span><br><span class="line">1170</span><br><span class="line">1171</span><br><span class="line">1172</span><br><span class="line">1173</span><br><span class="line">1174</span><br><span class="line">1175</span><br><span class="line">1176</span><br><span class="line">1177</span><br><span class="line">1178</span><br><span class="line">1179</span><br><span class="line">1180</span><br><span class="line">1181</span><br><span class="line">1182</span><br><span class="line">1183</span><br><span class="line">1184</span><br><span class="line">1185</span><br><span class="line">1186</span><br><span class="line">1187</span><br><span class="line">1188</span><br><span class="line">1189</span><br><span class="line">1190</span><br><span class="line">1191</span><br><span class="line">1192</span><br><span class="line">1193</span><br><span class="line">1194</span><br><span class="line">1195</span><br><span class="line">1196</span><br><span class="line">1197</span><br><span class="line">1198</span><br><span class="line">1199</span><br><span class="line">1200</span><br><span class="line">1201</span><br><span class="line">1202</span><br><span class="line">1203</span><br><span class="line">1204</span><br><span class="line">1205</span><br><span class="line">1206</span><br><span class="line">1207</span><br><span class="line">1208</span><br><span class="line">1209</span><br><span class="line">1210</span><br><span class="line">1211</span><br><span class="line">1212</span><br><span class="line">1213</span><br><span class="line">1214</span><br><span class="line">1215</span><br><span class="line">1216</span><br><span class="line">1217</span><br><span class="line">1218</span><br><span class="line">1219</span><br></pre></td><td class="code"><pre><code class="hljs zephir"><span class="hljs-comment">//****文本输入样例：A B C D E F G H I J # # # # # # # # # # #** </span><br><br>\#include&lt;iostream&gt;<br><br>\#include&lt;stdlib.h&gt;<br><br>\#include&lt;stdio.h&gt;<br><br>using <span class="hljs-keyword">namespace</span> <span class="hljs-title">std</span>;<br><br>\#define MAXSIZE <span class="hljs-number">100</span><br><br>typedef struct BTreeNode<br><br>&#123;<br><br>​    <span class="hljs-keyword">char</span> Value;<br><br>​    struct   BTreeNode *Left;<br><br>​    struct   BTreeNode *Right;<br><br>&#125;BTreeNode;<br><br>typedef struct TreeList<br><br>&#123;<br><br>​    <span class="hljs-keyword">char</span> Value;<br><br>&#125;TreeList;<br><br>template&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>&gt;<span class="hljs-title">class</span> <span class="hljs-title">stack</span></span><br><span class="hljs-class"></span><br><span class="hljs-class"></span>&#123;<br><br><span class="hljs-keyword">private</span>:<br><br>​    struct Node<br><br>​    &#123;<br><br>​        T data;<br><br>​        Node *next;<br><br>​    &#125;;<br><br>​    Node *head;<br><br>​    Node *p;<br><br>​    <span class="hljs-keyword">int</span> length;<br><br> <br><br><span class="hljs-keyword">public</span>:<br><br>​    stack()<br><br>​    &#123;<br><br>​        head = NULL;<br><br>​        length = <span class="hljs-number">0</span>;<br><br>​    &#125;<br><br>​    void push(T n)<span class="hljs-comment">//入栈</span><br><br>​    &#123;<br><br>​        Node *q = <span class="hljs-keyword">new</span> Node;<br><br>​        q-&gt;data = n;<br><br>​        <span class="hljs-keyword">if</span> (head == NULL)<br><br>​        &#123;<br><br>​            q-&gt;next = head;<br><br>​            head = q;<br><br>​            p = q;<br><br>​        &#125;<br><br>​        <span class="hljs-keyword">else</span><br><br>​        &#123;<br><br>​            q-&gt;next = p;<br><br>​            p = q;<br><br>​        &#125;<br><br>​        length++;<br><br>​    &#125;<br><br> <br><br>​    void pop()<span class="hljs-comment">//出栈  不会！！并且不会！！！将出栈的元素返回</span><br><br>​    &#123;<br><br>​        <span class="hljs-keyword">if</span> (length &lt;= <span class="hljs-number">0</span>)<br><br>​        &#123;<br><br>​            abort();<br><br>​        &#125;<br><br>​        Node *q;<br><br>​        T data;<br><br>​        q = p;<br><br>​        data = p-&gt;data;<br><br>​        p = p-&gt;next;<br><br>​        delete(q);<br><br>​        length--;<br><br>​    &#125;<br><br>​    <span class="hljs-keyword">int</span> size()<span class="hljs-comment">//返回元素个数</span><br><br>​    &#123;<br><br>​        <span class="hljs-keyword">return</span> length;<br><br>​    &#125;<br><br>​    T top()<span class="hljs-comment">//返回栈顶元素</span><br><br>​    &#123;<br><br>​        <span class="hljs-keyword">return</span> p-&gt;data;<br><br>​    &#125;<br><br>​    <span class="hljs-keyword">bool</span> <span class="hljs-keyword">empty</span>()<span class="hljs-comment">//判断栈是不是空的</span><br><br>​    &#123;<br><br>​        <span class="hljs-keyword">if</span> (length == <span class="hljs-number">0</span>)<br><br>​        &#123;<br><br>​            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br><br>​        &#125;<br><br>​        <span class="hljs-keyword">else</span><br><br>​        &#123;<br><br>​            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br><br>​        &#125;<br><br>​    &#125;<br><br>&#125;;<br><br>template&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>&gt;<span class="hljs-title">class</span> <span class="hljs-title">queue</span></span><br><span class="hljs-class"></span><br><span class="hljs-class"></span>&#123;<br><br><span class="hljs-keyword">private</span>:<br><br>​    struct Node<br><br>​    &#123;<br><br>​        T data;<br><br>​        Node *next;<br><br>​    &#125;;<br><br>​    Node *head;<span class="hljs-comment">//!</span><br><br>​    Node *rear;<span class="hljs-comment">//！队尾 </span><br><br>​    <span class="hljs-keyword">int</span> length;<br><br> <br><br><span class="hljs-keyword">public</span>:<br><br>​    queue()<br><br>​    &#123;<br><br>​        head = NULL;<br><br>​        rear = NULL;<span class="hljs-comment">//！初始化 </span><br><br>​        length = <span class="hljs-number">0</span>;<br><br>​    &#125;<br><br>​    void push(T n)<span class="hljs-comment">//入队</span><br><br>​    &#123;<br><br>​        Node *node = <span class="hljs-keyword">new</span> Node;<br><br>​        node-&gt;data = n;<br><br>​        node-&gt;next = NULL;<span class="hljs-comment">//!</span><br><br>​        <span class="hljs-keyword">if</span> (head == NULL)<br><br>​        &#123;<br><br>​            head = node;<br><br>​            rear = node;<br><br>​        &#125;<br><br>​        <span class="hljs-keyword">else</span><br><br>​        &#123;<br><br>​            rear-&gt;next = node;<br><br>​            rear = node;<br><br>​        &#125;<br><br>​        length++;<br><br>​    &#125;<br><br>​    void pop()<span class="hljs-comment">//出栈  不会！！并且不会！！！将出栈的元素返回</span><br><br>​    &#123;<br><br>​        <span class="hljs-keyword">if</span> (length &lt;= <span class="hljs-number">0</span>)<br><br>​        &#123;<br><br>​            abort();<br><br>​        &#125;<br><br>​        Node *temp = head;<br><br>​        head = head-&gt;next;<br><br>​        delete (temp);<br><br>​        length--;<br><br>​    &#125;<br><br>​    <span class="hljs-keyword">int</span> size()<span class="hljs-comment">//返回元素个数</span><br><br>​    &#123;<br><br>​        <span class="hljs-keyword">return</span> length;<br><br>​    &#125;<br><br>​    T front()<span class="hljs-comment">//!返回队首元素</span><br><br>​    &#123;<br><br>​        <span class="hljs-keyword">return</span> head-&gt;data;<br><br>​    &#125;<br><br>​    <span class="hljs-keyword">bool</span> <span class="hljs-keyword">empty</span>()<span class="hljs-comment">//判断栈是不是空的</span><br><br>​    &#123;<br><br>​        <span class="hljs-keyword">if</span> (length == <span class="hljs-number">0</span>)<br><br>​        &#123;<br><br>​            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br><br>​        &#125;<br><br>​        <span class="hljs-keyword">else</span><br><br>​        &#123;<br><br>​            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br><br>​        &#125;<br><br>​    &#125;<br><br>&#125;;<br><br>void Creat(BTreeNode* &amp;Node);<br><br>void VLR(BTreeNode *T);<br><br>void LVR(BTreeNode *T);<br><br>void LBR(BTreeNode* T);<br><br>void LevelOrder(BTreeNode* T);<br><br><span class="hljs-keyword">bool</span> IsWanQuanErChaShu(BTreeNode* T);<br><br> <br><br>void ShuZuHua(BTreeNode* NODE,TreeList TList[],<span class="hljs-keyword">int</span> i)<span class="hljs-comment">//将链式存储转为顺序存储 ，赋值TList[i].Value </span><br><br>&#123;<span class="hljs-comment">//利用递归的不断进行 i从1开始，为后续 父*2=左子</span><br><br>​    <span class="hljs-keyword">if</span>(NODE)<br><br>​    &#123;<br><br>​        TList[i].Value=NODE-&gt;Value;<br><br>​        ShuZuHua(NODE-&gt;Left,TList,<span class="hljs-number">2</span>*i);<br><br>​        ShuZuHua(NODE-&gt;Right,TList,<span class="hljs-number">2</span>*i+<span class="hljs-number">1</span>);<br><br>​    &#125;<br><br>​    <span class="hljs-keyword">else</span><span class="hljs-comment">//NODE==NULL，赋值#后当前这一层结束</span><br><br>​    &#123;<br><br>​        TList[i].Value=<span class="hljs-string">&#x27;#&#x27;</span>;<br><br>​    &#125;<br><br>&#125;<br><br>void GongGongZuXian(TreeList TList[],<span class="hljs-keyword">char</span> A,<span class="hljs-keyword">char</span> B)<span class="hljs-comment">//寻找A与B公共祖先 </span><br><br>&#123;<br><br>​    <span class="hljs-keyword">int</span> Father=<span class="hljs-number">-1</span>;<span class="hljs-comment">//公共祖先下标 </span><br><br>​    <span class="hljs-keyword">int</span> Anum=<span class="hljs-number">-1</span>;<span class="hljs-comment">//A下标 </span><br><br>​    <span class="hljs-keyword">int</span> Bnum=<span class="hljs-number">-1</span>;<span class="hljs-comment">//B下标 </span><br><br>​    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i&lt;MAXSIZE;i++)<br><br>​    &#123;<br><br>​        <span class="hljs-keyword">if</span>(A==TList[i].Value)<br><br>​            Anum=i;<br><br>​        <span class="hljs-keyword">if</span>(B==TList[i].Value)<br><br>​            Bnum=i; <br><br>​    &#125;<span class="hljs-comment">//寻找A B下标 </span><br><br>​    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<span class="hljs-comment">//寻找公共祖先,利用儿子/2=父亲的数字关系，类似解方程 </span><br><br>​    &#123;<br><br>​        <span class="hljs-keyword">if</span>(Anum==Bnum)<br><br>​            &#123;<br><br>​                cout&lt;&lt;<span class="hljs-string">&quot;祖先：&quot;</span>&lt;&lt;TList[Anum].Value;<br><br>​                <span class="hljs-keyword">return</span>;<br><br>​            &#125;<br><br>​        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(Anum&gt;Bnum)<br><br>​        &#123;<br><br>​                Anum=Anum/<span class="hljs-number">2</span>;<br><br>​        &#125;<br><br>​        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(Bnum&gt;Anum)<br><br>​                Bnum=Bnum/<span class="hljs-number">2</span>;<br><br>​    &#125; <br><br>&#125;<br><br>void Creat(BTreeNode* &amp;Node)<span class="hljs-comment">//层次建立 </span><br><br>&#123;   <br><br>​    FILE *p;<br><br>​    FILE *pout;<br><br>​    <span class="hljs-keyword">if</span>((pout=fopen(<span class="hljs-string">&quot;TNodeOut.txt&quot;</span>,<span class="hljs-string">&quot;a&quot;</span>))==NULL)<br><br>​    &#123;<br><br>​        cout&lt;&lt;<span class="hljs-string">&quot;文件打开失败&quot;</span>;<br><br>​        exit(<span class="hljs-number">0</span>);<br><br>​    &#125;<br><br>​    <span class="hljs-keyword">if</span>((p=fopen(<span class="hljs-string">&quot;TNode.txt&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>))==NULL)<br><br>​    &#123;<br><br>​        cout&lt;&lt;<span class="hljs-string">&quot;文件打开失败&quot;</span>;<br><br>​        exit(<span class="hljs-number">0</span>);<br><br>​    &#125;   <br><br>​    queue&lt;BTreeNode*&gt; que;<br><br>​    <span class="hljs-keyword">char</span> Value;<br><br>​    fscanf(p,<span class="hljs-string">&quot;%c &quot;</span>,&amp;Value);<br><br>​    <span class="hljs-comment">//先对第一个根结点进栈处理，原因1，&amp;Node会一起把Node地址修改，原因2方便栈循环有第一个元素 </span><br><br>​    <span class="hljs-keyword">if</span>(Value==<span class="hljs-string">&#x27;#&#x27;</span>)<span class="hljs-comment">//代表空 </span><br><br>​        &#123;<br><br>​            Node=NULL;<br><br>​            <span class="hljs-keyword">return</span>;<br><br>​        &#125;<br><br>​    <span class="hljs-keyword">else</span><span class="hljs-comment">//!=&#x27;#&#x27;</span><br><br>​        &#123;<br><br>​            Node = <span class="hljs-keyword">new</span> BTreeNode;<br><br>​            Node-&gt;Value = Value;<br><br>​            que.push(Node);<br><br>​        &#125;<br><br>​    <span class="hljs-keyword">while</span>(!que.<span class="hljs-keyword">empty</span>())<br><br>​    &#123;<span class="hljs-comment">//类似层次遍历，依次，某个节点，该节点左儿子，该节点右儿子，</span><br><br>​        BTreeNode *node = que.front();<span class="hljs-comment">//读取队列里的待取元素，来依次赋值该元素的左右儿子</span><br><br>​        que.pop();<br><br>​        printf(<span class="hljs-string">&quot;%c &quot;</span>,node-&gt;Value);<br><br>​        fprintf(pout,<span class="hljs-string">&quot;%c &quot;</span>,node-&gt;Value);<br><br>​        fscanf(p,<span class="hljs-string">&quot;%c &quot;</span>,&amp;Value);<span class="hljs-comment">//读取 </span><br><br>​        <span class="hljs-keyword">if</span>(Value!=<span class="hljs-string">&#x27;#&#x27;</span>)<br><br>​        &#123;<br><br>​            node-&gt;Left = <span class="hljs-keyword">new</span> BTreeNode;<br><br>​            node-&gt;Left-&gt;Value =Value;<br><br>​            printf(<span class="hljs-string">&quot;Left -&gt; %c &quot;</span>,Value);<br><br>​            fprintf(pout,<span class="hljs-string">&quot;Left -&gt; %c &quot;</span>,Value);<br><br>​            que.push(node-&gt;Left);<br><br>​        &#125;<br><br>​        <span class="hljs-keyword">else</span><span class="hljs-comment">//==&#x27;#&#x27;，代表该元素没有左儿子 </span><br><br>​        &#123;<br><br>​            node-&gt;Left=NULL;<br><br>​            printf(<span class="hljs-string">&quot;Left -&gt; %c &quot;</span>,Value);<br><br>​            fprintf(pout,<span class="hljs-string">&quot;Left -&gt; %c &quot;</span>,Value);<br><br>​        &#125;<br><br>​        fscanf(p,<span class="hljs-string">&quot;%c &quot;</span>,&amp;Value);<br><br>​        <span class="hljs-keyword">if</span>(Value!=<span class="hljs-string">&#x27;#&#x27;</span>)<br><br>​        &#123;<br><br>​            node-&gt;Right = <span class="hljs-keyword">new</span> BTreeNode;<br><br>​            node-&gt;Right-&gt;Value =Value;<br><br>​            printf(<span class="hljs-string">&quot;Right -&gt; %c \n&quot;</span>,Value);<br><br>​            fprintf(pout,<span class="hljs-string">&quot;Right -&gt; %c \n&quot;</span>,Value);<br><br>​            que.push(node-&gt;Right);<br><br>​        &#125;<br><br>​        <span class="hljs-keyword">else</span><span class="hljs-comment">//==&#x27;#&#x27;</span><br><br>​        &#123;<br><br>​            node-&gt;Right=NULL;<br><br>​            printf(<span class="hljs-string">&quot;Right -&gt; %c \n&quot;</span>,Value);<br><br>​            fprintf(pout,<span class="hljs-string">&quot;Right -&gt; %c \n&quot;</span>,Value);<br><br>​        &#125;<br><br>​    &#125;<br><br>​    fclose(p);<br><br>​    fclose(pout);<br><br>&#125;<br><br>void VLR(BTreeNode *T)<span class="hljs-comment">//前序遍历 </span><br><br>&#123;<br><br>​    <span class="hljs-keyword">if</span>(T==NULL)<br><br>​        <span class="hljs-keyword">return</span> ;<br><br>​    <span class="hljs-keyword">else</span><br><br>​    &#123;<br><br>​        cout&lt;&lt;T-&gt;Value;<br><br>​        VLR(T-&gt;Left);<br><br>​        VLR(T-&gt;Right);<br><br>​    &#125;<br><br> &#125; <br><br> <br><br>void LVR(BTreeNode *T)<br><br>&#123;<br><br>​    <span class="hljs-keyword">if</span>(T==NULL)<br><br>​    &#123;<br><br>​        <span class="hljs-keyword">return</span>;<br><br>​    &#125;<br><br>​    <span class="hljs-keyword">else</span><br><br>​    &#123;<br><br>​        LVR(T-&gt;Left);<br><br>​        cout&lt;&lt;T-&gt;Value;<br><br>​        LVR(T-&gt;Right);<br><br>​    &#125;<br><br>&#125;<br><br>void LBR(BTreeNode* T)<br><br>&#123;<br><br>​    <span class="hljs-keyword">if</span>(T==NULL)<br><br>​    &#123;<br><br>​        <span class="hljs-keyword">return</span>;<br><br>​    &#125;<br><br>​    <span class="hljs-keyword">else</span><br><br>​    &#123;<br><br>​        LVR(T-&gt;Left);<br><br>​        LVR(T-&gt;Right);<br><br>​        cout&lt;&lt;T-&gt;Value;<br><br>​    &#125;<br><br>&#125;<br><br>void LevelOrder(BTreeNode* T)<br><br>&#123;<br><br>​    FILE *pout;<br><br>​    <span class="hljs-keyword">if</span>((pout=fopen(<span class="hljs-string">&quot;TNodeOut.txt&quot;</span>,<span class="hljs-string">&quot;a&quot;</span>))==NULL)<br><br>​    &#123;<br><br>​        cout&lt;&lt;<span class="hljs-string">&quot;文件打开失败&quot;</span>;<br><br>​        exit(<span class="hljs-number">0</span>);<br><br>​    &#125;<br><br>​    fprintf(pout,<span class="hljs-string">&quot;层序遍历：&quot;</span>);<br><br>​    <span class="hljs-keyword">if</span>(T ==NULL)<br><br>​        <span class="hljs-keyword">return</span> ;<br><br>​    queue&lt;BTreeNode*&gt; que;<br><br>​    que.push(T);<span class="hljs-comment">//先处理根节点方便之后走循环while </span><br><br>​    <span class="hljs-keyword">while</span>(!que.<span class="hljs-keyword">empty</span>())<br><br>​    &#123;<br><br>​        BTreeNode* t;<br><br>​        t=que.front();<br><br>​        que.pop();<br><br>​        fprintf(pout,<span class="hljs-string">&quot;%c&quot;</span>,t-&gt;Value);<br><br>​        cout&lt;&lt;t-&gt;Value;<br><br>​        <span class="hljs-keyword">if</span>(t-&gt;Left!=NULL)<br><br>​            que.push(t-&gt;Left);<br><br>​        <span class="hljs-keyword">if</span>(t-&gt;Right!=NULL)<br><br>​            que.push(t-&gt;Right);<br><br>​    &#125;<br><br>​    fprintf(pout,<span class="hljs-string">&quot;\n&quot;</span>);<br><br>​    fclose(pout);<br><br>&#125;<br><br>void PreOrder_2(BTreeNode* T)<br><br>&#123;<br><br>​    FILE *pout;<br><br>​    <span class="hljs-keyword">if</span>((pout=fopen(<span class="hljs-string">&quot;TNodeOut.txt&quot;</span>,<span class="hljs-string">&quot;a&quot;</span>))==NULL)<br><br>​    &#123;<br><br>​        cout&lt;&lt;<span class="hljs-string">&quot;文件打开失败&quot;</span>;<br><br>​        exit(<span class="hljs-number">0</span>);<br><br>​    &#125;<br><br>​    fprintf(pout,<span class="hljs-string">&quot;前序遍历：&quot;</span>);<br><br>​    <span class="hljs-keyword">if</span>(T==NULL)<br><br>​        <span class="hljs-keyword">return</span>;<br><br>​    stack&lt;BTreeNode*&gt; s;<br><br>​    <span class="hljs-keyword">while</span>(T||!s.<span class="hljs-keyword">empty</span>())<span class="hljs-comment">//如果只有s.empty()一个判断条件，第一个就进入不了while循环 </span><br><br>​    &#123;<span class="hljs-comment">//从自己这个结点和左子树先cout干净 </span><br><br>​        <span class="hljs-keyword">while</span>(T)<br><br>​    &#123;<br><br>​        fprintf(pout,<span class="hljs-string">&quot;%c&quot;</span>,T-&gt;Value);<br><br>​        cout&lt;&lt;T-&gt;Value;<br><br>​        s.push(T);<br><br>​        T=T-&gt;Left;<br><br>​    &#125;<span class="hljs-comment">//最后一个进栈，然后T=null,</span><br><br>​    <span class="hljs-keyword">if</span>(!s.<span class="hljs-keyword">empty</span>())<br><br>​    &#123;<span class="hljs-comment">//这三句话是最终目的返回上一级的右子树，并对其前序遍历</span><br><br>​        T=s.top();<span class="hljs-comment">//返回上一级已经cout，在下面马上进入未访问过右子树 </span><br><br>​        s.pop();<br><br>​        T=T-&gt;Right;<span class="hljs-comment">//进入右子树,如果右儿子不为空√，如果右儿子为NULL，在下一次while进行没有push，只有T.top()，正好用光栈一个节点返回一次的机会 </span><br><br>​    &#125; <br><br>​    &#125;<br><br>​    fprintf(pout,<span class="hljs-string">&quot;\n&quot;</span>);<br><br>​    fclose(pout);<br><br> &#125; <br><br>void InOrder_2(BTreeNode* T)<br><br>&#123;<br><br>​    FILE *pout;<br><br>​    <span class="hljs-keyword">if</span>((pout=fopen(<span class="hljs-string">&quot;TNodeOut.txt&quot;</span>,<span class="hljs-string">&quot;a&quot;</span>))==NULL)<br><br>​    &#123;<br><br>​        cout&lt;&lt;<span class="hljs-string">&quot;文件打开失败&quot;</span>;<br><br>​        exit(<span class="hljs-number">0</span>);<br><br>​    &#125;<br><br>​    fprintf(pout,<span class="hljs-string">&quot;中序遍历：&quot;</span>);<br><br>​    <span class="hljs-keyword">if</span>(T==NULL)<br><br>​        <span class="hljs-keyword">return</span>;<br><br>​    stack&lt;BTreeNode*&gt; s;<br><br>​    <span class="hljs-keyword">while</span>(T||!s.<span class="hljs-keyword">empty</span>())<br><br>​    &#123;<br><br>​        <span class="hljs-keyword">while</span>(T)<br><br>​    &#123;<br><br>​        s.push(T);<br><br>​        T=T-&gt;Left;<br><br>​    &#125; <br><br>​    <span class="hljs-keyword">if</span>(!s.<span class="hljs-keyword">empty</span>())<br><br>​    &#123;<br><br>​        T=s.top();<br><br>​        s.pop();<br><br>​        fprintf(pout,<span class="hljs-string">&quot;%c&quot;</span>,T-&gt;Value);<br><br>​        cout&lt;&lt;T-&gt;Value;<br><br>​        T=T-&gt;Right;<br><br>​    &#125;<br><br>​    <br><br>​    &#125;<br><br>​    fprintf(pout,<span class="hljs-string">&quot;\n&quot;</span>);<br><br>​    fclose(pout);  <br><br> &#125; <br><br>void PostOrder_2(BTreeNode* T)<br><br>&#123;<br><br>​    <span class="hljs-keyword">if</span>(T==NULL)<br><br>​        <span class="hljs-keyword">return</span>;<br><br>​    BTreeNode* r=NULL; <span class="hljs-comment">//r为最近访问过的结点 </span><br><br>​    stack&lt;BTreeNode*&gt; s;<br><br>​    <span class="hljs-comment">//进行对每个子树来后序遍历</span><br><br>​    <span class="hljs-keyword">while</span>(T||!s.<span class="hljs-keyword">empty</span>())<br><br>​    &#123;<br><br>​        <span class="hljs-keyword">if</span>(T)<br><br>​        &#123;<br><br>​            s.push(T);<br><br>​            T=T-&gt;Left;<br><br>​        <span class="hljs-comment">//一直左，然后到T=NULL </span><br><br>​        &#125;<br><br>​        <span class="hljs-keyword">else</span> <span class="hljs-comment">//T=NULL 看返回之后是否能右转</span><br><br>​        &#123;<br><br>​            T=s.top();<span class="hljs-comment">//T=最左下方的非NULL结点,T没有左子树</span><br><br>​            <span class="hljs-keyword">if</span>(T-&gt;Right&amp;&amp;r!=T-&gt;Right)<span class="hljs-comment">//1，右子树存在且从来没有访问输出过 </span><br><br>​            &#123;<br><br>​                T=T-&gt;Right;<span class="hljs-comment">//然后会进入下一次循环的if(T),s.push(T),对其这个以新的T进行后续遍历 </span><br><br>​            &#125;<br><br>​            <span class="hljs-keyword">else</span><span class="hljs-comment">//2，没有右子树 ,或者已经访问输出过 </span><br><br>​            &#123;<br><br>​                s.pop();<span class="hljs-comment">//只有当从右儿子回来时或者没有右儿子，满足后序，才弹出当前根节点，不会再回来 </span><br><br>​                cout&lt;&lt;T-&gt;Value;<span class="hljs-comment">//只有当从右儿子回来时或者没有右儿子，满足后序，才弹出当前根节点，不会再回来 </span><br><br>​                r=T;<span class="hljs-comment">//记录最近访问的结点，用来判断 </span><br><br>​                T=NULL; <span class="hljs-comment">//下一次循环中进入T=s.top(); ,不能直接 T=s.top()否则进入if(T) </span><br><br>​            &#125;<br><br>​        &#125;<br><br>​    &#125;<br><br>​    <br><br>&#125;<br><br><span class="hljs-keyword">bool</span> IsWanQuanErChaShu(BTreeNode* T)<br><br>&#123;<br><br>​    <span class="hljs-keyword">if</span>(T==NULL)<br><br>​        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<span class="hljs-comment">//树为空返回错 空树这里认为不是完全二叉树</span><br><br>​    queue&lt;BTreeNode*&gt;q;<br><br>​    q.push(T);<br><br>​    <span class="hljs-keyword">while</span>(!q.<span class="hljs-keyword">empty</span>())<br><br>​    &#123;<br><br>​        BTreeNode* Top = q.front();<br><br>​        <span class="hljs-keyword">if</span>(Top-&gt;Left&amp;&amp;Top-&gt;Right)<span class="hljs-comment">//1如果左右孩子都有，直接记录 </span><br><br>​        &#123;<br><br>​            q.pop();<br><br>​            q.push(Top-&gt;Left);<br><br>​            q.push(Top-&gt;Right);<br><br>​        &#125;<br><br>​        <span class="hljs-keyword">if</span>(Top-&gt;Left==NULL&amp;Top-&gt;Right!=NULL)<span class="hljs-comment">//2如果该节点左孩子为空，右孩子不为空，则一定不是完全二叉树</span><br><br>​        &#123;<br><br>​            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br><br>​        &#125;<br><br>​        <span class="hljs-keyword">if</span>((Top-&gt;Left&amp;&amp;Top-&gt;Right==NULL)||(Top-&gt;Left==NULL&amp;&amp;Top-&gt;Right==NULL))<br><br>​        &#123;<span class="hljs-comment">//3如果该节点左孩子不为空，右孩子为空或者该节点为叶子节点，则该节点之后的所有结点都是叶子节点</span><br><br>​            q.pop();<span class="hljs-comment">//则该节点之后的所有结点都是叶子节点</span><br><br>​            <span class="hljs-keyword">if</span>(Top-&gt;Left)<br><br>​            q.push(Top-&gt;Left);<br><br>​            <span class="hljs-comment">//缩减为判断当前队列里面是不是都是叶子</span><br><br>​            <span class="hljs-keyword">while</span>(!q.<span class="hljs-keyword">empty</span>())<br><br>​            &#123;<br><br>​                Top=q.front();<br><br>​                <span class="hljs-keyword">if</span>(Top-&gt;Left==NULL&amp;Top-&gt;Right==NULL)<br><br>​                &#123;<br><br>​                    q.pop();<br><br>​                &#125;<br><br>​                <span class="hljs-keyword">else</span><br><br>​                &#123;<br><br>​                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br><br>​                &#125;<br><br>​            &#125;<br><br>​            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br><br>​        &#125;<br><br>​    &#125;<br><br>​    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br><br>&#125;<br><br> <br><br><span class="hljs-keyword">int</span> Depth(BTreeNode* T)<span class="hljs-comment">//求树高 </span><br><br>&#123;<br><br>​    <span class="hljs-keyword">if</span>(T)<br><br>​        <span class="hljs-keyword">return</span> max(Depth(T-&gt;Left),Depth(T-&gt;Right))+<span class="hljs-number">1</span>;<br><br>​    <span class="hljs-keyword">else</span><br><br>​        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>&#125;<br><br>void Show(BTreeNode* T)<span class="hljs-comment">//图形展示 </span><br><br>&#123;<br><br>​    <span class="hljs-keyword">int</span> TDepth = Depth(T);<span class="hljs-comment">//高度 </span><br><br>​    <span class="hljs-keyword">if</span>(T==NULL)<br><br>​        <span class="hljs-keyword">return</span>;<br><br>​    queue&lt;BTreeNode*&gt; q;<span class="hljs-comment">//不设queue设成deque才有迭代器it </span><br><br>​    q.push(T);<br><br>​    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br><br>​    &#123; <br><br>​        <span class="hljs-keyword">int</span> len=q.size();<span class="hljs-comment">//记录当前这一层有多少个结点 </span><br><br>​        <span class="hljs-keyword">if</span>(TDepth==<span class="hljs-number">0</span>)<span class="hljs-comment">//利用深度控制输出每一层次数</span><br><br>​            <span class="hljs-keyword">break</span>; <br><br>​        <span class="hljs-keyword">while</span>(len&gt;<span class="hljs-number">0</span>)<br><br>​        &#123;<br><br>​            T =q.front();<br><br>​            q.pop();<br><br>​            cout&lt;&lt;T-&gt;Value;<br><br>​            <span class="hljs-keyword">if</span>(T-&gt;Left)<br><br>​                q.push(T-&gt;Left);<br><br>​            <span class="hljs-keyword">else</span><br><br>​                &#123;<br><br>​                    BTreeNode* temp;<br><br>​                    temp=<span class="hljs-keyword">new</span> BTreeNode;<br><br>​                    temp-&gt;Value=<span class="hljs-string">&#x27;#&#x27;</span>;<br><br>​                    temp-&gt;Left=NULL;<br><br>​                    temp-&gt;Right=NULL;<br><br>​                    q.push(temp);<br><br>​                &#125;<span class="hljs-comment">//NULL就新建立一个&#x27;#&#x27;也入栈 </span><br><br>​            <span class="hljs-keyword">if</span>(T-&gt;Right)<br><br>​                q.push(T-&gt;Right);<br><br>​            <span class="hljs-keyword">else</span><br><br>​                &#123;<br><br>​                    BTreeNode* temp;<br><br>​                    temp=<span class="hljs-keyword">new</span> BTreeNode;<br><br>​                    temp-&gt;Value=<span class="hljs-string">&#x27;#&#x27;</span>;<br><br>​                    temp-&gt;Left=NULL;<br><br>​                    temp-&gt;Right=NULL;<br><br>​                    q.push(temp);<br><br>​                &#125;<span class="hljs-comment">//NULL就新建立一个&#x27;#&#x27;也入栈 </span><br><br>​            len--;<br><br>​        &#125;<span class="hljs-comment">//这里为一层 </span><br><br>​        cout&lt;&lt;endl;<span class="hljs-comment">//当前这一层结束 </span><br><br>​        TDepth--;<br><br>​    &#125;<br><br>&#125;<br><br><span class="hljs-keyword">int</span> main()<br><br>&#123;<br><br>​    BTreeNode* T;<br><br>​    TreeList TList[MAXSIZE];<br><br>​    <span class="hljs-keyword">int</span> n;<br><br>​    cout&lt;&lt;<span class="hljs-string">&quot;            -------------------------------------------------------------------\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            |==================    二叉树的相关操作    =================|\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            -------------------------------------------------------------------\n\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            |==================     1.前序     =================|\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            |==================     2.中序     =================|\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            |==================     3.后序     =================|\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            |==================     4.层序    =================|\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            |==================     5.前序(非递归)  =================|\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            |==================     6.中序(非递归) =================|\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;             |==================     7.后序(非递归) =================|\n&quot;</span>;<br><br>​    cout&lt;&lt;<span class="hljs-string">&quot;            |==================     8.图形显示 =================|\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            |==================     9.判断是否为完全二叉树     =================|\n&quot;</span>;<br><br>  cout&lt;&lt;<span class="hljs-string">&quot;            |==================     10.公共祖先     =================|\n&quot;</span>;<br><br>​    Creat(T);<br><br>​    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)<br><br>​    &#123;<br><br>​    cout&lt;&lt;<span class="hljs-string">&quot;请输入&quot;</span>;<br><br>​    cin&gt;&gt;n; <br><br>​    <span class="hljs-keyword">switch</span>(n)<br><br>​    &#123;<br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;前序&quot;</span>;<br><br>​            VLR(T);<br><br>​            cout&lt;&lt;endl;<br><br>​            <span class="hljs-keyword">break</span>;<br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;中序&quot;</span>;<br><br>​            LVR(T);<br><br>​            cout&lt;&lt;endl;<br><br>​            <span class="hljs-keyword">break</span>;<br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;后序&quot;</span>;<br><br>​            LBR(T);<br><br>​            cout&lt;&lt;endl;<br><br>​            <span class="hljs-keyword">break</span>;<br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;层序&quot;</span>;<br><br>​            LevelOrder(T);<br><br>​            cout&lt;&lt;endl;<br><br>​            <span class="hljs-keyword">break</span>;<br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;前序(非递归)&quot;</span>;<br><br>​            PreOrder_2(T); <br><br>​            cout&lt;&lt;endl;<br><br>​            <span class="hljs-keyword">break</span>;<br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;中序(非递归)&quot;</span>;<br><br>​            InOrder_2(T); <br><br>​            cout&lt;&lt;endl;<br><br>​            <span class="hljs-keyword">break</span>;<br><br>​            <br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:<br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;后序(非递归)&quot;</span>;<br><br>​            PostOrder_2(T); <br><br>​            cout&lt;&lt;endl;<br><br>​            <span class="hljs-keyword">break</span>;<br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">8</span>:<br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;图形显示\n&quot;</span>; <br><br>​            Show(T); <br><br>​            cout&lt;&lt;endl;<br><br>​            <span class="hljs-keyword">break</span>;   <br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">10</span>:<br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;公共祖先&quot;</span>&lt;&lt;endl; <br><br>​            ShuZuHua(T,TList,<span class="hljs-number">1</span>);<span class="hljs-comment">//提前转为顺序存储方便用下标 </span><br><br>​            <span class="hljs-keyword">char</span> C1,C2;<br><br>​            cin&gt;&gt;C1&gt;&gt;C2;<br><br>​            GongGongZuXian(TList,C1,C2);<span class="hljs-comment">//利用下标找 </span><br><br>​            cout&lt;&lt;<span class="hljs-string">&quot;\n&quot;</span>;<br><br>​            <span class="hljs-keyword">break</span>;<br><br>​        <span class="hljs-keyword">case</span> <span class="hljs-number">9</span>:<br><br>​            <span class="hljs-keyword">if</span>(IsWanQuanErChaShu(T)==<span class="hljs-keyword">true</span>)<br><br>​                cout&lt;&lt;<span class="hljs-string">&quot;是完全二叉树\n&quot;</span>;<br><br>​            <span class="hljs-keyword">else</span><br><br>​                cout&lt;&lt;<span class="hljs-string">&quot;不是完全二叉树\n&quot;</span>;<br><br>​            <span class="hljs-keyword">break</span>; <br><br>​    &#125;   <br><br>​    <br><br>​    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/shizhuofan.GitHub.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">#数据结构与算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据结构lab2-树型结构的建立与遍历</div>
+      <div>http://yoursite.com/2023/05/16/数据结构lab2-树型结构的建立与遍历/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Fars</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/05/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84lab3-%E5%9B%BE%E5%9E%8B%E7%BB%93%E6%9E%84%E7%9A%84%E5%BB%BA%E7%AB%8B%E4%B8%8E%E6%90%9C%E7%B4%A2/" title="数据结构lab3-图型结构的建立与搜索">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构lab3-图型结构的建立与搜索</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/shizhuofan.GitHub.io/2023/05/16/%E6%A6%82%E7%8E%87%E8%AE%BA%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87-%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF%E7%9A%84%E8%81%94%E7%B3%BB%E5%8F%8A%E5%9C%A8%E7%94%9F%E6%B4%BB%E5%BD%93%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%A0%94%E7%A9%B6/" title="概率统计与计算机技术的联系及在生活当中的应用研究">
+                        <span class="hidden-mobile">概率统计与计算机技术的联系及在生活当中的应用研究</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/events.js" ></script>
+<script  src="/shizhuofan.GitHub.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/shizhuofan.GitHub.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/shizhuofan.GitHub.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/shizhuofan.GitHub.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

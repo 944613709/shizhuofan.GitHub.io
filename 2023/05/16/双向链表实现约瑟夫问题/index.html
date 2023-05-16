@@ -16,22 +16,23 @@
   <meta name="author" content="Fars">
   <meta name="keywords" content="">
   
-    <meta name="description" content="《面向服务的软件系统》实验报告 ——实验一：服务构件&#x2F;服务系统的设计与实现 姓名： 石卓凡 学号： 120L021011  实验1 基于Apache CXF框架的服务开发环境搭建   项目中的pom.xml中的dependencies是什么？有什么作用？  是什么 Pom.xml是项目对象模型，属于Maven项目中的文件，使用xml表示，可以用于管理源代码，配置文件，开发者信息，项目的依">
+    <meta name="description" content="问题：知n个人围坐在一张圆桌周围。从编号为k的人开始报数，数到m的那个人出列；他的下一个人又从1开始报数，数到m的那个人又出列；依此规律重复下去，直到圆桌周围的人全部出列。 算法思想：\1.     构建n个结点的双向链表,初始化按照先后顺序给链表的每个节点data值赋值为i（代表是链表第i个） \2.     执行search函数，从Head开始寻找第P个节点，while循环head &amp;#x3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面向服务的软件系统实验一">
-<meta property="og:url" content="http://yoursite.com/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F-%E5%AE%9E%E9%AA%8C%E4%B8%80%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:title" content="双向链表实现约瑟夫问题">
+<meta property="og:url" content="http://yoursite.com/2023/05/16/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0%E7%BA%A6%E7%91%9F%E5%A4%AB%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Fars&#39;Blog">
-<meta property="og:description" content="《面向服务的软件系统》实验报告 ——实验一：服务构件&#x2F;服务系统的设计与实现 姓名： 石卓凡 学号： 120L021011  实验1 基于Apache CXF框架的服务开发环境搭建   项目中的pom.xml中的dependencies是什么？有什么作用？  是什么 Pom.xml是项目对象模型，属于Maven项目中的文件，使用xml表示，可以用于管理源代码，配置文件，开发者信息，项目的依">
+<meta property="og:description" content="问题：知n个人围坐在一张圆桌周围。从编号为k的人开始报数，数到m的那个人出列；他的下一个人又从1开始报数，数到m的那个人又出列；依此规律重复下去，直到圆桌周围的人全部出列。 算法思想：\1.     构建n个结点的双向链表,初始化按照先后顺序给链表的每个节点data值赋值为i（代表是链表第i个） \2.     执行search函数，从Head开始寻找第P个节点，while循环head &amp;#x3">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-21T03:42:26.000Z">
-<meta property="article:modified_time" content="2023-04-21T04:26:50.775Z">
+<meta property="og:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161046509.jpg">
+<meta property="article:published_time" content="2023-05-16T03:42:26.000Z">
+<meta property="article:modified_time" content="2023-05-16T02:46:24.996Z">
 <meta property="article:author" content="Fars">
-<meta property="article:tag" content="面向服务的软件系统">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161046509.jpg">
   
   
   
-  <title>面向服务的软件系统实验一 - Fars&#39;Blog</title>
+  <title>双向链表实现约瑟夫问题 - Fars&#39;Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="面向服务的软件系统实验一"></span>
+            <span id="subtitle" data-typed-text="双向链表实现约瑟夫问题"></span>
           
         </div>
 
@@ -208,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-21 11:42" pubdate>
-          2023年4月21日 中午
+        <time datetime="2023-05-16 11:42" pubdate>
+          2023年5月16日 中午
         </time>
       </span>
     
@@ -220,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.6k 字
+          3.8k 字
         
       </span>
     
@@ -231,7 +232,7 @@
         
         
         
-          47 分钟
+          32 分钟
         
       </span>
     
@@ -269,200 +270,157 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">面向服务的软件系统实验一</h1>
+            <h1 style="display: none">双向链表实现约瑟夫问题</h1>
             
             
               <div class="markdown-body">
                 
-                <p><strong>《面向服务的软件系统》实验报告</strong></p>
-<p><strong>——实验一：服务构件&#x2F;服务系统的设计与实现</strong></p>
-<p>姓名： 石卓凡 学号： 120L021011</p>
-<ul>
-<li>实验1 基于Apache CXF框架的服务开发环境搭建</li>
+                <ul>
+<li><p><strong>问题：</strong>知n个人围坐在一张圆桌周围。从编号为k的人开始报数，数到m的那个人出列；他的下一个人又从1开始报数，数到m的那个人又出列；依此规律重复下去，直到圆桌周围的人全部出列。</p>
+<h2 id="算法思想："><a href="#算法思想：" class="headerlink" title="算法思想："></a>算法思想：</h2><p>\1.     构建n个结点的双向链表,初始化按照先后顺序给链表的每个节点data值赋值为i（代表是链表第i个）</p>
+<p>\2.     执行search函数，从Head开始寻找第P个节点，while循环head &#x3D; head-&gt;next;直到来到第P个结点</p>
+<p>\3.     执行Jump函数，将从当前head的前m-1次结点进行正常报数，然后返回第m个结点</p>
+<p>\4.     对Jump函数返回来的第m个结点作为新head执行Delete语句，删除当前的结点，并且返回下一个节点，进行下一轮报数</p>
+<p>\5.     利用Delete函数返回来的结点作为新head，重复3，4操作</p>
+<p>\6.     上述重复操作总共执行n-1次出列之后，剩下最后一个人</p>
+<p><strong>算法步骤：</strong> </p>
+<p>\1.   建立n个结点的双向链表</p>
+<p>(1)   定义一个Node *head作为头结点data赋值1，再定义一个Node *tail记录尾结点</p>
+<p>(2)   For循环n-1次，for(int i&#x3D;2;i&lt;&#x3D;len;i++)</p>
+<p>①   定义Node *node，并且将data值赋值为当前的i</p>
+<p>②   尾插法，将node插入链表</p>
+<p>\2.   执行search函数</p>
+<p>(1)   执行while循环直到第k个结点，while (head-&gt;data !&#x3D; k)</p>
+<p>①   head &#x3D; head-&gt;next;</p>
+<p>(2)   返回第k个结点Return head</p>
+<p>\3.   利用while循环对jump和delete重复操作，同时利用count记录出列次数</p>
+<p>3.1  执行Jump函数</p>
+<p>(1)   int count&#x3D;0;利用count计数记录报数</p>
+<p>(2)   While循环直到count&#x3D;m-1</p>
+<p>①   Count++代表计数加1</p>
+<p>②   Printf执行报数</p>
+<p>③   让head指向下一位结点</p>
+<p>\1)     如果head此时已经指向尾结点，则while循环不断head&#x3D;head-&gt;pre，直到head再次指向链表第一个节点</p>
+<p>\2)     如果head不指向尾结点，则head&#x3D;head-&gt;next;即可</p>
+<p>(3)   返回结点Return head</p>
+<p>3.2执行Delete语句</p>
+<p>(4)   Node *temp&#x3D;head;</p>
+<p>(5)   执行printf，声明这个节点要被删除，分三种情况讨论</p>
+<p>①   对于删除头节点(temp-&gt;pre &#x3D;&#x3D; NULL)，直接 head&#x3D;head-&gt;next;然后temp-&gt;next&#x3D;NULL；head-&gt;pre&#x3D;NULL;free(temp); return head;</p>
+<p>②   对于删除尾结点if(temp-&gt;next &#x3D;&#x3D; NULL) ，利用while循环head&#x3D;head-&gt;pre;，使得head跳到链表第一个，然后执行删除原尾结点temp-&gt;pre-&gt;next&#x3D;NULL;temp-&gt;pre&#x3D;NULL;free(temp);</p>
+<p>③   对于删除中间结点head&#x3D;head-&gt;next;      temp-&gt;pre-&gt;next&#x3D;temp-&gt;next;    temp-&gt;next-&gt;pre&#x3D;temp-&gt;pre;     free(temp); </p>
+<p><strong>测试样例：</strong></p>
+<p><img src="https://farsblog.oss-cn-beijing.aliyuncs.com/PicGo/202305161046509.jpg" srcset="/shizhuofan.GitHub.io/img/loading.gif" lazyload alt="img"></p>
+<p>具体代码</p>
+<p><strong>#include&lt;stdio.h&gt;</strong></p>
+<p><strong>#include&lt;stdlib.h&gt;</strong></p>
+<p><strong>#include&lt;math.h&gt;</strong></p>
+<p><strong>int delTime&#x3D;0;</strong></p>
+<p><strong>typedef struct Node</strong></p>
+<p><strong>{</strong></p>
+<p>​     <strong>int data;</strong></p>
+<p>​     <strong>struct Node *pre;</strong></p>
+<p>​     <strong>struct Node *next;</strong></p>
+<p><strong>}Node;</strong></p>
+<p>**Node* CreatNode(int data)&#x2F;&#x2F;**<strong>新建结点并赋值</strong> </p>
+<p><strong>{</strong></p>
+<p>​     <strong>Node *node&#x3D;(Node*)malloc(sizeof(Node));</strong></p>
+<p>​     <strong>node-&gt;data&#x3D;data;</strong></p>
+<p>​     <strong>node-&gt;pre&#x3D;NULL;</strong></p>
+<p>​     <strong>node-&gt;next&#x3D;NULL;</strong></p>
+<p>​     <strong>return node;</strong></p>
+<p><strong>}</strong></p>
+<p><strong>Node* CreatList(int len)</strong></p>
+<p><strong>{</strong></p>
+<p>​     <strong>int num&#x3D;1;</strong></p>
+<p>​     <strong>Node *head&#x3D; CreatNode(1);</strong></p>
+<p>​     <strong>Node *tail&#x3D;head;</strong></p>
+<p>​     <strong>for(int i&#x3D;2;i&lt;&#x3D;len;i++)</strong></p>
+<p>​     <strong>{</strong></p>
+<p>​          <strong>Node *node&#x3D;CreatNode(i);</strong></p>
+<p>​          <strong>tail-&gt;next&#x3D;node;</strong></p>
+<p>​          <strong>node-&gt;pre&#x3D;tail;</strong></p>
+<p>​          <strong>tail&#x3D;tail-&gt;next;</strong></p>
+<p>​     <strong>}</strong></p>
+<p>​     <strong>tail-&gt;next&#x3D;NULL;</strong></p>
+<p>​     <strong>return head;</strong></p>
+<p><strong>}</strong></p>
+<p>**Node* Delete(Node *head)&#x2F;&#x2F;**<strong>删除当前的，并且返回下一个节点，进行下一轮报数</strong> </p>
+<p><strong>{</strong></p>
+<p>​     <strong>Node *temp&#x3D;head;</strong></p>
+<p>​     **delTime++;&#x2F;&#x2F;**<strong>用以判断是否到删除的数</strong> </p>
+<p>​     *<em>printf(“<strong><strong>本轮报数正好出列，第%d</strong></strong>次执行删除编号为%d\n”,delTime,temp-&gt;data);</em>*</p>
+<p>​     **if(temp-&gt;pre &#x3D;&#x3D; NULL)&#x2F;&#x2F;**<strong>对于删除头节点</strong> </p>
+<p>​      <strong>{</strong></p>
+<p>​      <strong>head&#x3D;head-&gt;next;</strong></p>
+<p>​      <strong>temp-&gt;next&#x3D;NULL;</strong></p>
+<p>​      <strong>head-&gt;pre&#x3D;NULL;</strong></p>
+<p>​      <strong>free(temp);</strong></p>
+<p>​      <strong>return head;</strong></p>
+<p>​      <strong>}</strong></p>
+<p>​      **&#x2F;***<strong>判断是否是尾节点*&#x2F;</strong></p>
+<p>​      **else if(temp-&gt;next &#x3D;&#x3D; NULL)&#x2F;&#x2F;**<strong>对于删除尾结点</strong> </p>
+<p>​      <strong>{</strong></p>
+<p>​           <strong>while(head-&gt;pre!&#x3D;NULL)</strong></p>
+<p>​                 *<em>head&#x3D;head-&gt;pre;&#x2F;&#x2F;<strong><strong>删除后head</strong></strong>跳到当前链表第一个</em>* </p>
+<p>​        <strong>temp-&gt;pre-&gt;next&#x3D;NULL;</strong></p>
+<p>​        <strong>temp-&gt;pre&#x3D;NULL;</strong></p>
+<p>​        <strong>free(temp);</strong></p>
+<p>​        <strong>return head;</strong></p>
+<p>​      <strong>}</strong></p>
+<p>​      **else&#x2F;&#x2F;**<strong>删除中间结点</strong> </p>
+<p>​      <strong>{</strong></p>
+<p>​           <strong>head&#x3D;head-&gt;next;</strong></p>
+<p>​        <strong>temp-&gt;pre-&gt;next&#x3D;temp-&gt;next;</strong></p>
+<p>​        <strong>temp-&gt;next-&gt;pre&#x3D;temp-&gt;pre;</strong></p>
+<p>​        <strong>free(temp);</strong>  </p>
+<p>​        <strong>return head;</strong>  </p>
+<p>​      <strong>}</strong></p>
+<p>​       </p>
+<p><strong>}</strong> </p>
+<p>*<em>Node *Search(Node *head, int k) {  &#x2F;&#x2F;<strong><strong>从Head</strong></strong>开始寻找第P</em>*<strong>个节点</strong></p>
+<p>​     <strong>while (head-&gt;data !&#x3D; k) {</strong></p>
+<p>​          <strong>head &#x3D; head-&gt;next;</strong></p>
+<p>​     <strong>}</strong></p>
+<p>​     <strong>return head;</strong></p>
+<p><strong>}</strong></p>
+<p>*<em>Node *Jump(Node *head, int m)&#x2F;&#x2F;<strong><strong>将head</strong></strong>前m-1</em><em><strong>次正常报数，然后返回第m</strong></em><em>次</em>* </p>
+<p><strong>{</strong></p>
+<p>​     <strong>int count&#x3D;0;</strong></p>
+<p>​     *<em>while(count!&#x3D;m-1)&#x2F;&#x2F;<strong><strong>前m-1</strong></strong>个人都能正常报数</em>*</p>
+<p>​     <strong>{</strong></p>
+<p>​          <strong>count++;</strong></p>
+<p>​          **printf(“****报数为-&gt;%d,<strong><strong>编号data</strong></strong>为-&gt;%d\n”,count,head-&gt;data);&#x2F;&#x2F;**<strong>报数</strong> </p>
+<p>​          <strong>if(head-&gt;next&#x3D;&#x3D;NULL)</strong></p>
+<p>​          <strong>{</strong></p>
+<p>​              <strong>while(head-&gt;pre!&#x3D;NULL)</strong></p>
+<p>​                   <strong>head&#x3D;head-&gt;pre;</strong></p>
+<p>​          **}&#x2F;&#x2F;**<strong>换行</strong> </p>
+<p>​          <strong>else</strong></p>
+<p>​              <strong>head&#x3D;head-&gt;next;</strong></p>
+<p>​     <strong>}</strong></p>
+<p>​     <strong>return head;</strong> </p>
+<p><strong>}</strong></p>
+<p>*<em>int main()&#x2F;&#x2F;<strong><strong>已知n</strong></strong>个人围坐在一张圆桌周围。从编号为k</em><em><strong>的人开始报数，数到m</strong></em><em>的那个人出列；他的下一个人又从1</em><em><strong>开始报数，数到m</strong></em>*的那个人又出列；依此规律重复下去，直到圆桌周围的人全部出列。(**<strong>摘自百度百科)</strong></p>
+<p><strong>{</strong></p>
+<p>​     <strong>int n,k,m;</strong></p>
+<p>​     <strong>int count&#x3D;0;</strong></p>
+<p>​     **printf(“**<strong>按照n,k,m\n”);</strong></p>
+<p>​     <strong>while(scanf(“%d,%d,%d”,&amp;n,&amp;k,&amp;m)!&#x3D;3)</strong></p>
+<p>​     <strong>{</strong></p>
+<p>​     <strong>}</strong></p>
+<p>​     <strong>Node *head&#x3D;CreatList(n);</strong></p>
+<p>​     <strong>head&#x3D;Search(head,k);</strong></p>
+<p>​     *<em>while(count!&#x3D;n-1)&#x2F;&#x2F;<strong><strong>执行n-1</strong></strong>次出列，来完成剩下最后一个人</em>*</p>
+<p>​     <strong>{</strong></p>
+<p>​          <strong>count++;</strong></p>
+<p>​          *<em>head&#x3D;Jump(head,m);&#x2F;&#x2F;<strong><strong>将head</strong></strong>前m-1</em><em><strong>次正常报数，然后返回第m</strong></em><em>次</em>* </p>
+<p>​          **head&#x3D;Delete(head);&#x2F;&#x2F;**<strong>删除当前的，并且返回下一个节点，进行下一轮报数</strong> </p>
+<p>​     <strong>}</strong></p>
+<p>​     **printf(“**<strong>最后剩下的是编号为%d\n”,head-&gt;data);</strong></p>
+<p><strong>}</strong></p>
+</li>
 </ul>
-<ol>
-<li>项目中的pom.xml中的dependencies是什么？有什么作用？</li>
-</ol>
-<p><strong>是什么</strong></p>
-<p>Pom.xml是项目对象模型，属于Maven项目中的文件，使用xml表示，可以用于管理源代码，配置文件，开发者信息，项目的依赖关系等</p>
-<p>Pom.xml的其中dependencies内部的元素都是项目中需要被引进的依赖，被maven管理，即通过&lt;dependencies&gt;可以给出Maven项目所依赖的第三方类库。而dependencies里面有若干个&lt;dependency&gt;，而dependency标签有含有多个属性比如：</p>
-<p>groupId：公司或者组织的唯一标志，并且配置时生成的路径也是由此生成，</p>
-<p>artifactId本项目的唯一ID，一个groupId下面可能多个项目，就是靠artifactId来区分的</p>
-<p>type，打包类型，默认jar</p>
-<p>scope，被依赖的Maven构件在classpath中的可访问范围</p>
-<p>optional，当前Maven项目的构件被其他项目依赖，此处被依赖的Maven构件相对于其他项目来说是不必须的</p>
-<p>exclusions，将一个被依赖的Maven构件中的部分类库，从classpath中去掉</p>
-<p>给出一个简单实例:</p>
-<p>&lt;project&gt;</p>
-<p>…</p>
-<p>&lt;dependencies&gt;</p>
-<p>&lt;dependency&gt;</p>
-<p>&lt;!–组织ID–&gt;</p>
-<p>&lt;groupId&gt;&lt;&#x2F;groupId&gt;</p>
-<p>&lt;!–项目ID–&gt;</p>
-<p>&lt;artifactId&gt;&lt;&#x2F;artifactId&gt;</p>
-<p>&lt;!–版本号–&gt;</p>
-<p>&lt;version&gt;&lt;&#x2F;version&gt;</p>
-<p>&lt;!–依赖类型–&gt;</p>
-<p>&lt;type&gt;&lt;&#x2F;type&gt;</p>
-<p>&lt;!–类别（类目）–&gt;</p>
-<p>&lt;classifier&gt;&lt;&#x2F;classifier&gt;</p>
-<p>&lt;!–指定依赖的范围–&gt;</p>
-<p>&lt;scope&gt;&lt;&#x2F;scope&gt;</p>
-<p>&lt;!–指定本地jar路径，和scope一起使用–&gt;</p>
-<p>&lt;systemPath&gt;&lt;&#x2F;systemPath&gt;</p>
-<p>&lt;!–排除依赖列表–&gt;</p>
-<p>&lt;exclusions&gt;</p>
-<p>&lt;exclusion&gt;</p>
-<p>&lt;artifactId&gt;&lt;&#x2F;artifactId&gt;</p>
-<p>&lt;groupId&gt;&lt;&#x2F;groupId&gt;</p>
-<p>&lt;&#x2F;exclusion&gt;</p>
-<p>&lt;&#x2F;exclusions&gt;</p>
-<p>&lt;!–指定是否需要被依赖–&gt;</p>
-<p>&lt;optional&gt;&lt;&#x2F;optional&gt;</p>
-<p>&lt;&#x2F;dependency&gt;</p>
-<p>&lt;&#x2F;dependencies&gt;</p>
-<p>…</p>
-<p>&lt;&#x2F;project&gt;</p>
-<p><strong>作用：</strong></p>
-<p>通过dependecies管理项目对第三方包的依赖，利用元素可以将包的依赖下载到本地仓库并以此给项目进行使用，让项目得到构建和部署</p>
-<p>比如：</p>
-<p>&lt;**dependency**&gt;<br> &lt;**groupId**&gt;com.baomidou&lt;&#x2F;**groupId**&gt;<br> &lt;**artifactId**&gt;mybatis-plus-boot-starter&lt;&#x2F;**artifactId**&gt;<br> &lt;**version**&gt;3.5.2&lt;&#x2F;**version**&gt;<br>&lt;&#x2F;**dependency**&gt;</p>
-<p>会让maven自动去下载mybatis-plus-boot-starter的依赖，其中版本要求为3.5.2，下载之后会自动管理和使用。项目中原本对于mybatis-plus-boot-starter爆红的地方就会解决，变为正常</p>
-<ol>
-<li>服务接口中方法参数中@webparam注解用与不用的实验结果是否会有变化？</li>
-</ol>
-<p><strong>@webparam是什么</strong></p>
-<p>WebParam是webservice里面的注解，表示方法的参数名指定为一个名称</p>
-<p>如果不使用@WebParam的注解，则方法参数的name默认为arg0,arg1,arg2……</p>
-<p>而返回值的name默认为return</p>
-<p>比如：</p>
-<p>&lt; xs:element minOccurs&#x3D;”0” name&#x3D;”arg0” &#x2F;&gt;</p>
-<p>&lt; xs:element minOccurs&#x3D;”0” name&#x3D;”return” &#x2F;&gt;</p>
-<p>如果使用了@WebParam的注解比如@WebParam(name&#x3D;”password”)后，在wsdl中看到的参数名称就成为了password</p>
-<p>比如：</p>
-<p>&lt; xs:element minOccurs&#x3D;”0” name&#x3D;”password” &#x2F;&gt;</p>
-<p><strong>变化：</strong></p>
-<p><strong>1控制台返回结果一致</strong></p>
-<p>加入WebParam注解和不加入WebParam注解均成功运行</p>
-<p>且二者控制台返回结果一致</p>
-
-
-<ol>
-<li><strong>wsdl文档中结果不一致</strong></li>
-</ol>
-<p><em>（1）public Reader getReader(String name, String password)</em></p>
-<p>当不加入注解时候可以发现，getReader方法中的参数名叫做arg0,arg1没有实际意义，仅表示参数顺序</p>
-
-
-<p><em>（2）</em><strong>public</strong> Reader getReader(@WebParam(name&#x3D;<strong>“name”</strong>) String name, @WebParam(name &#x3D; <strong>“password”</strong>) String password)</p>
-<p>当加入注解时候可以发现，getReader方法中的参数名叫做name,password,为对应的@WebParam中给定的参数名称</p>
-
-
-<ol>
-<li>方法实现中@webservice注解中的参数endpointInterface和serviceName分别代表了什么？</li>
-</ol>
-<p>@WebService(endpointInterface &#x3D; <strong>“main.IReaderService”</strong>,serviceName &#x3D; <strong>“readerService”</strong>)</p>
-<p>@WebService注解：作用于具体类，可以通过这个注解利用endpoint发布一个web服务</p>
-<p><strong>endpointInterface：</strong></p>
-<p>用于指定服务的接口类的路径，指定做SEI服务端口接口，如果指定了此限定名，那么会使用该服务端点接口来确定抽象 WSDL 约定</p>
-<p>在Lab1中的endpointInterface &#x3D; <strong>“main.IReaderService”</strong></p>
-<p>“main.IReaderService”代表了指定服务接口是main文件夹下面的IReaderService接口，路径为main.IReaderService</p>
-
-
-
-
-<p><strong>serviceName：</strong></p>
-<p>指定对外发布的服务名。默认值值为 Java 类的简单名称+Service。</p>
-<p>在Lab1中serviceName &#x3D; <strong>“readerService”</strong></p>
-<p>wsdl对应的显示如下：</p>
-
-
-<ul>
-<li>实验2 基于SpringBoot框架的服务开发环境搭建</li>
-</ul>
-<ol>
-<li>注解@RequestParam和@PathVariable分别表示什么？</li>
-</ol>
-<p><strong>@RequestParam：</strong></p>
-<p><strong>作用：</strong></p>
-<p>请求中的指定名称的参数传递给控制器中的形参赋值，接收的参数是请求url的QueryString(HTTP协议中的Request参数)中(不同于@Requestbody接收请求体中的参数）</p>
-<p>举例子：</p>
-<p><a target="_blank" rel="noopener" href="http://localhost:8080/user?id=1">http://localhost:8080/user?id=1</a></p>
-<p>对应代码</p>
-<p>@GetMapping(“&#x2F;user”)</p>
-<p>public String testRequestParam(@RequestParam Integer id) {</p>
-<p>System.out.println(“获取到的id为：” + id);</p>
-<p>return “success”;</p>
-<p>}</p>
-<p><strong>语法：</strong></p>
-<p>@RequestParam(value&#x3D;”参数名”,required&#x3D;”true&#x2F;false”,defaultValue&#x3D;””)</p>
-<p>value：参数名</p>
-<p>required：默认为true，表示该请求路径中是否必须包含这个参数</p>
-<p>开启了true之后，如果 value 属性值没有对应上jsp中 name 值则会直接报400错误</p>
-<p>defaultValue：默认参数值，如果没有传该参数，就使用默认值</p>
-<p>举例子：</p>
-<p>(@RequestParam(value&#x3D;”password”,required&#x3D;true,defaultValue&#x3D;”123456”)</p>
-<p><strong>@PathVariable：</strong></p>
-<p><strong>作用：</strong></p>
-<p>接收到参数是来自url变量，获取 url 参数</p>
-<p>可以将URL中占位符参数{x}绑定到处理器类的方法形参中@PathVariable(“x“)</p>
-<p>举例子localhost:8080&#x2F;user&#x2F;1</p>
-<p>@GetMapping(“&#x2F;user&#x2F;{id}”)</p>
-<p>public String testRequestParam(@PathVariable Integer id) {</p>
-<p>System.out.println(“获取到的id为：” + id);</p>
-<p>return “success”;</p>
-<p>}</p>
-<p><strong>语法：</strong>@PathVariable(value&#x3D;”参数名”,required&#x3D;”true&#x2F;false”,name&#x3D;””)</p>
-<p>name-别名名称</p>
-<p>Value要绑定的路径变量名称</p>
-<p>required-指示路径变量是否为必需</p>
-<p><strong>Lab1中：</strong></p>
-<p><strong>原代码为：</strong></p>
-<p>@RequestMapping(value &#x3D; <strong>“&#x2F;hallo&#x2F;{id}”</strong>,method &#x3D; RequestMethod.<strong>GET</strong>)<br><strong>public</strong> TestEntity say1(@RequestParam(value &#x3D; <strong>“qid”</strong>,required &#x3D; <strong>true</strong>) String qid, @PathVariable(<strong>“id”</strong>) String id){<br> <strong>return new</strong> TestEntity(qid, id);<br>}</p>
-<p>@RequestParam接收pid</p>
-<p>@PathVariable接收id</p>
-<p>访问路径<a target="_blank" rel="noopener" href="http://localhost:8080/hallo/1?pid=2">http://localhost:8080/hallo/1?pid=2</a></p>
-<p>但是这里的@RequestParam与@PathVariable同时使用，无法读取到@RequestParam想要解释的pid，于是会报400错误，提示pid未接收到</p>
-
-
-
-
-<p>将qid设定为非必须且给定默认值为1则解决问题可以运行</p>
-<p>@RequestMapping(value &#x3D; <strong>“&#x2F;hallo&#x2F;{id}”</strong>,method &#x3D; RequestMethod.<strong>GET</strong>)<br><strong>public</strong> TestEntity say1(@PathVariable(<strong>“id”</strong>) String id,@RequestParam(value &#x3D; <strong>“qid”</strong>,required &#x3D; <strong>false</strong>) String qid){<br> System.<strong>out</strong>.println(<strong>“qid &#x3D; “</strong> + qid);<br> <strong>return new</strong> TestEntity(<strong>“1”</strong>,id);<br>}</p>
-
-
-<ol>
-<li>用以下URL：<a target="_blank" rel="noopener" href="http://localhost:8080/hallo/2%E8%AE%BF%E9%97%AE%E6%9C%AC%E5%AE%9E%E9%AA%8C%E7%9A%84%E6%9C%8D%E5%8A%A1%E4%BC%9A%E5%BE%97%E5%88%B0%E4%BB%80%E4%B9%88%E7%BB%93%E6%9E%9C%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E9%87%8A%E8%AF%A5%E7%BB%93%E6%9E%9C%EF%BC%9F">http://localhost:8080/hallo/2访问本实验的服务会得到什么结果？如何解释该结果？</a></li>
-</ol>
-<p><strong>结果：</strong></p>
-<p>得到400报错</p>
-
-
-<p><strong>原因：</strong></p>
-
-
-<p>同上一问，源代码中@RequestParam(value &#x3D; “qid”,required &#x3D; true)要求提供qid的HTTP请求参数，但是未提供，因此报错</p>
-<p><strong>解决方案：</strong></p>
-<p>在去掉@RequestParam之后</p>
-<p>将pid默认”1”</p>
-
-
-<p>可以正常显示（测试改端口8888，对结论无影响）</p>
-
-
-<ul>
-<li>结合本次实验感受，试分析基于服务的软件系统与你以往做过的软件有何区别？可以从软件结构、开发过程、调试方法等方面阐述。</li>
-</ul>
-<p>区别：</p>
-<p>（1）之前学习和使用的是面向对象和面向接口，如今是面向服务service，用面向服务的方法去管理服务之间的发生的事情。</p>
-<p>直观上来说，之前做的程序，要实现投票系统，关注的是投票人对象，匿名票对象以及对象之间的关系和互相调用互动</p>
-<p>现在面向服务的软件系统，比如如果要实现springboot的web网页，需要划分为entity,mapper,service,controller基本四层，其中要根据业务需求重点考虑好service服务的设计，然后是controller控制层</p>
-<ol>
-<li>之前使用的是基础JAVA语法，如今要启动框架，站在前人的肩膀上来看世界，比如直接使用springboot和springcloud框架，需要了解各自框架的如何使用，其中有哪些注解，框架的格式，框架的配置文件内容等等</li>
-<li>基于服务的软件系统在制作软件的过程中，设计时还需要考虑更加全面的方面，比如说如果使用SOA的体系结构，就要考虑松散耦合，粗粒度服务，标准化接口，在设计uml时候也需要考虑将服务使用者和服务提供者在服务实现和客户如何使用服务方面隔离开来</li>
-<li>对于微服务的知识点，也让我认识到了区别所在，之后需要关注的内容还得关注于高并发问题集群问题，比如之后用springboot写出了一个软件，可以用springcloud变成高性能分布式，还可以用docker打包镜像然后k8s部署到多台云服务器，以此来解决高并发问题。以前设计的软件用户量太小不需要考虑</li>
-</ol>
 
                 
               </div>
@@ -471,34 +429,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/shizhuofan.GitHub.io/categories/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="category-chain-item">面向服务的软件系统</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/shizhuofan.GitHub.io/tags/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/">#面向服务的软件系统</a>
-      
-    </div>
   
 </div>
 
@@ -508,8 +438,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>面向服务的软件系统实验一</div>
-      <div>http://yoursite.com/2023/04/21/面向服务的软件系统-实验一报告/</div>
+      <div>双向链表实现约瑟夫问题</div>
+      <div>http://yoursite.com/2023/05/16/双向链表实现约瑟夫问题/</div>
     </div>
     <div class="license-meta">
       
@@ -521,7 +451,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月21日</div>
+          <div>2023年5月16日</div>
         </div>
       
       
@@ -553,9 +483,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%AE%9E%E9%AA%8C%E4%B8%89-120L021011%E7%9F%B3%E5%8D%93%E5%87%A1/" title="《面向服务的软件系统》实验三：微服务与容器技术">
+                      <a href="/shizhuofan.GitHub.io/2023/05/16/12%E9%87%91%E5%B8%81/" title="12金币">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">《面向服务的软件系统》实验三：微服务与容器技术</span>
+                        <span class="hidden-mobile">12金币</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -563,8 +493,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/shizhuofan.GitHub.io/2023/04/21/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E5%AE%9E%E9%AA%8C%E5%9B%9B-120L021011-%E7%9F%B3%E5%8D%93%E5%87%A1-%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/" title="《面向服务的软件系统》实验四：微服务综合实验">
-                        <span class="hidden-mobile">《面向服务的软件系统》实验四：微服务综合实验</span>
+                      <a href="/shizhuofan.GitHub.io/2023/05/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84lab1-%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E4%BB%A3%E6%95%B0%E8%BF%90%E7%AE%97%20-%20%E5%89%AF%E6%9C%AC/" title="数据结构lab1-一元多项式的代数运算">
+                        <span class="hidden-mobile">数据结构lab1-一元多项式的代数运算</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
